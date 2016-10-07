@@ -1,0 +1,162 @@
+/* Default : #fff */
+/* Primary : #265A88 */
+/* Success : #479E47 */
+/* Info    : #37B1D5 */
+/* Warning : #ED9D2C */
+/* Danger  : #CA3C38 */
+
+
+/* mobile screen */
+@media (min-width: 0) and  (max-width: 767px) {
+	#content-all-alert
+	{
+		position:fixed;
+		top:50px;
+		right:0;
+		left:0;
+		margin:auto;
+		height:auto;
+		width:98%;
+		z-index:9999;
+	}
+}
+/* mobile screen */
+
+/* mobile screen */
+@media (min-width: 768px) and  (max-width: 991px) {
+	#content-all-alert
+	{
+		position:fixed;
+		top:50px;
+		right:0;
+		height:auto;
+		margin:auto;
+		width:200px;
+		z-index:9999;
+	}
+}
+/* mobile screen */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	#content-all-alert
+	{
+		position:fixed;
+		top:50px;
+		right:0;
+		height:auto;
+		margin:auto;
+		width:200px;
+		z-index:9999;
+	}
+}
+
+@media (min-width: 1200px) {
+	#content-all-alert
+	{
+		position:fixed;
+		top:50px;
+		right:25px;
+		margin:auto;
+		height:auto;
+		width:200px;
+		z-index:9999;
+	}
+}
+
+/* General  */
+
+.close-alert-button
+{
+	position:absolute;
+	width:15px;
+	height:15px;
+	top:1px;
+	right:2px;
+	text-align:center;
+	font-size:10px;
+	cursor:pointer;
+}
+
+.alert-global-content
+{
+	position:relative;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+	margin-top:5px;
+	font-size:10pt;
+	/* display:none; */
+}
+
+/* General  */
+
+
+/* default  */
+.default-alert
+{
+	color:#000;
+	width:100%;
+	text-align:ceter;
+	min-height:50px;
+	padding:5px;
+	background:#fff;
+	border:1px solid #d1d1d1;
+}
+
+/* default  */
+
+/* success  */
+.success-alert
+{
+	color:#fff;
+	width:100%;
+	text-align:ceter;
+	min-height:50px;
+	padding:5px;
+	background:#479E47;
+	border:1px solid #429142;
+}
+
+/* success  */
+
+/* info  */
+.info-alert
+{
+	color:#fff;
+	width:100%;
+	text-align:ceter;
+	min-height:50px;
+	padding:5px;
+	background:#37B1D5;
+	border:1px solid #33A4C4;
+}
+
+/* info  */
+
+/* warning  */
+.warning-alert
+{
+	color:#fff;
+	width:100%;
+	text-align:ceter;
+	min-height:50px;
+	padding:5px;
+	background:#ED9D2C;
+	border:1px solid #DB9129;
+}
+
+/* warning  */
+
+/* danger  */
+.danger-alert
+{
+	color:#fff;
+	width:100%;
+	text-align:ceter;
+	min-height:50px;
+	padding:5px;
+	background:#CA3C38;
+	border:1px solid #BC3734;
+}
+
+/* danger  */
