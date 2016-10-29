@@ -37,10 +37,6 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => '<i class="fa fa-home"></i>&nbsp;Dashboard', 'url' => ['/dashboard']],
-        ['label' => '<i class="fa fa-television"></i>&nbsp;Katalog', 'url' => ['/katalog/0/0/0/semua-kategori']],
-        ['label' => '<i class="fa fa-users"></i>&nbsp;Kerjasama', 'url' => ['/kerjasama']],
-        ['label' => '<i class="fa fa-info"></i>&nbsp;Tentang Kami', 'url' => ['/tentang']],
-        ['label' => '<i class="fa fa-envelope"></i>&nbsp;Kontak', 'url' => ['/kontak']],
     ];
    
     echo Nav::widget([
@@ -50,14 +46,6 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-
-    <!--<div class="container">-->
-        <?//Breadcrumbs::widget([
-            //'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        //]) ?>
-        <?//Alert::widget() ?>
-        <?= $content ?>
-    <!--</div>-->
 </div>
 
 <footer class="footer">
@@ -65,9 +53,9 @@ AppAsset::register($this);
         <div class="">
             <p class="pull-left">&copy;  <?= Yii::$app->name.' '.Yii::$app->mycomponent->getCopy(2015); ?></p>
             <p class="pull-right">
-                <a href="<?=Yii::$app->mycomponent->getSetting(4);?>" target="_BLANK" ><i class="fa fa-facebook-official"></i></a>
-                <a href="<?=Yii::$app->mycomponent->getSetting(5);?>" target="_BLANK"><i class="fa fa-twitter-square"></i></a>
-                <a href="<?=Yii::$app->mycomponent->getSetting(6);?>" target="_BLANK"><i class="fa fa-instagram"></i></a>
+                <a href="#" target="_BLANK" ><i class="fa fa-facebook-official"></i></a>
+                <a href="#" target="_BLANK"><i class="fa fa-twitter-square"></i></a>
+                <a href="" target="_BLANK"><i class="fa fa-instagram"></i></a>
             </p>
         </div>
     </div>

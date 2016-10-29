@@ -11,8 +11,6 @@ use yii\filters\AccessControl;
 //use frontend\models\PasswordResetRequestForm;
 //use frontend\models\ResetPasswordForm;
 //use frontend\models\SignupForm;
-use frontend\models\ContactForm;
-use frontend\models\TemplateModel;
 
 /**
  * Site controller
@@ -73,45 +71,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $model = new TemplateModel();
-        $catalog_cat = $model->getCatalogCategory();
-        $catalog_new = $model->getNewCatalog();
-        $catalog_rand = $model->getRandomCatalog(8);
-        $client_rand = $model->getRandomClient();
-        return $this->render('index', [
-                    'catalog_cat' => $catalog_cat,
-                    'catalog_new' => $catalog_new,
-                    'catalog_rand' => $catalog_rand,
-                    'client_rand' => $client_rand,
-            ]);
+        return $this->render('index');
     }
 
-    public function actionViewDetailCatalog($id)
-    {
-        $model = new TemplateModel();
-        $detal_atalog = $model->getDetailCatalog($id);
-        $catalog_rand = $model->getRandomCatalog(6);
-
-        if($detal_atalog)
-        {
-        return $this->render('catalog_detail', [
-                'detal_atalog' => $detal_atalog,
-                'catalog_rand' => $catalog_rand,
-            ]);  
-        }
-
-         return $this->goHome();
-    }
-
-    public function actionCatalog($id)
-    {
-        $model = new TemplateModel();
-        $catalog = $model->getCatalog(12, (int) $id, '');
-
-        return $this->render('catalog',$catalog );  
-
-         return $this->goHome();
-    }
+    
 
     /**
      * Logs in a user.
@@ -174,29 +137,6 @@ class SiteController extends Controller
         }
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        $model = new TemplateModel();
-        $_model = $model->getContentDetail(1);
-        return $this->render('about', ['_model' => $_model]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionKerjasama()
-    {
-        $model = new TemplateModel();
-        $_model = $model->getContentDetail(3);
-        return $this->render('kerjasama', ['_model' => $_model]);
-    }
 
     /**
      * Signs user up.

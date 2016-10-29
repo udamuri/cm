@@ -34,7 +34,7 @@ return [
     ],
     'components' => [
         'request' => [
-            'baseUrl' => $baseUrl.'/arsyicom-admin',
+            'baseUrl' => $baseUrl.'/cm-admin',
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
