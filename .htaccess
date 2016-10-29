@@ -6,5 +6,5 @@ IndexIgnore */*
 Options FollowSymlinks
 RewriteEngine on
 #RewriteRule ^arsyicom-admin(/.+)?$ backend/web/$1 [L,PT]
-RewriteRule ^arsyicom-admin(.+)?$ backend/web/$1 [L,PT]
+RewriteRule ^cm-admin(.+)?$ backend/web/$1 [L,PT]
 RewriteRule ^(.+)?$ frontend/web/$1

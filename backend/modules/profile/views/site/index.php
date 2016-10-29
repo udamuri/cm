@@ -62,7 +62,7 @@ $this->registerJs($jsx);
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <button id="update-user" type="submit" class="btn btn-success">Simpan Perubahan</button>
+                            <button id="update-user" type="submit" class="btn btn-success">Save Change</button>
                         </div>
                     </div>
 
@@ -104,7 +104,7 @@ $this->registerJs($jsx);
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <button type="submit" id="new-password-save" class="btn btn-success">Simpan Perubahan</button>
+                            <button type="submit" id="new-password-save" class="btn btn-success">Save Change</button>
                         </div>
                     </div>
 

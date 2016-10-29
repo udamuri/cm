@@ -60,8 +60,11 @@ class SiteController extends Controller
         if($model->load(Yii::$app->request->post()))
         {
             $data = Yii::$app->request->post();
-            var_dump($data);
-            Yii::$app->end();
+            $_data = $data['OptionForm'];
+            if($model->update($_data))
+            {
+                
+            }
         }
 
         $generalSetting = $model->getAllOption(1);

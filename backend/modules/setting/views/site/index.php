@@ -21,17 +21,16 @@ $gs = $generalSetting;
 ?>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <ol class="breadcrumb">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Library</a></li>
-          <li class="active">Data</li>
+          <li><a href="<?=Yii::$app->homeUrl;?>">Home</a></li>
+          <li class="active"><?=$this->title;?></li>
         </ol>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <?php $form = ActiveForm::begin([
                     'id' => "form-update-setting",
                 ]); 

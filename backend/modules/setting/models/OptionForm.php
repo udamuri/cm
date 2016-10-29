@@ -19,7 +19,7 @@ use Yii;
 
 class OptionForm extends Model
 {
-    public $setting_id;
+    public $option_id;
     public $option_value;
 
     /**
@@ -39,9 +39,22 @@ class OptionForm extends Model
      *
      * @return option_value|null the saved model or null if saving fails
     */
-    public function update()
+    public function update($value)
     {
-        return var_dump($this->option_value);
+        if(is_array($value))
+        {
+            $_id = $value['option_id'];
+            $_value = $value['option_value'];
+            foreach ($_id as $key=>$value) {
+              $model = $this->findModel($key);
+              $model->option_value = trim(strip_tags($_value[$key]));
+              $model->save(false);
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     public function getDetOption($oid)

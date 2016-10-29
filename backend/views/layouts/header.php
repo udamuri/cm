@@ -18,7 +18,7 @@
 	<div class="left_col scroll-view">
 
 		<div class="navbar nav_title" style="border: 0;">
-			<a href="<?=Yii::$app->homeUrl;?>dashboard" class="site_title"><i class="fa fa-television"></i> <span>Arsyicom</span></a>
+			<a href="<?=Yii::$app->homeUrl;?>dashboard" class="site_title"><i class="fa fa-info"></i> <span>CM</span></a>
 		</div>
 		<div class="clearfix"></div>
 
@@ -44,7 +44,7 @@
 				<div class="menu_section">
 					<h3>General</h3>
 					<ul class="nav side-menu">
-						<li><a><i class="fa fa-desktop"></i> Master Data <span class="fa fa-chevron-down"></span></a>
+						<li><a><i class="fa fa-desktop"></i> Module <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
 								<li><a href="<?=Yii::$app->homeUrl?>client">Client</a></li>
 								<li><a href="<?=Yii::$app->homeUrl?>catalog-category">Catalog Category</a></li>
@@ -56,7 +56,7 @@
 				<div class="menu_section">
 					<h3>Live On</h3>
 					<ul class="nav side-menu">
-						<li><a><i class="fa fa-bug"></i> CMS <span class="fa fa-chevron-down"></span></a>
+						<li><a><i class="fa fa-bug"></i> POST <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
 								<li><a href="<?=Yii::$app->homeUrl?>content-category">Content Category</a></li>
 								<li><a href="<?=Yii::$app->homeUrl?>content">Dinamic Content</a></li>
