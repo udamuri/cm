@@ -56,10 +56,19 @@ class SiteController extends Controller
     public function actionIndex()
     {	
         $model = new OptionForm();
+
+        if($model->load(Yii::$app->request->post()))
+        {
+            $data = Yii::$app->request->post();
+            var_dump($data);
+            Yii::$app->end();
+        }
+
         $generalSetting = $model->getAllOption(1);
         $socialmediaSetting = $model->getAllOption(2);
-        
+
         return $this->render('index', [
+            'model' => $model,
             'generalSetting'=>$generalSetting,
             'socialmediaSetting'=>$socialmediaSetting,
         ]);

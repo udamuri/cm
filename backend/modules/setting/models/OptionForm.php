@@ -28,8 +28,8 @@ class OptionForm extends Model
     public function rules()
     {
         return [
-			    ['option_value', 'filter', 'filter' => 'trim'],
-          ['option_value', 'required'],
+			    //['option_value[0]', 'filter', 'filter' => 'trim'],
+          //['option_value[0]', 'required'],
         ];
     }
 	
@@ -39,19 +39,9 @@ class OptionForm extends Model
      *
      * @return option_value|null the saved model or null if saving fails
     */
-    public function update($oid)
+    public function update()
     {
-     
-        if ($this->validate()) {
-            $update = TableOptions::findOne($oid);
-            $update->option_value = trim(strip_tags($this->option_value));
-            if($update->save(false)) 
-            {
-               return true;
-            }
-        }
-        
-        return null;
+        return var_dump($this->option_value);
     }
 
     public function getDetOption($oid)

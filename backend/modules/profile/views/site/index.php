@@ -36,7 +36,7 @@ $this->registerJs($jsx);
     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Seting Akun</h2>
+                <h2>Account Setting</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -74,28 +74,28 @@ $this->registerJs($jsx);
     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Ganti Password</h2>
+                <h2>Change Password</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <br />
                 <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                     <div class="form-group" id="box-password">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Password Lama</label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Old Password</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="password" class="form-control col-md-7 col-xs-12" type="password" name="middle-name">
                             <div id="text-password" class="help-block"></div>
                         </div>
                     </div>
                     <div class="form-group" id="box-new_password">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Password Baru</label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">New Password</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="new_password" class="form-control col-md-7 col-xs-12" type="password" name="middle-name">
                             <div id="text-new_password" class="help-block"></div>
                         </div>
                     </div>
                     <div class="form-group" id="box-password_repeat">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Ulangi Password</label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Repeat Password</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="password_repeat" class="form-control col-md-7 col-xs-12" type="password" name="middle-name">
                             <div id="text-password_repeat" class="help-block"></div>
