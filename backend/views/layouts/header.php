@@ -44,7 +44,7 @@
 				<div class="menu_section">
 					<h3>General</h3>
 					<ul class="nav side-menu">
-						<li><a><i class="fa fa-desktop"></i> Module <span class="fa fa-chevron-down"></span></a>
+						<li><a><i class="fa fa-desktop"></i> MODULES <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
 								<li><a href="<?=Yii::$app->homeUrl?>client">Client</a></li>
 								<li><a href="<?=Yii::$app->homeUrl?>catalog-category">Catalog Category</a></li>
@@ -56,10 +56,23 @@
 				<div class="menu_section">
 					<h3>Live On</h3>
 					<ul class="nav side-menu">
-						<li><a><i class="fa fa-bug"></i> POST <span class="fa fa-chevron-down"></span></a>
+						<li><a><i class="fa fa-bookmark"></i> POSTS <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
-								<li><a href="<?=Yii::$app->homeUrl?>content-category">Content Category</a></li>
-								<li><a href="<?=Yii::$app->homeUrl?>content">Dinamic Content</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>">All Posts</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>">Add New</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>">Categories</a></li>
+							</ul>
+						</li>
+						<li><a><i class="fa fa-clone"></i> PAGES <span class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu" style="display: none">
+								<li><a href="<?=Yii::$app->homeUrl?>">All Pages</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>">Add New</a></li>
+							</ul>
+						</li>
+						<li><a><i class="fa fa-camera"></i> MEDIA <span class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu" style="display: none">
+								<li><a href="<?=Yii::$app->homeUrl?>">Library</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>">Add New</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -71,16 +84,16 @@
 	
 		<!-- /menu footer buttons -->
 		<div class="sidebar-footer hidden-small">
-			<a data-toggle="tooltip" data-placement="top" title="Settings">
+			<a data-toggle="tooltip" data-placement="top" title="Settings" href="<?=Yii::$app->homeUrl;?>web-setting">
 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 			</a>
-			<a data-toggle="tooltip" data-placement="top" title="FullScreen">
+			<!--<a data-toggle="tooltip" data-placement="top" title="Profile">
 				<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
 			</a>
 			<a data-toggle="tooltip" data-placement="top" title="Lock">
 				<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-			</a>
-			<a data-toggle="tooltip" data-placement="top" title="Logout">
+			</a>-->
+			<a data-toggle="tooltip" data-placement="top" data-method="post" title="Logout" href="<?=Yii::$app->homeUrl?>logout" >
 				<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
 			</a>
 		</div>

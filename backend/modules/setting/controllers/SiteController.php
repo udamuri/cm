@@ -56,14 +56,24 @@ class SiteController extends Controller
     public function actionIndex()
     {	
         $model = new OptionForm();
-
+        $arrMessage = [];
         if($model->load(Yii::$app->request->post()))
         {
             $data = Yii::$app->request->post();
             $_data = $data['OptionForm'];
             if($model->update($_data))
             {
-                
+                $arrMessage = [
+                    'status'=> 'success',
+                    'message'=> 'Success Update Setting Site'
+                ];
+            }
+            else
+            {
+                $arrMessage = [
+                    'status'=> 'error',
+                    'message'=> 'ups\' sorry, something wrong'
+                ];
             }
         }
 
@@ -74,6 +84,7 @@ class SiteController extends Controller
             'model' => $model,
             'generalSetting'=>$generalSetting,
             'socialmediaSetting'=>$socialmediaSetting,
+            'arrMessage'=>$arrMessage
         ]);
     }
 

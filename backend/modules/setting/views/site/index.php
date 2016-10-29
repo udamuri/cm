@@ -33,9 +33,21 @@ $gs = $generalSetting;
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <?php $form = ActiveForm::begin([
                     'id' => "form-update-setting",
+                    //'options' => ['class' => 'form-horizontal form-label-left'],
                 ]); 
     ?>
 
+        <?php
+            if(isset($arrMessage) && is_array($arrMessage) && count($arrMessage))
+            {
+                echo '<div class="alert alert-'.$arrMessage['status'].'" role="alert">
+                            '.$arrMessage['message'].'
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>';
+            }
+        ?>
 
         <div class="panel panel-default">
             <div class="panel-heading">
