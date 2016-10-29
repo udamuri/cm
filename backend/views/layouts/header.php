@@ -16,13 +16,6 @@
 
 <div class="col-md-3 left_col">
 	<div class="left_col scroll-view">
-
-		<div class="navbar nav_title" style="border: 0;">
-			<a href="<?=Yii::$app->homeUrl;?>dashboard" class="site_title"><i class="fa fa-info"></i> <span>CM</span></a>
-		</div>
-		<div class="clearfix"></div>
-
-
 		<?php if (!\Yii::$app->user->isGuest) { ?>
 			<!-- menu prile quick info -->
 			<div class="profile">
@@ -44,7 +37,7 @@
 				<div class="menu_section">
 					<h3>General</h3>
 					<ul class="nav side-menu">
-						<li><a><i class="fa fa-desktop"></i> MODULES <span class="fa fa-chevron-down"></span></a>
+						<li><a><i class="fa fa-desktop"></i> APPEARANCE <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
 								<li><a href="<?=Yii::$app->homeUrl?>client">Client</a></li>
 								<li><a href="<?=Yii::$app->homeUrl?>catalog-category">Catalog Category</a></li>

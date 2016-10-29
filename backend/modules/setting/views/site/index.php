@@ -51,7 +51,7 @@ $gs = $generalSetting;
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">General Setting</h3>
+                <h2>General Setting</h2>
             </div>
             <div class="panel-body">
                 <?php
@@ -78,7 +78,7 @@ $gs = $generalSetting;
         <?php if($ss) { ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Socialmedia Setting</h3>
+                <h2>Socialmedia Setting</h2>
             </div>
             <div class="panel-body">
                 <?php

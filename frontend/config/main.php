@@ -11,7 +11,7 @@ $baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl());
 
 return [
     'id' => 'app-frontend',
-    'name' => 'Arsyicom',
+    'name' => 'CM',
     'language' => 'id',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
