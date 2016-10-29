@@ -78,19 +78,19 @@ class OptionForm extends Model
     public function getAllOption($load)
     {
         $model = TableOptions::find()
-                ->where('=', 'option_status',$load)
+                ->where(['=', 'option_status', (string)$load])
                 ->all();
 
-
+        
         $arrData = [];
         foreach ($model as $value) {
             $arrData[] = [
-                'option_id'=>$model['option_id'],
-                'option_name'=>$model['option_name'],
-                'option_label'=>$model['option_label'],
-                'option_value'=>$model['option_value'],
-                'option_autoload'=>$model['option_autoload'],
-                'option_status'=>$model['option_status'],
+                'option_id'=>$value['option_id'],
+                'option_name'=>$value['option_name'],
+                'option_label'=>$value['option_label'],
+                'option_value'=>$value['option_value'],
+                'option_autoload'=>$value['option_autoload'],
+                'option_status'=>$value['option_status'],
             ];
         }
 
@@ -99,9 +99,8 @@ class OptionForm extends Model
         {
             return $arrData;   
         }
-
+        
         return null;
-       
     }
 	
 

@@ -8,7 +8,6 @@ use yii\web\Controller;
 use yii\data\Pagination;
 use yii\db\Query;
 use yii\widgets\ActiveForm;
-use backend\modules\setting\models\SettingForm;
 use backend\modules\setting\models\OptionForm;
 
 /**
@@ -56,7 +55,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {	
-        return $this->render('index');
+        $model = new OptionForm();
+        $generalSetting = $model->getAllOption(1);
+        $socialmediaSetting = $model->getAllOption(2);
+        
+        return $this->render('index', [
+            'generalSetting'=>$generalSetting,
+            'socialmediaSetting'=>$socialmediaSetting,
+        ]);
     }
 
 }

@@ -19,5 +19,7 @@ $this->registerJs($jsx);
 ?>
 
 <div class="row">
-
+    <div class="col-md-12">
+        <?php var_dump($socialmediaSetting);?>
+    </div>
 </div>         
