@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\client;
+namespace app\modules\menu;
 
 /**
- * client module definition class
+ * menu module definition class
  */
-class Module extends \yii\base\Module
+class module extends \yii\base\Module
 {
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'app\modules\client\controllers';
+    public $controllerNamespace = 'app\modules\menu\controllers';
 
     /**
      * @inheritdoc
