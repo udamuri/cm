@@ -23,7 +23,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'change-password', 'update-user', 'save-crop-profil'],
+                        'actions' => ['index', 'change-password', 'update-user', 'save-crop-profil', 'help'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -121,5 +121,10 @@ class SiteController extends Controller
             return \yii\helpers\Json::encode($data);
         }
 
+    }
+
+    public function actionHelp()
+    {
+        return $this->render('help');  
     }
 }

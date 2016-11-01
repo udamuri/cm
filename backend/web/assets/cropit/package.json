@@ -1,0 +1,43 @@
+{
+  "name": "cropit",
+  "main": "dist/jquery.cropit.js",
+  "description": "Customizable crop and zoom.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Scott Cheng",
+    "email": "me@scottcheng.com",
+    "url": "http://scottcheng.com"
+  },
+  "keywords": [
+    "crop",
+    "zoom",
+    "image editor"
+  ],
+  "homepage": "http://scottcheng.github.io/cropit",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/scottcheng/cropit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/scottcheng/cropit/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-coffeelint": "0.0.10",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-jasmine": "^0.6.5",
+    "grunt-contrib-uglify": "^0.5.0",
+    "load-grunt-tasks": "^0.6.0"
+  },
+  "readmeFilename": "README.md",
+  "readme": "# cropit\n\nCustomizable crop and zoom.\n\nSee demos and docs [here](http://scottcheng.github.io/cropit/).\n\nBuilt on top of [Yufei Liu's Image Editor](https://github.com/yufeiliu/simple_image_uploader).\n\n## Installation\n\n```bash\n# Install cropit with bower\n$ bower install cropit\n\n# or with npm\n$ npm install cropit\n```\n\n## Development\n\nRun `grunt build` to build, and `grunt test` to test.\n\n## License\n\nMIT\n",
+  "_id": "cropit@0.2.0",
+  "dist": {
+    "shasum": "b6de9770a65da2aaf263ce991ad154f6831e52b4"
+  },
+  "_from": "cropit@",
+  "_resolved": "https://registry.npmjs.org/cropit/-/cropit-0.2.0.tgz"
+}

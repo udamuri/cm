@@ -39,11 +39,16 @@
 					<ul class="nav side-menu">
 						<li><a><i class="fa fa-desktop"></i> APPEARANCE <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
-								<li><a href="<?=Yii::$app->homeUrl?>client">Client</a></li>
-								<li><a href="<?=Yii::$app->homeUrl?>catalog-category">Catalog Category</a></li>
-								<li><a href="<?=Yii::$app->homeUrl?>catalog">Catalog</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>menu">Menu</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>b">Catalog Category</a></li>
 							</ul>
-						</li>				
+						</li>
+						<li><a><i class="fa fa-camera"></i> MEDIA <span class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu" style="display: none">
+								<li><a href="<?=Yii::$app->homeUrl?>d">Library</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>e">Add New</a></li>
+							</ul>
+						</li>			
 					</ul>
 				</div>
 				<div class="menu_section">
@@ -51,21 +56,15 @@
 					<ul class="nav side-menu">
 						<li><a><i class="fa fa-bookmark"></i> POSTS <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
-								<li><a href="<?=Yii::$app->homeUrl?>">All Posts</a></li>
-								<li><a href="<?=Yii::$app->homeUrl?>">Add New</a></li>
-								<li><a href="<?=Yii::$app->homeUrl?>">Categories</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>f">All Posts</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>g">Add New</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>h">Categories</a></li>
 							</ul>
 						</li>
 						<li><a><i class="fa fa-clone"></i> PAGES <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
-								<li><a href="<?=Yii::$app->homeUrl?>">All Pages</a></li>
-								<li><a href="<?=Yii::$app->homeUrl?>">Add New</a></li>
-							</ul>
-						</li>
-						<li><a><i class="fa fa-camera"></i> MEDIA <span class="fa fa-chevron-down"></span></a>
-							<ul class="nav child_menu" style="display: none">
-								<li><a href="<?=Yii::$app->homeUrl?>">Library</a></li>
-								<li><a href="<?=Yii::$app->homeUrl?>">Add New</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>i">All Pages</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>j">Add New</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -120,7 +119,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="javascript:;">Help</a>
+							<a href="<?=Yii::$app->homeUrl?>help">Help</a>
 						</li>
 						<li><a data-method="post" href="<?=Yii::$app->homeUrl?>logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
 						</li>
