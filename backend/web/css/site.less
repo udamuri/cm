@@ -192,6 +192,13 @@ a.desc:after {
     }
 }
 
+.border-radius(@radius : 0.3em)
+{
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
 /* login panel */
 
 
@@ -217,3 +224,34 @@ ol.breadcrumb
 
     }
 }
+
+
+@menucolor : #EDEDED;
+@colorwhite : #fff;
+/* menu administrator */
+nav.navbar-administator
+{
+    background-color: @menucolor;
+    padding: 0;
+    .border-radius(0.3em);
+    .container-fluid
+    {
+        .navbar-header
+        {
+            color: @colorwhite;
+        }
+        ul.nav 
+        {
+            li
+            {
+                padding: 0;
+                padding: 0;
+                a {
+                    margin-top: 5px;
+                    padding: 4px 9px 4px 9px;
+                }
+            }
+        }
+    }
+}
+/* menu administrator */

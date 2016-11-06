@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "914f9194a4d021de88b285b03e683984",
-    "content-hash": "e1929a97e872bdbaacc8530468eccb67",
+    "hash": "3e2d62be4241a12a58c8b9ad0b3d01b6",
+    "content-hash": "47b46cc433aada9817273b14ab463f96",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -351,6 +351,58 @@
                 "mailer"
             ],
             "time": "2016-07-08 11:51:25"
+        },
+        {
+            "name": "udamuri/yii2-imagethum",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/udamuri/yii2-imagethum.git",
+                "reference": "79b3eb779f38af64ddfe9c3f73bdfb9d7845eef7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/udamuri/yii2-imagethum/zipball/79b3eb779f38af64ddfe9c3f73bdfb9d7845eef7",
+                "reference": "79b3eb779f38af64ddfe9c3f73bdfb9d7845eef7",
+                "shasum": ""
+            },
+            "require": {
+                "udamuri/yii2-imagethum": "1.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "udamuri\\imagethum\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muri Budiman",
+                    "email": "udamuri@gmail.com",
+                    "homepage": "https://github.com/udamuri/"
+                }
+            ],
+            "description": "Yii2 imagethum",
+            "homepage": "https://github.com/udamuri/yii2-imagethum.git",
+            "keywords": [
+                "extension",
+                "image",
+                "thumnail",
+                "udamuri",
+                "yii2"
+            ],
+            "abandoned": "udamuri/yii2-imagethum",
+            "time": "2016-11-01 10:01:27"
         },
         {
             "name": "yiisoft/yii2",
