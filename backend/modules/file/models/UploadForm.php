@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
 use backend\models\TableFile;
+use udamuri\imagethum\ImageThum;
 
 class UploadForm extends Model
 {
@@ -39,6 +40,21 @@ class UploadForm extends Model
                 if($model->save(false))
                 {
                     $file->saveAs($location.$model->file_id.'.'.$file->extension);
+                    $ext = strtolower($file->extension);
+                    if($ext == 'png' OR $ext == 'jpg' OR $ext == 'gif' OR $ext == 'jpeg')
+                    {
+                        $target_file = $location.$model->file_id.'.'.$file->extension;
+                        $resized_file = $location.$model->file_id.'_resize.'.$file->extension;
+                        $wmax = 300;
+                        $hmax = 300;
+                        $fileExt = $file->extension;
+                        ImageThum::resize($target_file, $resized_file, $wmax, $hmax, $fileExt);
+
+                        $thumbnail = $location.$model->file_id.'_thumb.'.$file->extension;
+                        $wthumb = 150;
+                        $hthumb = 150;
+                        ImageThum::thumb($target_file, $thumbnail, $wthumb, $hthumb, $fileExt);
+                    }
                 }
                
             }
