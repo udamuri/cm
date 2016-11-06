@@ -28,6 +28,9 @@ return [
         'menu' => [
             'class' => 'app\modules\menu\module',
         ],
+        'file' => [
+            'class' => 'app\modules\file\module',
+        ],
     ],
     'components' => [
         'request' => [
@@ -72,6 +75,7 @@ return [
                 'create-setting'=>'setting/site/create-setting',
                 'update-setting/<id:[0-9]+>'=>'setting/site/update-setting',
                 'menu'=>'menu/site/index',
+                'file-manager'=>'file/site/index',
             ],
         ],
         //Yii::$app->urlManagerFrontEnd->createUrl('//')

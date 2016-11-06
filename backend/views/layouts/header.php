@@ -45,8 +45,7 @@
 						</li>
 						<li><a><i class="fa fa-camera"></i> MEDIA <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
-								<li><a href="<?=Yii::$app->homeUrl?>d">Library</a></li>
-								<li><a href="<?=Yii::$app->homeUrl?>e">Add New</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>file-manager">Library</a></li>
 							</ul>
 						</li>			
 					</ul>

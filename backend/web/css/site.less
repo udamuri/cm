@@ -8,6 +8,9 @@ body {
 }
 
 
+@menucolor : #EDEDED;
+@colorwhite : #fff;
+@colorbread : #2A3F54;
 
 .modal-backdrop
 {
@@ -192,6 +195,13 @@ a.desc:after {
     }
 }
 
+.border-radius(@radius : 0.3em)
+{
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
 /* login panel */
 
 
@@ -208,7 +218,7 @@ a.desc:after {
 
 ol.breadcrumb
 {
-    background-color: #2A3F54;
+    background-color: @colorbread;
     li a{
         color: #fff;
     }
@@ -217,3 +227,36 @@ ol.breadcrumb
 
     }
 }
+
+/* menu administrator */
+nav.navbar-administator
+{
+    background-color: @menucolor;
+    padding: 0;
+    .border-radius(0.3em);
+    .container-fluid
+    {
+        .navbar-header
+        {
+            color: @colorwhite;
+        }
+        ul.nav 
+        {
+            li
+            {
+                padding: 0;
+                padding: 0;
+                a {
+                    margin-top: 5px;
+                    padding: 4px 9px 4px 9px;
+                }
+                a:hover
+                {
+                    background-color:@colorbread;
+                    color:@colorwhite;
+                }
+            }
+        }
+    }
+}
+/* menu administrator */

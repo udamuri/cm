@@ -33,8 +33,17 @@ $this->registerJs($jsx);
 
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <?=$menu;?>
-        <textarea id="nestable-output" class=""></textarea>
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Save Change</button>
+          <button type="button" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New Menu</button>
+          <button type="button" class="btn btn-default"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;Info</button>
+        </div>
     </div>
+</div>
 
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <?=$menu;?>
+        <textarea id="nestable-output" class="hidden"></textarea>
+    </div>
 </div>
