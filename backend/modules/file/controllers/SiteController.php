@@ -9,6 +9,7 @@ use yii\data\Pagination;
 use yii\db\Query;
 use yii\widgets\ActiveForm;
 use backend\modules\file\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * Default controller for the `file` module
@@ -55,6 +56,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+        return $this->render('index', ['model'=>$model]);
     }
 }

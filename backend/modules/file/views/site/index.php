@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use app\components\Constants;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Media Library';
 
@@ -51,3 +52,16 @@ $this->registerJs($jsx);
     </div>
   </div>
 </nav>
+
+
+
+<!-- form upload -->
+
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+
+    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+
+    <button>Submit</button>
+
+<?php ActiveForm::end() ?>
+<!-- END form upload -->
