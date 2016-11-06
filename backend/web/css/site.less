@@ -8,6 +8,9 @@ body {
 }
 
 
+@menucolor : #EDEDED;
+@colorwhite : #fff;
+@colorbread : #2A3F54;
 
 .modal-backdrop
 {
@@ -215,7 +218,7 @@ a.desc:after {
 
 ol.breadcrumb
 {
-    background-color: #2A3F54;
+    background-color: @colorbread;
     li a{
         color: #fff;
     }
@@ -225,9 +228,6 @@ ol.breadcrumb
     }
 }
 
-
-@menucolor : #EDEDED;
-@colorwhite : #fff;
 /* menu administrator */
 nav.navbar-administator
 {
@@ -249,6 +249,11 @@ nav.navbar-administator
                 a {
                     margin-top: 5px;
                     padding: 4px 9px 4px 9px;
+                }
+                a:hover
+                {
+                    background-color:@colorbread;
+                    color:@colorwhite;
                 }
             }
         }
