@@ -30,9 +30,10 @@ class TableFile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['file_name', 'file_type', 'file_size', 'file_date_upload', 'user_id'], 'required'],
+            [['file_name', 'file_type', 'file_size', 'file_date_upload', 'user_id', 'file_folder'], 'required'],
             [['file_size', 'user_id'], 'integer'],
             [['file_date_upload'], 'safe'],
+            [['file_folder'], 'string', 'max' => 10],
             [['file_name'], 'string', 'max' => 256],
             [['file_type'], 'string', 'max' => 50],
         ];
@@ -46,6 +47,7 @@ class TableFile extends \yii\db\ActiveRecord
         return [
             'file_id' => 'File ID',
             'file_name' => 'File Name',
+            'file_name' => 'File Folder',
             'file_type' => 'File Type',
             'file_size' => 'File Size',
             'file_date_upload' => 'File Date Upload',

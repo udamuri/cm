@@ -23,18 +23,24 @@ class UploadForm extends Model
     
     public function upload()
     {
-        $location = Yii::getAlias('@frontend').'/web/media/';
-        if ($this->validate()) { 
+        if ($this->validate()) {
+            $foldernow = date('Y').'_'.date('m').'/';
+            $location = Yii::getAlias('@frontend').'/web/media/'.$foldernow;
+            Yii::$app->mycomponent->createDirectory($location);
             foreach ($this->imageFiles as $file) {
                 $model = new TableFile();
 
                 $model->file_name = $file->name;
+                $model->file_folder = $foldernow;
                 $model->file_type = $file->type;
                 $model->file_size = $file->size;
                 $model->file_date_upload = Date('Y-m-d H:i:s');
                 $model->user_id = Yii::$app->user->identity->id;
-                $model->save(false);
-                $file->saveAs($location.$model->file_id.'.'.$file->extension);
+                if($model->save(false))
+                {
+                    $file->saveAs($location.$model->file_id.'.'.$file->extension);
+                }
+               
             }
             return true;
         } else {
