@@ -1,0 +1,35 @@
+{
+    "name": "udamuri/yii2-nestablemenu",
+    "description": "Yii2 nestablemenu",
+    "type": "yii2-extension",
+    "homepage": "https://github.com/udamuri/yii2-nestablemenu.git",
+    "keywords": ["yii2","extension","nestable","udamuri","menu"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Muri Budiman",
+            "email": "udamuri@gmail.com",
+            "homepage": "https://github.com/udamuri/"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/udamuri/yii2-nestablemenu.git"
+        }
+    ],
+    "require": {
+        "udamuri/yii2-nestablemenu": "1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "udamuri\\nestablemenu\\": ""
+        }
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}

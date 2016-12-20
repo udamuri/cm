@@ -25,6 +25,7 @@ class ComposerStaticInit0d1d3c13f80202964b8b82ff7f2fb863
         ),
         'u' => 
         array (
+            'udamuri\\nestablemenu\\' => 21,
             'udamuri\\imagethum\\' => 18,
         ),
         'c' => 
@@ -69,6 +70,10 @@ class ComposerStaticInit0d1d3c13f80202964b8b82ff7f2fb863
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'udamuri\\nestablemenu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/udamuri/yii2-nestablemenu',
         ),
         'udamuri\\imagethum\\' => 
         array (
