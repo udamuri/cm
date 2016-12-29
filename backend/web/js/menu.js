@@ -4,7 +4,7 @@ function menu()
 
 	this.initialScript = function()
 	{
-		MenuObj.MenuDragDrop();
+		//MenuObj.MenuDragDrop();
 	}
 
 	this.MenuDragDrop = function()

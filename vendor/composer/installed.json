@@ -982,5 +982,58 @@
             "bower-asset-main": "dist/typeahead.bundle.js"
         },
         "installation-source": "dist"
+    },
+    {
+        "name": "udamuri/yii2-nestablemenu",
+        "version": "v1.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/udamuri/yii2-nestablemenu.git",
+            "reference": "44f7ac1b902e3760d71a84f9fc654f11234259dc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/udamuri/yii2-nestablemenu/zipball/44f7ac1b902e3760d71a84f9fc654f11234259dc",
+            "reference": "44f7ac1b902e3760d71a84f9fc654f11234259dc",
+            "shasum": ""
+        },
+        "require": {
+            "udamuri/yii2-nestablemenu": "1.0"
+        },
+        "time": "2016-12-20 06:33:41",
+        "type": "yii2-extension",
+        "extra": {
+            "asset-installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "udamuri\\nestablemenu\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Muri Budiman",
+                "email": "udamuri@gmail.com",
+                "homepage": "https://github.com/udamuri/"
+            }
+        ],
+        "description": "Yii2 nestablemenu",
+        "homepage": "https://github.com/udamuri/yii2-nestablemenu.git",
+        "keywords": [
+            "extension",
+            "menu",
+            "nestable",
+            "udamuri",
+            "yii2"
+        ]
     }
 ]

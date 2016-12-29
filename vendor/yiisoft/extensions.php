@@ -66,4 +66,13 @@ return array (
       '@udamuri/imagethum' => $vendorDir . '/udamuri/yii2-imagethum',
     ),
   ),
+  'udamuri/yii2-nestablemenu' => 
+  array (
+    'name' => 'udamuri/yii2-nestablemenu',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@udamuri/nestablemenu' => $vendorDir . '/udamuri/yii2-nestablemenu',
+    ),
+  ),
 );

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3e2d62be4241a12a58c8b9ad0b3d01b6",
-    "content-hash": "47b46cc433aada9817273b14ab463f96",
+    "hash": "4734647f7203bdec8933072a32302633",
+    "content-hash": "d248899d43878153ece0c1aa39e80fe6",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -403,6 +403,57 @@
             ],
             "abandoned": "udamuri/yii2-imagethum",
             "time": "2016-11-01 10:01:27"
+        },
+        {
+            "name": "udamuri/yii2-nestablemenu",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/udamuri/yii2-nestablemenu.git",
+                "reference": "44f7ac1b902e3760d71a84f9fc654f11234259dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/udamuri/yii2-nestablemenu/zipball/44f7ac1b902e3760d71a84f9fc654f11234259dc",
+                "reference": "44f7ac1b902e3760d71a84f9fc654f11234259dc",
+                "shasum": ""
+            },
+            "require": {
+                "udamuri/yii2-nestablemenu": "1.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "udamuri\\nestablemenu\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muri Budiman",
+                    "email": "udamuri@gmail.com",
+                    "homepage": "https://github.com/udamuri/"
+                }
+            ],
+            "description": "Yii2 nestablemenu",
+            "homepage": "https://github.com/udamuri/yii2-nestablemenu.git",
+            "keywords": [
+                "extension",
+                "menu",
+                "nestable",
+                "udamuri",
+                "yii2"
+            ],
+            "time": "2016-12-20 06:33:41"
         },
         {
             "name": "yiisoft/yii2",
@@ -803,6 +854,7 @@
                 "codeception",
                 "yii2"
             ],
+            "abandoned": "codeception/codeception",
             "time": "2016-03-17 03:41:26"
         },
         {

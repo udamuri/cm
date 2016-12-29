@@ -55,8 +55,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-    	$model = new MenuModel;
-		$menu = $model->showMenu();
-        return $this->render('index', ['menu'=>$menu]);
+        if($post = Yii::$app->request->post())
+        {
+            if(isset($post['output-nestable']))
+            {
+                $jsonstring = $post['output-nestable'];
+                $models = new MenuModel();
+                if($models->sortMenu($jsonstring))
+                {
+                    
+                }
+            }
+        }
+        return $this->render('index');
     }
 }
