@@ -15,8 +15,8 @@ if(!file_exists($img))
 $this->registerJsFile(Yii::$app->homeUrl."js/index.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
 $this->registerJsFile(Yii::$app->homeUrl."js/profile.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
 $this->registerJsFile(Yii::$app->homeUrl."template/production/js/input_mask/jquery.inputmask.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
-$this->registerJsFile(Yii::$app->homeUrl."assets/cropit/dist/jquery.cropit.js", ['depends' => [\yii\web\JqueryAsset::className()]]);
-$this->registerCssFile(Yii::$app->homeUrl."assets/cropit/dist/jquery.cropit.css", ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile(Yii::$app->homeUrl."plugins/cropit/dist/jquery.cropit.js", ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerCssFile(Yii::$app->homeUrl."plugins/cropit/dist/jquery.cropit.css", ['depends' => [\yii\web\JqueryAsset::className()]]);
 $token = $this->renderDynamic('return Yii::$app->request->csrfToken;');
 
 $jsx = <<< 'SCRIPT'

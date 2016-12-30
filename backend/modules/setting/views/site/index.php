@@ -55,20 +55,23 @@ $gs = $generalSetting;
             </div>
             <div class="panel-body">
                 <?php
-                    foreach ($gs as $value) 
+                    if($gs)
                     {
-                        echo $form->field($model, 'option_id['.$value['option_id'].']')->hiddenInput(['value'=>$value['option_id']])->label(false);
-                        if($value['option_autoload'] == 'textarea')
+                        foreach ($gs as $value) 
                         {
-                            echo $form->field($model, 'option_value['.$value['option_id'].']')->textArea(['value'=> $value['option_value']])->label($value['option_label']);
-                        }
-                        else if($value['option_autoload'] == 'password')
-                        {
-                            echo $form->field($model, 'option_value['.$value['option_id'].']')->passwordInput(['value'=> $value['option_value']])->label($value['option_label']);
-                        }
-                        else
-                        {
-                            echo $form->field($model, 'option_value['.$value['option_id'].']')->textInput(['value'=> $value['option_value']])->label($value['option_label']);
+                            echo $form->field($model, 'option_id['.$value['option_id'].']')->hiddenInput(['value'=>$value['option_id']])->label(false);
+                            if($value['option_autoload'] == 'textarea')
+                            {
+                                echo $form->field($model, 'option_value['.$value['option_id'].']')->textArea(['value'=> $value['option_value']])->label($value['option_label']);
+                            }
+                            else if($value['option_autoload'] == 'password')
+                            {
+                                echo $form->field($model, 'option_value['.$value['option_id'].']')->passwordInput(['value'=> $value['option_value']])->label($value['option_label']);
+                            }
+                            else
+                            {
+                                echo $form->field($model, 'option_value['.$value['option_id'].']')->textInput(['value'=> $value['option_value']])->label($value['option_label']);
+                            }
                         }
                     }
                 ?>
@@ -82,20 +85,23 @@ $gs = $generalSetting;
             </div>
             <div class="panel-body">
                 <?php
-                    foreach ($ss as $value) 
+                    if($ss)
                     {
-                        echo $form->field($model, 'option_id['.$value['option_id'].']')->hiddenInput(['value'=>$value['option_id']])->label(false);
-                        if($value['option_autoload'] == 'textarea')
+                        foreach ($ss as $value) 
                         {
-                            echo $form->field($model, 'option_value['.$value['option_id'].']')->textArea(['value'=> $value['option_value']])->label($value['option_label']);
-                        }
-                        else if($value['option_autoload'] == 'password')
-                        {
-                            echo $form->field($model, 'option_value['.$value['option_id'].']')->passwordInput(['value'=> $value['option_value']])->label($value['option_label']);
-                        }
-                        else
-                        {
-                            echo $form->field($model, 'option_value['.$value['option_id'].']')->textInput(['value'=> $value['option_value']])->label($value['option_label']);
+                            echo $form->field($model, 'option_id['.$value['option_id'].']')->hiddenInput(['value'=>$value['option_id']])->label(false);
+                            if($value['option_autoload'] == 'textarea')
+                            {
+                                echo $form->field($model, 'option_value['.$value['option_id'].']')->textArea(['value'=> $value['option_value']])->label($value['option_label']);
+                            }
+                            else if($value['option_autoload'] == 'password')
+                            {
+                                echo $form->field($model, 'option_value['.$value['option_id'].']')->passwordInput(['value'=> $value['option_value']])->label($value['option_label']);
+                            }
+                            else
+                            {
+                                echo $form->field($model, 'option_value['.$value['option_id'].']')->textInput(['value'=> $value['option_value']])->label($value['option_label']);
+                            }
                         }
                     }
                 ?>
