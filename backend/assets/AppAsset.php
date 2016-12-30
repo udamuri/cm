@@ -14,7 +14,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/alert.css',
-        'assets/font-awesome/css/font-awesome.min.css',
+        'plugins/font-awesome/css/font-awesome.min.css',
         'temp/production/css/animate.min.css',
         'temp/production/css/custom.css',
         'temp/production/css/maps/jquery-jvectormap-2.0.1.css',
