@@ -36,19 +36,20 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
                 <div class="right_col" role="main">
                     <br />
                     <div class="">
-                        <?//Alert::widget() ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?= Breadcrumbs::widget([
+                                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?= Alert::widget() ?>
+                            </div>
+                        </div>
                         <?= $content ?>
                     </div>
-                    <!-- footer content -->
-                    <!--<footer>
-                        <div class="">
-                            <p class="pull-right">Gentelella Alela! a Bootstrap 3 template by <a>Kimlabs</a>. |
-                                <span class="lead"> <i class="fa fa-paw"></i> Gentelella Alela!</span>
-                            </p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </footer> -->
-                    <!-- /footer content -->
                 </div>
             </div>
         </div>
@@ -61,7 +62,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
             <div id="notif-group" class="tabbed_notifications"></div>
         </div>
 
-    <div id="content-all-alert">
+    <!--<div id="content-all-alert">-->
         <!--<div class="default-alert alert-global-content">
             <div class="close-alert-button"><i class="fa fa-times"></i></div>
             <div class="clearfix"></div>
@@ -71,7 +72,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
         <div class="info-alert alert-global-content">Tes</div>
         <div class="warning-alert alert-global-content">Tes</div>
         <div class="danger-alert alert-global-content">Tes</div>-->
-    </div>
+    <!--</div>-->
         
     <?php $this->endBody() ?>
 </body>

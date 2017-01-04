@@ -216,17 +216,24 @@ a.desc:after {
     border-radius: 0.3em;
 }
 
-ol.breadcrumb
-{
-    background-color: @colorbread;
-    li a{
-        color: #fff;
-    }
-    li.active
-    {   color: #f2f2f2;
+// ol.breadcrumb
+// {
+//     background-color: @colorbread;
+//     li a{
+//         color: #fff;
+//     }
+//     li.active
+//     {   color: #f2f2f2;
 
-    }
-}
+//     }
+// }
+
+.breadcrumb {background: rgba(42, 63, 84, 1); border: 0px solid rgba(42, 63, 84, 1); border-radius: 4px; display: block;}
+.breadcrumb li {font-size: 14px;}
+.breadcrumb a {color: rgba(184, 222, 255, 1);}
+.breadcrumb a:hover {color: rgba(255, 255, 255, 1);}
+.breadcrumb>.active {color: rgba(255, 255, 255, 1);}
+.breadcrumb>li+li:before {color: rgba(204, 204, 204, 1); content: "\002F\00a0";}
 
 /* menu administrator */
 nav.navbar-administator

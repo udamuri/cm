@@ -37,7 +37,7 @@
 				<div class="menu_section">
 					<h3>General</h3>
 					<ul class="nav side-menu">
-						<li><a><i class="fa fa-desktop"></i> APPEARANCE <span class="fa fa-chevron-down"></span></a>
+						<li><a title="APPEARANCE"><i class="fa fa-desktop"></i> APPR <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
 								<li><a href="<?=Yii::$app->homeUrl?>menu">Menu</a></li>
 								<li><a href="<?=Yii::$app->homeUrl?>b">Catalog Category</a></li>
