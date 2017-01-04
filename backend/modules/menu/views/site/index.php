@@ -36,8 +36,8 @@ $this->registerJs($jsx);
                 'table_name'=>'nestamenu',
                 'containerID' => 'nesta-menu',
                 'output' => 'hidden',
-                'delete_url' => 'site/delete-menu/1',
-                'update_url' => 'site/update-menu/1',
+                'delete_url' => 'delete-menu',
+                'update_url' => 'update-menu',
                 'button' => [
                     'save' => [
                         'id' => 'save-change',
