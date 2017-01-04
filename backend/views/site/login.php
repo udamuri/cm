@@ -3,16 +3,16 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
+use backend\assets\AppAssetOth;
 use frontend\widgets\Alert;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-AppAsset::register($this);
+AppAssetOth::register($this);
 
-$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/views/layouts');
+$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layouts');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
