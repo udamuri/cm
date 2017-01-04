@@ -29,7 +29,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
         <div class="container body">
             <div class="main_container">
                 <?= $this->render(
-                    'header.php',
+                    'header',
                     ['directoryAsset' => $directoryAsset]
                 )
                 ?>
