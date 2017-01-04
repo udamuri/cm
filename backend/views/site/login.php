@@ -20,6 +20,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="<?=Yii::$app->homeUrl;?>css/img/logo.png?<?=time();?>">
     <?= Html::csrfMetaTags() ?>
     <title>Login</title>
     <?php $this->head() ?>
