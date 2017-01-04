@@ -29,6 +29,8 @@ class MenuModel extends Model
 						$this->sortTree($value['children'], $value['id']);
 					}
 				}
+
+				return true;
     		}
 
     		return false;

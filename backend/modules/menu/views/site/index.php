@@ -35,7 +35,7 @@ $this->registerJs($jsx);
       <?= \udamuri\nestablemenu\TreeMenu::widget([
                 'table_name'=>'nestamenu',
                 'containerID' => 'nesta-menu',
-                'output' => 'show', //hidden
+                'output' => 'hidden',
                 'delete_url' => 'site/delete-menu/1',
                 'update_url' => 'site/update-menu/1',
                 'button' => [
@@ -49,7 +49,7 @@ $this->registerJs($jsx);
                         'id' => 'add-new',
                         'label' => 'Add New',
                         'btn-class' => 'btn-success',
-                        'url' => 'site/add-new'
+                        'url' => 'create-menu'
                     ],
                 ],
             ]); 

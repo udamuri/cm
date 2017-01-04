@@ -75,6 +75,7 @@ return [
                 'create-setting'=>'setting/site/create-setting',
                 'update-setting/<id:[0-9]+>'=>'setting/site/update-setting',
                 'menu'=>'menu/site/index',
+                'create-menu'=>'menu/site/create',
                 'file-manager'=>'file/site/index',
             ],
         ],
