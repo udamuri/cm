@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 //use yii\helpers\ArrayHelper;
 
-$this->title = 'Add New Menu';
+$this->title = 'Update Menu';
 $this->params['breadcrumbs'][] = [
     'label' =>'Menu',
     'url' => Yii::$app->homeUrl.'menu'

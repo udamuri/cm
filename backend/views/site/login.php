@@ -86,7 +86,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
                 </div>
                 <div class="row hidden-sm hidden-xs">
                     <div class="col-md-12">
-                        <?= Html::img('@web/css/img/logo.png',  ['class' => 'img-responsive']);?>
+                        <?php //Html::img('@web/css/img/logo.png',  ['class' => 'img-responsive']);?>
                     </div>
                 </div>
             </div>

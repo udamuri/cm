@@ -3,7 +3,8 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use app\components\Constants;
 
-$this->title = 'Update '.Yii::$app->user->identity->username;
+$this->title = Yii::$app->user->identity->email;
+$this->params['breadcrumbs'][] = "Profile";
 $this->params['breadcrumbs'][] = $this->title;
 
 $img = yii::getAlias('@backend/web/folderuser/'.Yii::$app->user->identity->id.'profile.png');
