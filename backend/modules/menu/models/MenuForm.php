@@ -43,12 +43,10 @@ class MenuForm extends Model
     public function create()
     {
         if ($this->validate()) {
-            //$max = Nestamenu::find()->select('menu_sort')->max(); 
-            //$max = Nestamenu::find()->where(['>', 'sorting_value', $sort1])->min('sorting_value');
-            //$max = Nestamenu::find()->max('menu_sort');
+            $max = Nestamenu::find()->max('menu_sort');
             $create = new Nestamenu();
             $create->menu_parent_id = 0 ;
-            $create->menu_sort = 999 ;
+            $create->menu_sort = (int) $max + 1 ;
             $create->menu_link = trim(strip_tags($this->menu_link));
             $create->menu_title = trim(strip_tags($this->menu_title));
             $create->menu_status = 1;
