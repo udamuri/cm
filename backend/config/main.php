@@ -76,6 +76,8 @@ return [
                 'update-setting/<id:[0-9]+>'=>'setting/site/update-setting',
                 'menu'=>'menu/site/index',
                 'create-menu'=>'menu/site/create',
+                'update-menu/<id:[0-9]+>'=>'menu/site/update',
+                'delete-menu/<id:[0-9]+>'=>'menu/site/delete',
                 'file-manager'=>'file/site/index',
             ],
         ],

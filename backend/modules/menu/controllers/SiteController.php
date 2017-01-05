@@ -26,7 +26,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'create'],
+                        'actions' => ['index', 'create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
 						'matchCallback' => function ($rule, $action) {
@@ -85,7 +85,7 @@ class SiteController extends Controller
         $model = new MenuForm();
         
         if ($model->load(Yii::$app->request->post())) {
-            if ($forum = $model->create()) {
+            if ($menu = $model->create()) {
                 Yii::$app->session->setFlash('success', "Create New Menu");
                 return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'menu');
             }
@@ -94,5 +94,39 @@ class SiteController extends Controller
         return $this->render('create', [
             'model' => $model,
         ]);
+    }
+
+    public function actionUpdate($id)
+    {
+        $model = new MenuForm;
+        $_model = $model->getMenu($id);
+   
+        if($_model)
+        {
+            if ($model->load(Yii::$app->request->post())) {                   
+                if ($menu = $model->update($id)) {
+                    Yii::$app->session->setFlash('success', "Update Menu");
+                    return $this->redirect(Yii::$app->homeUrl.'menu');
+                }
+            }
+            return $this->render('update', [
+                'model' => $model,
+                '_model' => $_model,
+            ]);
+        }
+        else
+        {
+            return $this->redirect(Yii::$app->homeUrl.'menu');
+        }
+    }
+
+    public function actionDelete($id)
+    {
+        $model = new MenuForm;           
+        if ($menu = $model->delete($id)) {
+            Yii::$app->session->setFlash('success', "Delete Menu");
+            return $this->redirect(Yii::$app->homeUrl.'menu');
+        }
+        return $this->redirect(Yii::$app->homeUrl.'menu');
     }
 }
