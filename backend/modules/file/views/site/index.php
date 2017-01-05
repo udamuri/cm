@@ -5,6 +5,7 @@ use app\components\Constants;
 use yii\widgets\ActiveForm;
 
 $this->title = 'Media Library';
+$this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJsFile(Yii::$app->homeUrl."js/index.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
 $this->registerJsFile(Yii::$app->homeUrl."js/file.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
@@ -20,16 +21,7 @@ $this->registerJs($jsx);
 
 
 ?>
-
-<div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <ol class="breadcrumb">
-          <li><a href="<?=Yii::$app->homeUrl;?>">Home</a></li>
-          <li class="active"><?=$this->title;?></li>
-        </ol>
-    </div>
-</div>
-
+<!--
 <nav class="navbar-administator">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -52,16 +44,29 @@ $this->registerJs($jsx);
     </div>
   </div>
 </nav>
+-->
 
 
 
 <!-- form upload -->
 
-<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data','class'=>'hidden']]) ?>
 
     <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 
-    <button>Submit</button>
+    <button id="upload-image" type="submit">Submit</button>
 
 <?php ActiveForm::end() ?>
 <!-- END form upload -->
+
+<div class="row">
+    <div class="col-md-12">
+        <button id="upload-image-frontend" class="btn btn-primary">Upload</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        
+    </div>
+</div>

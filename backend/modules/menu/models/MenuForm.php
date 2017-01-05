@@ -43,9 +43,10 @@ class MenuForm extends Model
     public function create()
     {
         if ($this->validate()) {
+            $max = Nestamenu::find()->max('menu_sort');
             $create = new Nestamenu();
             $create->menu_parent_id = 0 ;
-            $create->menu_sort = 100 ;
+            $create->menu_sort = (int) $max + 1 ;
             $create->menu_link = trim(strip_tags($this->menu_link));
             $create->menu_title = trim(strip_tags($this->menu_title));
             $create->menu_status = 1;
@@ -68,7 +69,7 @@ class MenuForm extends Model
             $update = Nestamenu::findOne($id);
             $update->menu_link = trim(strip_tags($this->menu_link));
             $update->menu_title = trim(strip_tags($this->menu_title));
-            if ($create->save(false)) {
+            if ($update->save(false)) {
                  return true;
             }
         }
@@ -76,6 +77,33 @@ class MenuForm extends Model
         return null;
     }
 	
+    public function delete($id)
+    {
+
+        $delete = Nestamenu::findOne($id);
+        if($delete)
+        {
+            return $delete->delete();
+        }
+
+        return null;  
+    }
+
+    public function getMenu($id)
+    {
+        $arrData = [];
+        $get = Nestamenu::findOne($id);
+        if($get)
+        {
+            $arrData = [
+                'menu_link'=>$get['menu_link'],
+                'menu_title'=>$get['menu_title']
+            ];
+            return $arrData;
+        }
+
+        return null;
+    }
     
 	/**
      * @inheritdoc

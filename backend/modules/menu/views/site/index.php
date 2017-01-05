@@ -5,6 +5,7 @@ use app\components\Constants;
 use yii\widgets\ActiveForm;
 
 $this->title = 'Menu';
+$this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJsFile(Yii::$app->homeUrl."js/index.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
 $this->registerJsFile(Yii::$app->homeUrl."js/menu.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
@@ -24,15 +25,6 @@ $this->registerJs($jsx);
 ?>
 
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <ol class="breadcrumb">
-          <li><a href="<?=Yii::$app->homeUrl;?>">Home</a></li>
-          <li class="active"><?=$this->title;?></li>
-        </ol>
-    </div>
-</div>
-
-<div class="row">
     <div class="col-md-12">
     <?php $form = ActiveForm::begin([
         'action' => Yii::$app->homeUrl.'menu',
@@ -43,9 +35,9 @@ $this->registerJs($jsx);
       <?= \udamuri\nestablemenu\TreeMenu::widget([
                 'table_name'=>'nestamenu',
                 'containerID' => 'nesta-menu',
-                'output' => 'show', //hidden
-                'delete_url' => 'site/delete-menu/1',
-                'update_url' => 'site/update-menu/1',
+                'output' => 'hidden',
+                'delete_url' => 'delete-menu',
+                'update_url' => 'update-menu',
                 'button' => [
                     'save' => [
                         'id' => 'save-change',
@@ -57,7 +49,7 @@ $this->registerJs($jsx);
                         'id' => 'add-new',
                         'label' => 'Add New',
                         'btn-class' => 'btn-success',
-                        'url' => 'site/add-new'
+                        'url' => 'create-menu'
                     ],
                 ],
             ]); 

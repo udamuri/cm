@@ -64,7 +64,7 @@ class TreeMenu extends \yii\base\Widget
                 }
 
                 $submenu = ''; 
-                $btn_delete = '<a href="'.$this->delete_url.'" data-id="'.$value['menu_id'].'" class="btn btn-danger btn-sm">Delete</a>';
+                $btn_delete = '<a href="'.$this->delete_url.'/'.$value['menu_id'].'" data-id="'.$value['menu_id'].'" class="btn btn-danger btn-sm">Delete</a>';
                 if($submenu = $this->childMenu($value['menu_id'], $table))
                 {
                     $btn_delete = '';   
@@ -77,7 +77,7 @@ class TreeMenu extends \yii\base\Widget
                             <div class="dd-button">
                                 <div class="btn-group" role="group" aria-label="...">
                                     '.$btn_delete.'
-                                    <a href="'.$this->update_url.'" data-id="'.$value['menu_id'].'" class="btn btn-success btn-sm">Update</a>
+                                    <a href="'.$this->update_url.'/'.$value['menu_id'].'" data-id="'.$value['menu_id'].'" class="btn btn-success btn-sm">Update</a>
                                     '.$btn_status.'
                                 </div>
                             </div>';
@@ -143,7 +143,7 @@ class TreeMenu extends \yii\base\Widget
                 }
 
                 $submenu = ''; 
-                $btn_delete = '<a href="'.$this->delete_url.'" data-id="'.$value['menu_id'].'" class="btn btn-danger btn-sm">Delete</a>';
+                $btn_delete = '<a href="'.$this->delete_url.'/'.$value['menu_id'].'" data-id="'.$value['menu_id'].'" class="btn btn-danger btn-sm">Delete</a>';
                 if($submenu = $this->childMenu($value['menu_id'], $table))
                 {
                     $btn_delete = '';   
@@ -156,7 +156,7 @@ class TreeMenu extends \yii\base\Widget
                             <div class="dd-button">
                                 <div class="btn-group" role="group" aria-label="...">
                                   '.$btn_delete.'
-                                  <a href="'.$this->update_url.'" data-id="'.$value['menu_id'].'" class="btn btn-success btn-sm">Update</a>
+                                  <a href="'.$this->update_url.'/'.$value['menu_id'].'" data-id="'.$value['menu_id'].'" class="btn btn-success btn-sm">Update</a>
                                   '.$btn_status.'
                                 </div>
                             </div>';

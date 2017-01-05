@@ -62,8 +62,7 @@ class SiteController extends Controller
         if (Yii::$app->request->isPost) {
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
             if ($model->upload()) {
-                // file is uploaded successfully
-                return;
+                Yii::$app->session->setFlash('success', "Upload File");
             }
         }
 

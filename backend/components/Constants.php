@@ -24,11 +24,6 @@ class Constants
 	const PEREMPUAN = 1;
 	/** JENIS KELAMIN */
 
-	/** PASIEN_STATUS */
-	const UMUM = 0;
-	const BPJS = 1;
-	/** PASIEN_STATUS */
-	
 	
 	/** AGAMA */
 	const ISLAM = 1;

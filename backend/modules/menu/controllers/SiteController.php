@@ -9,6 +9,7 @@ use yii\data\Pagination;
 use yii\db\Query;
 use yii\widgets\ActiveForm;
 use backend\modules\menu\models\MenuModel;
+use backend\modules\menu\models\MenuForm;
 
 /**
  * Default controller for the `menu` module
@@ -25,7 +26,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index', 'create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
 						'matchCallback' => function ($rule, $action) {
@@ -63,10 +64,69 @@ class SiteController extends Controller
                 $models = new MenuModel();
                 if($models->sortMenu($jsonstring))
                 {
-                    
+                    Yii::$app->session->setFlash('success', "changes saved");
+                }
+                else
+                {
+                    Yii::$app->session->setFlash('error', "there is something wrong");
                 }
             }
+            else
+            {
+                Yii::$app->session->setFlash('error', "there is something wrong");
+            }
         }
+
         return $this->render('index');
+    }
+
+    public function actionCreate()
+    {
+        $model = new MenuForm();
+        
+        if ($model->load(Yii::$app->request->post())) {
+            if ($menu = $model->create()) {
+                Yii::$app->session->setFlash('success', "Create New Menu");
+                return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'menu');
+            }
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionUpdate($id)
+    {
+        $model = new MenuForm;
+        $_model = $model->getMenu($id);
+   
+        if($_model)
+        {
+            if ($model->load(Yii::$app->request->post())) {                   
+                if ($menu = $model->update($id)) {
+                    Yii::$app->session->setFlash('success', "Update Menu");
+                    return $this->redirect(Yii::$app->homeUrl.'menu');
+                }
+            }
+            return $this->render('update', [
+                'model' => $model,
+                '_model' => $_model,
+            ]);
+        }
+        else
+        {
+            return $this->redirect(Yii::$app->homeUrl.'menu');
+        }
+    }
+
+    public function actionDelete($id)
+    {
+        $model = new MenuForm;           
+        if ($menu = $model->delete($id)) {
+            Yii::$app->session->setFlash('success', "Delete Menu");
+            return $this->redirect(Yii::$app->homeUrl.'menu');
+        }
+        return $this->redirect(Yii::$app->homeUrl.'menu');
     }
 }

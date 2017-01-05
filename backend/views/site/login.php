@@ -4,7 +4,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use backend\assets\AppAssetOth;
-use frontend\widgets\Alert;
+use common\widgets\Alert;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this \yii\web\View */
@@ -20,6 +20,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="<?=Yii::$app->homeUrl;?>css/img/logo.png?<?=time();?>">
     <?= Html::csrfMetaTags() ?>
     <title>Login</title>
     <?php $this->head() ?>
@@ -42,7 +43,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <?//Alert::widget() ?>
+                                <?=Alert::widget() ?>
                             </div>
                         </div>
                          <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
@@ -81,6 +82,11 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
                                 <?= Html::submitButton('Login', ['class' => 'btn btn-outline btn-danger', 'name' => 'login-button']) ?>
                             </fieldset>
                         <?php ActiveForm::end(); ?>
+                    </div>
+                </div>
+                <div class="row hidden-sm hidden-xs">
+                    <div class="col-md-12">
+                        <?php //Html::img('@web/css/img/logo.png',  ['class' => 'img-responsive']);?>
                     </div>
                 </div>
             </div>

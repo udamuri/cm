@@ -3,7 +3,9 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use app\components\Constants;
 
-$this->title = 'Update '.Yii::$app->user->identity->username;
+$this->title = Yii::$app->user->identity->email;
+$this->params['breadcrumbs'][] = "Profile";
+$this->params['breadcrumbs'][] = $this->title;
 
 $img = yii::getAlias('@backend/web/folderuser/'.Yii::$app->user->identity->id.'profile.png');
 $img_s = Yii::$app->homeUrl.'folderuser/'.Yii::$app->user->identity->id.'profile.png?'.time();
@@ -30,15 +32,6 @@ $this->registerJs($jsx);
 
 
 ?>
-
-<div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <ol class="breadcrumb">
-          <li><a href="<?=Yii::$app->homeUrl;?>">Home</a></li>
-          <li class="active"><?=$this->title;?></li>
-        </ol>
-    </div>
-</div>
 
 <div class="row">
     <div class="col-md-6 col-sm-12 col-xs-12">
