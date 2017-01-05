@@ -21,7 +21,7 @@ $this->registerJs($jsx);
 
 
 ?>
-
+<!--
 <nav class="navbar-administator">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -44,16 +44,29 @@ $this->registerJs($jsx);
     </div>
   </div>
 </nav>
+-->
 
 
 
 <!-- form upload -->
 
-<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data','class'=>'hidden']]) ?>
 
     <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 
-    <button>Submit</button>
+    <button id="upload-image" type="submit">Submit</button>
 
 <?php ActiveForm::end() ?>
 <!-- END form upload -->
+
+<div class="row">
+    <div class="col-md-12">
+        <button id="upload-image-frontend" class="btn btn-primary">Upload</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        
+    </div>
+</div>
