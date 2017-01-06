@@ -21,33 +21,6 @@ $this->registerJs($jsx);
 
 
 ?>
-<!--
-<nav class="navbar-administator">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#">Add New</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Save</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
--->
-
-
-
 <!-- form upload -->
 
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data','class'=>'hidden']]) ?>
@@ -60,13 +33,46 @@ $this->registerJs($jsx);
 <!-- END form upload -->
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8 col-sm-12 col-xs-12">
         <button id="upload-image-frontend" class="btn btn-primary">Upload</button>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <form  id="searchform" class="input-group"  action="<?=Yii::$app->homeUrl;?>content"  method="GET" > 
+            <input type="text" name="search" class="form-control" value="<?=$search;?>" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Go!</button>
+            </span>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <hr class="row-header">
     </div>
 </div>
 
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <?php
+          $start = (int)$offset * (int)$page;
+          foreach ($models as $value) {
+              $start++;
+              //print_r($value);
+          }
+      ?>
+    </div>
+</div> 
+
 <div class="row">
     <div class="col-md-12">
-        
+        <div class="text-center">
+          <?php
+              //display pagination
+              echo LinkPager::widget([
+                  'pagination' => $pages,
+              ]);
+          ?>
+        </div>
     </div>
-</div>
+</div>     
