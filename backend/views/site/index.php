@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-
+use yii\helpers\Html;
 $this->title = Yii::$app->name;
 ?>
 <div class="site-index">
@@ -15,11 +15,15 @@ $this->title = Yii::$app->name;
             <small>Integrated Continuous Improvement</small> <br/>
             <small>Jl Prof M yamin SH No 04 Bukittinggi Sumatera barat</small> <br/>
             <small>Phone +6283840399512</small> <br/>
-            <?//Yii::$app->urlManagerFrontEnd->createUrl('//')?>
+            <!-- Yii::$app->urlManagerFrontEnd->createUrl('//') -->
         </p>
     </div>
+</div>
 
-    <div class="body-content">
-
-    </div>
+<div class="row">
+	<div class="col-md-4 text-center"></div>
+	<div class="col-md-4 text-center">
+		<?= Html::img('css/img/logo.png', ['class'=>'img-responsive']);?>
+	</div>
+	<div class="col-md-4 text-center"></div>
 </div>
