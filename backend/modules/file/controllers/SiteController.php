@@ -63,9 +63,52 @@ class SiteController extends Controller
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
             if ($model->upload()) {
                 Yii::$app->session->setFlash('success', "Upload File");
+                return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'file-manager');
             }
         }
 
-        return $this->render('index', ['model'=>$model]);
+        $search = '';
+        if(isset($_GET['search']))
+        {
+            $search =  strtolower(trim(strip_tags($_GET['search'])));
+        }
+        
+        $query = (new \yii\db\Query())
+                    ->select([
+                        'tc.file_id',
+                        'tc.file_name',
+                        'tc.file_folder',
+                        'tc.file_type',
+                        'tc.file_size',
+                        'tc.file_date_upload',
+                        'tc.file_extension',
+                        'tc.user_id'
+                    ])
+                    ->from('tbl_file tc');
+                    
+        if($search !== '')
+        {
+            $query->where('lower(file_name) LIKE "%'.$search.'%" ');
+        }
+        
+        $countQuery = clone $query;
+        $pageSize = 10;
+        $pages = new Pagination([
+                'totalCount' => $countQuery->count(), 
+                'pageSize'=>$pageSize
+            ]);
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy(['file_id'=>SORT_DESC])
+            ->all();
+            
+        return $this->render('index', [
+            'model' => $model,
+            'models' => $models,
+            'pages' => $pages,
+            'offset' =>$pages->offset,
+            'page' =>$pages->page,
+            'search' =>$search
+        ]);
     }
 }

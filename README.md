@@ -1,6 +1,9 @@
 content management system
 ===============================
 Yii2 Framework
+![alt tag](https://raw.githubusercontent.com/udamuri/cm/admin/backend/web/css/img/logo.png)
+
+
 DIRECTORY STRUCTURE
 -------------------
 

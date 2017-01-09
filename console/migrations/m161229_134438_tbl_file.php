@@ -18,6 +18,7 @@ class m161229_134438_tbl_file extends Migration
             'file_folder' => $this->string(10)->notNull(),
             'file_type' => $this->string(50)->notNull(),
             'file_size' => $this->integer(11)->defaultValue(0),
+            'file_extension' => $this->string(10)->notNull(),
             'file_date_upload' => $this->dateTime(),
             'user_id' => $this->integer(11)->defaultValue(0),
         ], $tableOptions);
