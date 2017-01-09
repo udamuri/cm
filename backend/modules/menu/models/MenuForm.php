@@ -104,6 +104,27 @@ class MenuForm extends Model
 
         return null;
     }
+
+    public function setStatus($id)
+    {
+        $set = Nestamenu::findOne($id);
+
+        if($set)
+        {
+            if($set->menu_status == 1)
+            {
+                $set->menu_status = 0;
+            }
+            else
+            {
+                $set->menu_status = 1 ;
+            }
+            $set->save(false);
+            return $set->menu_status;
+        }
+
+        return false;
+    }
     
 	/**
      * @inheritdoc

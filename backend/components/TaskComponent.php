@@ -128,6 +128,12 @@ class TaskComponent extends Component
 
 		return false;
 	}
+
+	//Yii::$app->mycomponent->getImage();
+	public function deleteFile($file_name = '', $folder_name="")
+	{
+		
+	}
 	
 	//Yii::$app->mycomponent->appLanguangeDate('eng',$date, 'month_year');
     public function appLanguangeDate($lg='eng',$date='',$status='')

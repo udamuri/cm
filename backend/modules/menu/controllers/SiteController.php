@@ -26,7 +26,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'create', 'update', 'set-status', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
 						'matchCallback' => function ($rule, $action) {
@@ -118,6 +118,22 @@ class SiteController extends Controller
         {
             return $this->redirect(Yii::$app->homeUrl.'menu');
         }
+    }
+
+    public function actionSetStatus()
+    {
+        if($post = Yii::$app->request->post())
+        {
+            if(isset($post['id']))
+            {
+                $model = new MenuForm;           
+                if ($status = $model->setStatus($post['id'])) {
+                    return $status;
+                }
+            }
+        }
+
+        return null;
     }
 
     public function actionDelete($id)
