@@ -54,13 +54,39 @@ $this->registerJs($jsx);
 
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <?php
-          $start = (int)$offset * (int)$page;
-          foreach ($models as $value) {
-              $start++;
-              //print_r($value);
-          }
-      ?>
+      <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                  <td width="3%">No.</td>
+                  <td></td>
+                  <td>File Name</td>
+                  <td>Folder</td>
+                  <td>File Type</td>
+                  <td>File Size</td>
+                  <td width="5%">Action</td>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+                $start = (int)$offset * (int)$page;
+                foreach ($models as $value) {
+                    $start++;
+                    echo '<tr>
+                        <td>'.$start.'</td>
+                        <td></td>
+                        <td>'.$value['file_name'].'</td>
+                        <td>'.$value['file_folder'].'</td>
+                        <td>'.$value['file_type'].'</td>
+                        <td>'.$value['file_size'].'kb</td>
+                        <td><button class="btn btn-danger delete_file" data-id="'.$value['file_id'].'"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
+                    <tr>';
+                    //print_r($value);
+                }
+            ?>
+            </tbody>
+          </table>
+      </div>
     </div>
 </div> 
 

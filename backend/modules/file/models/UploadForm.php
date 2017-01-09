@@ -35,6 +35,7 @@ class UploadForm extends Model
                 $model->file_folder = $foldernow;
                 $model->file_type = $file->type;
                 $model->file_size = $file->size;
+                $model->file_extension = $file->extension;
                 $model->file_date_upload = Date('Y-m-d H:i:s');
                 $model->user_id = Yii::$app->user->identity->id;
                 if($model->save(false))

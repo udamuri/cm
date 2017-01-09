@@ -116,6 +116,11 @@ class TaskComponent extends Component
 		
 		return $img_s;
 	}
+
+	public function getImage($file_name = '', $folder_name="")
+	{
+		$path = yii::getAlias('@frontend/web/media/');
+	}
 	
 	//Yii::$app->mycomponent->appLanguangeDate('eng',$date, 'month_year');
     public function appLanguangeDate($lg='eng',$date='',$status='')
