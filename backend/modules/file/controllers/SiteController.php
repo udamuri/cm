@@ -81,6 +81,7 @@ class SiteController extends Controller
                         'tc.file_type',
                         'tc.file_size',
                         'tc.file_date_upload',
+                        'tc.file_extension',
                         'tc.user_id'
                     ])
                     ->from('tbl_file tc');

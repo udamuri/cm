@@ -72,9 +72,14 @@ $this->registerJs($jsx);
                 $start = (int)$offset * (int)$page;
                 foreach ($models as $value) {
                     $start++;
+                    $url = Yii::$app->mycomponent->getImage($value['file_id'].'_thumb.'.$value['file_extension'], $value['file_folder']);
+                    $img = '';
+                    if($url){ 
+                        $img = '<img src="'.$url.'" class="img-thumbnail" title="'.$value['file_name'].'" alt="'.$value['file_name'].'" >';
+                    }
                     echo '<tr>
                         <td>'.$start.'</td>
-                        <td></td>
+                        <td>'.$img.'</td>
                         <td>'.$value['file_name'].'</td>
                         <td>'.$value['file_folder'].'</td>
                         <td>'.$value['file_type'].'</td>
