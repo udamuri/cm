@@ -26,7 +26,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
 						'matchCallback' => function ($rule, $action) {
@@ -110,5 +110,15 @@ class SiteController extends Controller
             'page' =>$pages->page,
             'search' =>$search
         ]);
+    }
+
+    public function actionDelete($id)
+    {
+        $model = new UploadForm;           
+        if ($menu = $model->delete($id)) {
+            Yii::$app->session->setFlash('success', "Delete File");
+            return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'file-manager');
+        }
+        return $this->redirect(Yii::$app->homeUrl.'file-manager');
     }
 }

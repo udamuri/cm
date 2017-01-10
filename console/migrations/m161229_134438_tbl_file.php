@@ -22,6 +22,9 @@ class m161229_134438_tbl_file extends Migration
             'file_date_upload' => $this->dateTime(),
             'user_id' => $this->integer(11)->defaultValue(0),
         ], $tableOptions);
+
+        $this->createIndex('file_id', 'tbl_post', 'file_id', false );
+        $this->createIndex('user_id', 'tbl_post', 'user_id', false );
     }   
 
     public function down()
