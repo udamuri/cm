@@ -23,8 +23,8 @@ class m161229_134438_tbl_file extends Migration
             'user_id' => $this->integer(11)->defaultValue(0),
         ], $tableOptions);
 
-        $this->createIndex('file_id', 'tbl_post', 'file_id', false );
-        $this->createIndex('user_id', 'tbl_post', 'user_id', false );
+        $this->createIndex('file_id', 'tbl_file', 'file_id', false );
+        $this->createIndex('user_id', 'tbl_file', 'user_id', false );
     }   
 
     public function down()
