@@ -31,6 +31,9 @@ return [
         'file' => [
             'class' => 'app\modules\file\module',
         ],
+        'post' => [
+            'class' => 'app\modules\post\module',
+        ],
     ],
     'components' => [
         'request' => [
