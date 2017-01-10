@@ -64,4 +64,13 @@ class UploadForm extends Model
             return false;
         }
     }
+
+    public function delete($id)
+    {
+        $model = TableFile::findOne($id);
+        if($model)
+        {
+            $model->delete();
+        }
+    }
 }
