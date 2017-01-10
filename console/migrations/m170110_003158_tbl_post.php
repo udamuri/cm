@@ -24,6 +24,10 @@ class m170110_003158_tbl_post extends Migration
             'post_type' => $this->integer(1)->defaultValue(0), // 0 page, 1 post
             'user_id' => $this->integer(11)->defaultValue(0),
         ], $tableOptions);
+        
+        $this->createIndex('post_id', 'tbl_post', 'post_id', false );
+        $this->createIndex('post_category_id', 'tbl_post', 'post_category_id', false );
+        $this->createIndex('user_id', 'tbl_post', 'user_id', false );
     }   
 
     public function down()
