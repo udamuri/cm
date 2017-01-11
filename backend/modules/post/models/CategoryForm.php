@@ -1,0 +1,135 @@
+<?php
+namespace backend\modules\menu\models;
+
+use yii\base\Model;
+use Yii;
+use backend\models\TableCategory;
+
+/**
+ * Post form
+ */
+
+class CategoryForm extends Model
+{
+	
+    public $category_id;
+    public $category_name;
+    public $category_date;
+    public $category_status;
+    public $user_id;
+ 
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+          			
+			['category_name', 'required'],
+            ['category_name', 'filter', 'filter' => 'trim'],
+			['category_name', 'string', 'max' => 100],
+        ];
+    }
+
+    public function create()
+    {
+        if ($this->validate()) {
+      
+            $create = new TableCategory();
+            $create->category_name = trim(strip_tags($this->category_name));
+            $create->category_date = date('Y-m-d');
+            $create->category_status = 1;
+            $create->user_id = Yii::$app->user->identity->id;
+            if ($create->save(false)) {
+                 return true;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Signs user up.
+     *
+     * @return User|null the saved model or null if saving fails
+     */
+    public function update($id)
+    {
+        if ($this->validate()) {
+            $update = TableCategory::findOne($id);
+            $update->category_name = trim(strip_tags($this->category_name));
+            if ($update->save(false)) {
+                 return true;
+            }
+        }
+
+        return null;
+    }
+	
+    public function delete($id)
+    {
+
+        $delete = TableCategory::findOne($id);
+        if($delete)
+        {
+            return $delete->delete();
+        }
+
+        return null;  
+    }
+
+    public function getPost($id)
+    {
+        $arrData = [];
+        $get = TableCategory::findOne($id);
+        if($get)
+        {
+            $arrData = [
+                'category_id'=>$get['category_id'],
+                'category_name'=>$get['category_name']
+                'category_date'=>$get['category_date']
+                'category_status'=>$get['category_status']
+                'user_id'=>$get['user_id']
+            ];
+            return $arrData;
+        }
+
+        return null;
+    }
+
+    public function setStatus($id)
+    {
+        $set = TableCategory::findOne($id);
+
+        if($set)
+        {
+            if($set->category_status == 1)
+            {
+                $set->category_status = 0;
+            }
+            else
+            {
+                $set->category_status = 1 ;
+            }
+            $set->save(false);
+            return $set->category_status;
+        }
+
+        return false;
+    }
+    
+	/**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'category_id' => 'Category ID',
+            'category_name' => 'Category Name',
+            'category_date' => 'Category Date',
+            'category_status' => 'Category Status',
+            'user_id' => 'User ID',
+        ];
+    }
+	
+}

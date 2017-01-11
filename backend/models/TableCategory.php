@@ -10,6 +10,7 @@ use Yii;
  * @property integer $category_id
  * @property string $category_name
  * @property string $category_date
+ * @property integer $category_status
  * @property integer $user_id
  */
 class TableCategory extends \yii\db\ActiveRecord
@@ -31,6 +32,7 @@ class TableCategory extends \yii\db\ActiveRecord
             [['category_name'], 'required'],
             [['category_date'], 'safe'],
             [['user_id'], 'integer'],
+            [['category_status'], 'integer'],
             [['category_name'], 'string', 'max' => 100],
         ];
     }
@@ -44,6 +46,7 @@ class TableCategory extends \yii\db\ActiveRecord
             'category_id' => 'Category ID',
             'category_name' => 'Category Name',
             'category_date' => 'Category Date',
+            'category_status' => 'Category Status',
             'user_id' => 'User ID',
         ];
     }

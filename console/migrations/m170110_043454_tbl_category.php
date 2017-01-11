@@ -16,6 +16,7 @@ class m170110_043454_tbl_category extends Migration
             'category_id' => $this->primaryKey(15),
             'category_name' => $this->string(100)->notNull(),
             'category_date' => $this->dateTime(),
+            'category_status' => $this->integer(1)->defaultValue(0),
             'user_id' => $this->integer(11)->defaultValue(0),
         ], $tableOptions);
         
