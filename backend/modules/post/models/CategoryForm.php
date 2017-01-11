@@ -1,5 +1,5 @@
 <?php
-namespace backend\modules\menu\models;
+namespace backend\modules\post\models;
 
 use yii\base\Model;
 use Yii;
@@ -37,7 +37,7 @@ class CategoryForm extends Model
       
             $create = new TableCategory();
             $create->category_name = trim(strip_tags($this->category_name));
-            $create->category_date = date('Y-m-d');
+            $create->category_date = date('Y-m-d H:i:s');
             $create->category_status = 1;
             $create->user_id = Yii::$app->user->identity->id;
             if ($create->save(false)) {
@@ -78,7 +78,7 @@ class CategoryForm extends Model
         return null;  
     }
 
-    public function getPost($id)
+    public function getCategory($id)
     {
         $arrData = [];
         $get = TableCategory::findOne($id);
@@ -86,9 +86,9 @@ class CategoryForm extends Model
         {
             $arrData = [
                 'category_id'=>$get['category_id'],
-                'category_name'=>$get['category_name']
-                'category_date'=>$get['category_date']
-                'category_status'=>$get['category_status']
+                'category_name'=>$get['category_name'],
+                'category_date'=>$get['category_date'],
+                'category_status'=>$get['category_status'],
                 'user_id'=>$get['user_id']
             ];
             return $arrData;

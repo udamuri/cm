@@ -82,7 +82,9 @@ return [
                 'update-menu/<id:[0-9]+>'=>'menu/site/update',
                 'delete-menu/<id:[0-9]+>'=>'menu/site/delete',
                 'file-manager'=>'file/site/index',
-                'posts-category'=>'post/site/index'
+                'posts'=>'post/site/index',
+                'posts-category'=>'post/site/index-category',
+                'create-post-category'=>'post/site/create-category'
             ],
         ],
         //Yii::$app->urlManagerFrontEnd->createUrl('//')
