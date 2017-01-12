@@ -26,7 +26,16 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'index-category', 'create', 'create-category', 'update', 'set-status', 'delete'],
+                        'actions' => ['index', 
+                                      'index-category', 
+                                      'create', 
+                                      'create-category', 
+                                      'update', 
+                                      'update-category', 
+                                      'set-status', 
+                                      'set-status-category', 
+                                      'delete'
+                                      ],
                         'allow' => true,
                         'roles' => ['@'],
 						'matchCallback' => function ($rule, $action) {
@@ -79,7 +88,7 @@ class SiteController extends Controller
                     
         if($search !== '')
         {
-            $query->where('lower(file_name) LIKE "%'.$search.'%" ');
+            $query->where('lower(category_name) LIKE "%'.$search.'%" ');
         }
         
         $countQuery = clone $query;
@@ -116,5 +125,45 @@ class SiteController extends Controller
         return $this->render('create_category', [
             'model' => $model,
         ]);
+    }
+
+    public function actionUpdateCategory($id)
+    {
+        $model = new CategoryForm;
+        $_model = $model->getCategory($id);
+   
+        if($_model)
+        {
+            if ($model->load(Yii::$app->request->post())) {                   
+                if ($menu = $model->update($id)) {
+                    Yii::$app->session->setFlash('success', "Update Category");
+                    return $this->redirect(Yii::$app->homeUrl.'posts-category');
+                }
+            }
+            return $this->render('update_category', [
+                'model' => $model,
+                '_model' => $_model,
+            ]);
+        }
+        else
+        {
+            return $this->redirect(Yii::$app->homeUrl.'posts-category');
+        }
+    }
+
+    public function actionSetStatusCategory()
+    {
+        if($post = Yii::$app->request->post())
+        {
+            if(isset($post['id']))
+            {
+                $model = new CategoryForm;           
+                if ($status = $model->setStatus($post['id'])) {
+                    return $status;
+                }
+            }
+        }
+
+        return null;
     }
 }

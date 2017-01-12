@@ -14,9 +14,9 @@ use yii\helpers\ArrayHelper;
                             'id' => $form_id,
                             //'layout' => 'horizontal',
                         ]); 
-                if($form_id === 'form-update-menu')
+                if($form_id === 'form-update-post-category')
                 {
-                    $model->menu_title = $_model['category_name'] ;
+                    $model->category_name = $_model['category_name'] ;
                 }
 
         ?>

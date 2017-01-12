@@ -24,10 +24,10 @@ $this->registerJs($jsx);
 
 <div class="row">
     <div class="col-md-8 col-sm-12 col-xs-12">
-        <button id="upload-image-frontend" class="btn btn-primary">Add New Category</button>
+        <a href="<?=Yii::$app->homeUrl;?>create-post-category" class="btn btn-primary">Add New Category</a>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-        <form  id="searchform" class="input-group"  action="<?=Yii::$app->homeUrl;?>file-manager"  method="GET" > 
+        <form  id="searchform" class="input-group"  action="<?=Yii::$app->homeUrl;?>posts-category"  method="GET" > 
             <input type="text" name="search" class="form-control" value="<?=$search;?>" placeholder="Search for...">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">Go!</button>
@@ -51,7 +51,7 @@ $this->registerJs($jsx);
               <tr>
                   <td width="3%">No.</td>
                   <td>Category Name</td>
-                  <td width="10%">Action</td>
+                  <td width="15%">Action</td>
               </tr>
             </thead>
             <tbody>
@@ -59,12 +59,20 @@ $this->registerJs($jsx);
                 $start = (int)$offset * (int)$page;
                 foreach ($models as $value) {
                     $start++;
+                    $btn_class = 'btn-warning';
+                    $btn_text = 'OFF';
+                    if($value['category_id'] == 1)
+                    {
+                      $btn_class = 'btn-primary';
+                      $btn_text = 'ON';
+                    }
                     echo '<tr>
                         <td>'.$start.'</td>
                         <td>'.$value['category_name'].'</td>
                         <td>
-                          <button class="btn btn-danger btn-sm delete_category" data-id="'.$value['category_id'].'"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                          <a class="btn btn-success btn-sm" href="#" data-id="'.$value['category_id'].'"><i class="fa fa-pencil" aria-hidden="true"></i> Update</a>
+                          <button class="btn btn-danger btn-xs delete_category" data-id="'.$value['category_id'].'"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                          <a class="btn btn-success btn-xs" href="'.Yii::$app->homeUrl.'update-post-category/'.$value['category_id'].'" data-id="'.$value['category_id'].'"><i class="fa fa-pencil" aria-hidden="true"></i> Update</a>
+                          <button id="btn_status_category_'.$value['category_id'].'" class="btn '.$btn_class.' btn-xs status_category" data-id="'.$value['category_id'].'"> '.$btn_text.' </button>
                         </td>
                     <tr>';
                 }
