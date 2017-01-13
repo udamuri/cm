@@ -14,25 +14,21 @@ class Constants
 	/** USER_STATUS */
 	
 	
-	/** USER_LEVEL */
-	const ADMIN = 84;
-	const MEMBER = 0;
-	/** USER_LEVEL */
+	/** POST_STATUS */
+	const PAGE = 0;
+	const POST = 1;
+	/** POST_STATUS */
 
 	/** JENIS KELAMIN */
 	const LAKILAKI = 0;
 	const PEREMPUAN = 1;
 	/** JENIS KELAMIN */
 
-	
-	/** AGAMA */
-	const ISLAM = 1;
-	const KRISTEN = 2;
-	const PROTESTAN = 3;
-	const HINDU = 4;
-	const BUDHA = 5;
-	/** AGAMA */
-	
-	
+	/** USER_LEVEL */
+	const ADMIN = 84;
+	const MEMBER = 0;
+	/** USER_LEVEL */
+
+
 	
 }

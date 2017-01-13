@@ -4,7 +4,7 @@ namespace backend\modules\menu\models;
 use yii\base\Model;
 use Yii;
 use backend\models\TablePost;
-
+use app\components\Constants;
 /**
  * Post form
  */
@@ -33,17 +33,34 @@ class MenuForm extends Model
           			
 			['post_title', 'required'],
             ['post_title', 'filter', 'filter' => 'trim'],
-			['post_title', 'string', 'max' => 100],
+            ['post_title', 'string', 'max' => 100],
+
+            ['post_status', 'required'],
+			['post_status', 'integer'],
+            ['post_status', 'in', 'range' => [0, 1]]
         ];
     }
 
-    public function create()
+    public function create($post_type = 0)
     {
+
         if ($this->validate()) {
-      
+            $t_value = Constants::PAGE ;
+            $c_value = 0 ;
+            if($post_type == 1)
+            {
+                $t_value = Constants::POST ;
+                $c_value = $this->post_category_id ;
+            }
             $create = new TablePost();
+            $create->post_category_id = $c_value;
             $create->post_title = trim(strip_tags($this->post_title));
-            $create->menu_status = 1;
+            $create->post_content = $this->post_content;
+            $create->post_date = date('Y-m-d H:i:s');
+            $create->post_modified = date('Y-m-d H:i:s');
+            $create->post_status = (int)$this->post_status;
+            $create->post_type = $t_value;
+            $create->user_id = Yii::$app->user->identity->id;
             if ($create->save(false)) {
                  return true;
             }
@@ -126,7 +143,15 @@ class MenuForm extends Model
     {
         return [
             'post_id' => 'ID',
+            'post_category_id' => 'Category ID',
             'post_title' => 'Title',
+            'post_content' => 'Content',
+            'post_date' => 'Date',
+            'post_modified' => 'Modified',
+            'post_excerpt' => 'Excerpt',
+            'post_status' => 'Status',
+            'post_type' => 'Type',
+            'user_id' => 'User ID',
         ];
     }
 	
