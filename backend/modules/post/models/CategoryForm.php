@@ -1,8 +1,8 @@
 <?php
 namespace backend\modules\post\models;
 
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
 use backend\models\TableCategory;
 
 /**

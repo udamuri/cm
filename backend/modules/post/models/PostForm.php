@@ -1,8 +1,9 @@
 <?php
 namespace backend\modules\menu\models;
 
-use yii\base\Model;
 use Yii;
+use yii\helpers\Html;
+use yii\base\Model;
 use backend\models\TablePost;
 use app\components\Constants;
 /**
@@ -55,7 +56,7 @@ class MenuForm extends Model
             $create = new TablePost();
             $create->post_category_id = $c_value;
             $create->post_title = trim(strip_tags($this->post_title));
-            $create->post_content = $this->post_content;
+            $create->post_content = Html::encode($this->post_content);
             $create->post_date = date('Y-m-d H:i:s');
             $create->post_modified = date('Y-m-d H:i:s');
             $create->post_status = (int)$this->post_status;
