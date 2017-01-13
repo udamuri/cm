@@ -33,7 +33,7 @@ $this->registerJs($jsx);
         <?= $this->render('_form_category', [
             'model' => $model,
             'form_id' => 'form-create-post-category',
-            'button' => 'Create New Category',
+            'button' => 'Save',
         ]) ?>
     </div>
 </div>

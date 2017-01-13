@@ -34,11 +34,13 @@ function post()
 				{
 					$('#btn_status_category_'+id).addClass('btn-primary');
 					$('#btn_status_category_'+id).text('ON');
+					IndexObj.alertBox('Status ON', 'success', 1000,'');
 				}
 				else
 				{
 					$('#btn_status_category_'+id).addClass('btn-warning');
 					$('#btn_status_category_'+id).text('OFF');
+					IndexObj.alertBox('Status OFF', 'success', 1000,'');
 				}
 			}
 		);

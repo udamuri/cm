@@ -61,7 +61,7 @@ $this->registerJs($jsx);
                     $start++;
                     $btn_class = 'btn-warning';
                     $btn_text = 'OFF';
-                    if($value['category_id'] == 1)
+                    if($value['category_status'] == '1')
                     {
                       $btn_class = 'btn-primary';
                       $btn_text = 'ON';

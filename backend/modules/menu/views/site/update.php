@@ -35,7 +35,7 @@ $this->registerJs($jsx);
             'model' => $model,
             '_model' => $_model,
             'form_id' => 'form-update-menu',
-            'button' => "Save changes",
+            'button' => "Save Changes",
         ]) ?>
     </div>
 </div>
