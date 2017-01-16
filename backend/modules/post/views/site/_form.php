@@ -23,9 +23,13 @@ use backend\models\TableCategory;
                 <div class="col-md-8 col-sm-12 col-xs-12">
                     <?= $form->field($model, 'post_title')->textInput(); ?>
                     
-                    <?php $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); ?>
+                    <?php 
+                        $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); 
+                        $arrEmpty = ['0'=>'--General--'];
+                        $array_merge = array_merge($arrEmpty, $dataList);
+                    ?>
                     <?= $form->field($model, 'post_category_id')->dropDownList(
-                        $dataList
+                        $array_merge
                     ); ?>
 
                     <?= $form->field($model, 'post_status')->dropDownList(
