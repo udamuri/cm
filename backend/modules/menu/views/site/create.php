@@ -34,7 +34,7 @@ $this->registerJs($jsx);
         <?= $this->render('_form', [
             'model' => $model,
             'form_id' => 'form-create-menu',
-            'button' => 'Create New Menu',
+            'button' => 'Save',
         ]) ?>
     </div>
 </div>

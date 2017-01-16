@@ -31,6 +31,9 @@ return [
         'file' => [
             'class' => 'app\modules\file\module',
         ],
+        'post' => [
+            'class' => 'app\modules\post\module',
+        ],
     ],
     'components' => [
         'request' => [
@@ -79,6 +82,11 @@ return [
                 'update-menu/<id:[0-9]+>'=>'menu/site/update',
                 'delete-menu/<id:[0-9]+>'=>'menu/site/delete',
                 'file-manager'=>'file/site/index',
+                'posts'=>'post/site/index',
+                'create-post'=>'post/site/create',
+                'posts-category'=>'post/site/index-category',
+                'create-post-category'=>'post/site/create-category',
+                'update-post-category/<id:[0-9]+>'=>'post/site/update-category',
             ],
         ],
         //Yii::$app->urlManagerFrontEnd->createUrl('//')

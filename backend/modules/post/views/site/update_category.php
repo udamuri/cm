@@ -8,10 +8,10 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 //use yii\helpers\ArrayHelper;
 
-$this->title = 'Update Menu';
+$this->title = 'Update';
 $this->params['breadcrumbs'][] = [
-    'label' =>'Menu',
-    'url' => Yii::$app->homeUrl.'menu'
+    'label' =>'Category',
+    'url' => Yii::$app->homeUrl.'posts-category'
 ];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -28,14 +28,13 @@ $this->registerJs($jsx);
 
 ?>
 
-
 <div class="row">
     <div class="col-md-12">
-        <?= $this->render('_form', [
+        <?= $this->render('_form_category', [
             'model' => $model,
             '_model' => $_model,
-            'form_id' => 'form-update-menu',
-            'button' => "Save Changes",
+            'form_id' => 'form-update-post-category',
+            'button' => 'Save Changes',
         ]) ?>
     </div>
 </div>
