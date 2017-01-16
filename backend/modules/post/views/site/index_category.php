@@ -51,7 +51,7 @@ $this->registerJs($jsx);
               <tr>
                   <td width="3%">No.</td>
                   <td>Category Name</td>
-                  <td width="15%">Action</td>
+                  <td width="13%">Action</td>
               </tr>
             </thead>
             <tbody>
@@ -69,10 +69,10 @@ $this->registerJs($jsx);
                     echo '<tr>
                         <td>'.$start.'</td>
                         <td>'.$value['category_name'].'</td>
-                        <td>
-                          <button class="btn btn-danger btn-xs delete_category" data-id="'.$value['category_id'].'"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                          <a class="btn btn-success btn-xs" href="'.Yii::$app->homeUrl.'update-post-category/'.$value['category_id'].'" data-id="'.$value['category_id'].'"><i class="fa fa-pencil" aria-hidden="true"></i> Update</a>
-                          <button id="btn_status_category_'.$value['category_id'].'" class="btn '.$btn_class.' btn-xs status_category" data-id="'.$value['category_id'].'"> '.$btn_text.' </button>
+                        <td align="center">
+                          <button class="btn btn-danger btn-xs delete_category" title="Delete" data-id="'.$value['category_id'].'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                          <a class="btn btn-success btn-xs" title="Update" href="'.Yii::$app->homeUrl.'update-post-category/'.$value['category_id'].'" data-id="'.$value['category_id'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                          <button id="btn_status_category_'.$value['category_id'].'" title="Status" class="btn '.$btn_class.' btn-xs status_category" data-id="'.$value['category_id'].'"> '.$btn_text.' </button>
                         </td>
                     <tr>';
                 }

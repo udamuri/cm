@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\data\Pagination;
 use yii\db\Query;
 use yii\widgets\ActiveForm;
+use backend\modules\post\models\PostForm;
 use backend\modules\post\models\CategoryForm;
 
 
@@ -68,6 +69,24 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionCreate()
+    {
+        $model = new PostForm();
+        
+        if ($model->load(Yii::$app->request->post())) {
+            if ($post = $model->create(1)) {
+                Yii::$app->session->setFlash('success', "Create New Post");
+                return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'posts');
+            }
+
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]); 
+    }
+
+    // category
     public function actionIndexCategory()
     {
         $search = '';

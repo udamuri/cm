@@ -56,7 +56,7 @@
 						<li><a><i class="fa fa-bookmark"></i> POSTS <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
 								<li><a href="<?=Yii::$app->homeUrl?>posts">All Posts</a></li>
-								<li><a href="<?=Yii::$app->homeUrl?>g">Add New Post</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>create-post">Add New Post</a></li>
 								<li><a href="<?=Yii::$app->homeUrl?>posts-category">Categories</a></li>
 								<li><a href="<?=Yii::$app->homeUrl?>create-post-category">Add New Categorie</a></li>
 							</ul>

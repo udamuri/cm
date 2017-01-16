@@ -1,16 +1,17 @@
 <?php
-namespace backend\modules\menu\models;
+namespace backend\modules\post\models;
 
 use Yii;
 use yii\helpers\Html;
 use yii\base\Model;
-use backend\models\TablePost;
 use app\components\Constants;
+use backend\models\TablePost;
+use backend\models\TableMeta;
 /**
  * Post form
  */
 
-class MenuForm extends Model
+class PostForm extends Model
 {
 	
     public $post_id;
@@ -23,6 +24,10 @@ class MenuForm extends Model
     public $post_status;
     public $post_type;
     public $user_id;
+    public $meta_title;
+    public $meta_keywords;
+    public $meta_description;
+    public $meta_tags;
   
 	  
     /**
@@ -36,9 +41,24 @@ class MenuForm extends Model
             ['post_title', 'filter', 'filter' => 'trim'],
             ['post_title', 'string', 'max' => 100],
 
+            ['post_content', 'required'],
+            ['post_content', 'filter', 'filter' => 'trim'],
+
             ['post_status', 'required'],
 			['post_status', 'integer'],
-            ['post_status', 'in', 'range' => [0, 1]]
+            ['post_status', 'in', 'range' => [0, 1, 2]], 
+
+            ['meta_title', 'filter', 'filter' => 'trim'],
+            ['meta_title', 'string', 'max' => 60],
+
+            ['meta_keywords', 'filter', 'filter' => 'trim'],
+            ['meta_keywords', 'string', 'max' => 255],
+
+            ['meta_description', 'filter', 'filter' => 'trim'],
+            ['meta_description', 'string', 'max' => 255],
+
+            ['meta_tags', 'filter', 'filter' => 'trim'],
+            ['meta_tags', 'string', 'max' => 255],
         ];
     }
 
@@ -51,8 +71,12 @@ class MenuForm extends Model
             if($post_type == 1)
             {
                 $t_value = Constants::POST ;
-                $c_value = $this->post_category_id ;
+                if(isset($this->post_category_id))
+                {
+                    $c_value = $this->post_category_id ;
+                }
             }
+
             $create = new TablePost();
             $create->post_category_id = $c_value;
             $create->post_title = trim(strip_tags($this->post_title));
@@ -63,7 +87,49 @@ class MenuForm extends Model
             $create->post_type = $t_value;
             $create->user_id = Yii::$app->user->identity->id;
             if ($create->save(false)) {
-                 return true;
+                
+                if(isset($this->meta_title) && !empty($this->meta_title))
+                {
+                    $meta_create = new TableMeta();
+                    $meta_create->meta_key = '_meta_title';
+                    $meta_create->meta_date = date('Y-m-d H:i:s');
+                    $meta_create->post_id =  $create->post_id;
+                    $meta_create->meta_value =  $this->meta_title;
+                    $meta_create->save(false);
+                }
+
+                if(isset($this->meta_keywords) && !empty($this->meta_keywords))
+                {
+                    $meta_create = new TableMeta();
+                    $meta_create->meta_key = '_meta_keywords';
+                    $meta_create->meta_date = date('Y-m-d H:i:s');
+                    $meta_create->post_id =  $create->post_id;
+                    $meta_create->meta_value =  $this->meta_keywords;
+                    $meta_create->save(false);
+                }
+
+                if(isset($this->meta_description) && !empty($this->meta_description))
+                {
+                    $meta_create = new TableMeta();
+                    $meta_create->meta_key = '_meta_description';
+                    $meta_create->meta_date = date('Y-m-d H:i:s');
+                    $meta_create->post_id =  $create->post_id;
+                    $meta_create->meta_value =  $this->meta_description;
+                    $meta_create->save(false);
+                }
+
+                if(isset($this->meta_tags) && !empty($this->meta_tags))
+                {
+                    $meta_create = new TableMeta();
+                    $meta_create->meta_key = '_meta_tags';
+                    $meta_create->meta_date = date('Y-m-d H:i:s');
+                    $meta_create->post_id =  $create->post_id;
+                    $meta_create->meta_value =  $this->meta_tags;
+                    $meta_create->save(false);
+                }
+            
+
+                return true;
             }
         }
 
@@ -79,7 +145,10 @@ class MenuForm extends Model
     {
         if ($this->validate()) {
             $update = TablePost::findOne($id);
+            $update->post_category_id = $c_value;
             $update->post_title = trim(strip_tags($this->post_title));
+            $update->post_content = Html::encode($this->post_content);
+            $update->post_modified = date('Y-m-d H:i:s');
             if ($update->save(false)) {
                  return true;
             }
@@ -153,6 +222,10 @@ class MenuForm extends Model
             'post_status' => 'Status',
             'post_type' => 'Type',
             'user_id' => 'User ID',
+            'meta_title' => 'Meta Title',
+            'meta_keywords' => 'Meta Keywords',
+            'meta_description' => 'Meta Description',
+            'meta_tags' => 'Meta Tags',
         ];
     }
 	
