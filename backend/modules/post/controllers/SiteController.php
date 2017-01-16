@@ -86,6 +86,30 @@ class SiteController extends Controller
         ]); 
     }
 
+    public function actionUpdate($id)
+    {
+        $model = new PostForm;
+        $_model = $model->getPost($id);
+   
+        if($_model)
+        {
+            if ($model->load(Yii::$app->request->post())) {                   
+                if ($menu = $model->update($id)) {
+                    Yii::$app->session->setFlash('success', "Update Post");
+                    return $this->redirect(Yii::$app->homeUrl.'posts');
+                }
+            }
+            return $this->render('update', [
+                'model' => $model,
+                '_model' => $_model,
+            ]);
+        }
+        else
+        {
+            return $this->redirect(Yii::$app->homeUrl.'posts-category');
+        }
+    }
+
     // category
     public function actionIndexCategory()
     {

@@ -45,8 +45,11 @@ class PostForm extends Model
             ['post_content', 'filter', 'filter' => 'trim'],
 
             ['post_status', 'required'],
-			['post_status', 'integer'],
-            ['post_status', 'in', 'range' => [0, 1, 2]], 
+            ['post_status', 'integer'],
+            ['post_status', 'in', 'range' => [0, 1, 2]],
+
+            //['post_category_id', 'required'],
+			['post_category_id', 'integer'],
 
             ['meta_title', 'filter', 'filter' => 'trim'],
             ['meta_title', 'string', 'max' => 60],
@@ -173,11 +176,14 @@ class PostForm extends Model
     {
         $arrData = [];
         $get = TablePost::findOne($id);
+        $meta = TableMeta::find()->where(['=', 'post_id', $id]);
         if($get)
         {
             $arrData = [
                 'post_id'=>$get['post_id'],
-                'post_title'=>$get['post_title']
+                'post_title'=>$get['post_title'],
+                'post_content'=>Html::decode($get['post_content']),
+                'post_meta'=>$meta,
             ];
             return $arrData;
         }

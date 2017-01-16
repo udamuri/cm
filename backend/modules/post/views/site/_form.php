@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-
+use backend\models\TableCategory;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\TableForum */
 /* @var $form yii\widgets\ActiveForm */
@@ -23,6 +23,11 @@ use yii\helpers\ArrayHelper;
                 <div class="col-md-8 col-sm-12 col-xs-12">
                     <?= $form->field($model, 'post_title')->textInput(); ?>
                     
+                    <?php $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); ?>
+                    <?= $form->field($model, 'post_category_id')->dropDownList(
+                        $dataList
+                    ); ?>
+
                     <?= $form->field($model, 'post_status')->dropDownList(
                         [
                             ''=> '',
