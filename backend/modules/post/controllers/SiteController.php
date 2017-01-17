@@ -96,7 +96,7 @@ class SiteController extends Controller
             if ($model->load(Yii::$app->request->post())) {                   
                 if ($menu = $model->update($id, 1)) {
                     Yii::$app->session->setFlash('success', "Update Post");
-                    return $this->redirect(Yii::$app->homeUrl.'posts');
+                    //return $this->redirect(Yii::$app->homeUrl.'posts');
                 }
             }
             return $this->render('update', [

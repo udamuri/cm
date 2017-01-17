@@ -21,7 +21,27 @@ use backend\models\TableCategory;
                     $model->post_category_id = $_model['post_category_id'] ;
                     if(isset($_model['post_meta']) && is_array($_model['post_meta']))
                     {
-                        print_r($_model['post_meta']);
+                        foreach ($_model['post_meta'] as $value) {
+                            if($value['meta_key'] === '_meta_title')
+                            {
+                              $model->meta_title = $value['meta_value'] ;
+                            }
+
+                            if($value['meta_key'] === '_meta_keywords')
+                            {
+                              $model->meta_keywords = $value['meta_value'] ;
+                            }
+
+                            if($value['meta_key'] === '_meta_description')
+                            {
+                              $model->meta_description = $value['meta_value'] ;
+                            }
+
+                            if($value['meta_key'] === '_meta_tags')
+                            {
+                              $model->meta_tags = $value['meta_value'] ;
+                            }
+                        }
                     }
                 }
 
