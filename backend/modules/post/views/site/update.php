@@ -34,10 +34,10 @@ $this->registerJs($jsx);
 <div class="row">
     <div class="col-md-12">
         <?= $this->render('_form', [
-            '_model' => $model,
+            '_model' => $_model,
             'model' => $model,
             'form_id' => 'form-update-post',
-            'button' => 'Save',
+            'button' => 'Save Change',
         ]) ?>
     </div>
 </div>

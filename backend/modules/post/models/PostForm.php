@@ -144,8 +144,19 @@ class PostForm extends Model
      *
      * @return User|null the saved model or null if saving fails
      */
-    public function update($id)
+    public function update($id, $post_type = 0)
     {
+        $t_value = Constants::PAGE ;
+        $c_value = 0 ;
+        if($post_type == 1)
+        {
+            $t_value = Constants::POST ;
+            if(isset($this->post_category_id))
+            {
+                $c_value = $this->post_category_id ;
+            }
+        }
+
         if ($this->validate()) {
             $update = TablePost::findOne($id);
             $update->post_category_id = $c_value;
@@ -181,7 +192,9 @@ class PostForm extends Model
         {
             $arrData = [
                 'post_id'=>$get['post_id'],
+                'post_category_id'=>$get['post_category_id'],
                 'post_title'=>$get['post_title'],
+                'post_status'=>$get['post_status'],
                 'post_content'=>Html::decode($get['post_content']),
                 'post_meta'=>$meta,
             ];

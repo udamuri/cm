@@ -16,6 +16,13 @@ use backend\models\TableCategory;
                 if($form_id === 'form-update-post')
                 {
                     $model->post_title = $_model['post_title'] ;
+                    $model->post_content = $_model['post_content'] ;
+                    $model->post_status = $_model['post_status'] ;
+                    $model->post_category_id = $_model['post_category_id'] ;
+                    if(isset($_model['post_meta']) && is_array($_model['post_meta']))
+                    {
+                        print_r($_model['post_meta']);
+                    }
                 }
 
         ?>

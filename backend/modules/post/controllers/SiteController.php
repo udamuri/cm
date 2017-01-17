@@ -94,7 +94,7 @@ class SiteController extends Controller
         if($_model)
         {
             if ($model->load(Yii::$app->request->post())) {                   
-                if ($menu = $model->update($id)) {
+                if ($menu = $model->update($id, 1)) {
                     Yii::$app->session->setFlash('success', "Update Post");
                     return $this->redirect(Yii::$app->homeUrl.'posts');
                 }
@@ -106,7 +106,7 @@ class SiteController extends Controller
         }
         else
         {
-            return $this->redirect(Yii::$app->homeUrl.'posts-category');
+            return $this->redirect(Yii::$app->homeUrl.'posts');
         }
     }
 
