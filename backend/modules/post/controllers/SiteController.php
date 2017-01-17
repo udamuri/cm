@@ -66,7 +66,47 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $search = '';
+        if(isset($_GET['search']))
+        {
+            $search =  strtolower(trim(strip_tags($_GET['search'])));
+        }
+        
+        $query = (new \yii\db\Query())
+                    ->select([
+                        'tc.post_id',
+                        'tc.post_category_id',
+                        'tc.post_title',
+                        'tc.post_date',
+                        'tc.post_modified',
+                        'tc.post_status',
+                        'tc.user_id'
+                    ])
+                    ->from('tbl_post tc');
+                    
+        if($search !== '')
+        {
+            $query->where('lower(post_title) LIKE "%'.$search.'%" ');
+        }
+        
+        $countQuery = clone $query;
+        $pageSize = 10;
+        $pages = new Pagination([
+                'totalCount' => $countQuery->count(), 
+                'pageSize'=>$pageSize
+            ]);
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy(['post_id'=>SORT_DESC])
+            ->all();
+            
+        return $this->render('index', [
+            'models' => $models,
+            'pages' => $pages,
+            'offset' =>$pages->offset,
+            'page' =>$pages->page,
+            'search' =>$search
+        ]);
     }
 
     public function actionCreate()
@@ -96,7 +136,7 @@ class SiteController extends Controller
             if ($model->load(Yii::$app->request->post())) {                   
                 if ($menu = $model->update($id, 1)) {
                     Yii::$app->session->setFlash('success', "Update Post");
-                    //return $this->redirect(Yii::$app->homeUrl.'posts');
+                    return $this->redirect(Yii::$app->homeUrl.'posts');
                 }
             }
             return $this->render('update', [
