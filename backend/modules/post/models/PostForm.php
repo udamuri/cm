@@ -164,7 +164,47 @@ class PostForm extends Model
             $update->post_content = Html::encode($this->post_content);
             $update->post_modified = date('Y-m-d H:i:s');
             if ($update->save(false)) {
-                 return true;
+                
+                if(isset($this->meta_title) && !empty($this->meta_title))
+                {
+                    $meta_create = new TableMeta();
+                    $meta_create->meta_key = '_meta_title';
+                    $meta_create->meta_date = date('Y-m-d H:i:s');
+                    $meta_create->post_id =  $create->post_id;
+                    $meta_create->meta_value =  $this->meta_title;
+                    $meta_create->save(false);
+                }
+
+                if(isset($this->meta_keywords) && !empty($this->meta_keywords))
+                {
+                    $meta_create = new TableMeta();
+                    $meta_create->meta_key = '_meta_keywords';
+                    $meta_create->meta_date = date('Y-m-d H:i:s');
+                    $meta_create->post_id =  $create->post_id;
+                    $meta_create->meta_value =  $this->meta_keywords;
+                    $meta_create->save(false);
+                }
+
+                if(isset($this->meta_description) && !empty($this->meta_description))
+                {
+                    $meta_create = new TableMeta();
+                    $meta_create->meta_key = '_meta_description';
+                    $meta_create->meta_date = date('Y-m-d H:i:s');
+                    $meta_create->post_id =  $create->post_id;
+                    $meta_create->meta_value =  $this->meta_description;
+                    $meta_create->save(false);
+                }
+
+                if(isset($this->meta_tags) && !empty($this->meta_tags))
+                {
+                    $meta_create = new TableMeta();
+                    $meta_create->meta_key = '_meta_tags';
+                    $meta_create->meta_date = date('Y-m-d H:i:s');
+                    $meta_create->post_id =  $create->post_id;
+                    $meta_create->meta_value =  $this->meta_tags;
+                    $meta_create->save(false);
+                }
+                return true;
             }
         }
 

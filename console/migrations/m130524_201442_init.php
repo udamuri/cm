@@ -25,6 +25,9 @@ class m130524_201442_init extends Migration
             'updated_at' => $this->integer()->notNull(),
             'level' => $this->integer(2)->notNull()->defaultValue(1),
         ], $tableOptions);
+
+        $this->execute('INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `level`, `created_at`, `updated_at`) VALUES(1, "muribudiman", "bH6TzAW14WCsApOrNJa9xCXMURJD-tYO", "$2y$13$ZhJaFCaf24xdlkUoNA9vV.9jxLTLz5XXl8jYR14jzlrAeUSKzRGHm", NULL, "udamuri@gmail.com", 10, 84, 1469931763, 1477723541)');
+        
     }
 
     public function down()
