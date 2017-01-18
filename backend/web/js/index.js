@@ -8,7 +8,7 @@ function index()
 
 	this.initialScript = function()
 	{
-	
+		
 	}
 	
 	this.jsonToArray = function(arrData)

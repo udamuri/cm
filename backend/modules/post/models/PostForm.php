@@ -41,12 +41,18 @@ class PostForm extends Model
             ['post_title', 'filter', 'filter' => 'trim'],
             ['post_title', 'string', 'max' => 100],
 
-            ['post_content', 'required'],
-            ['post_content', 'filter', 'filter' => 'trim'],
+            ['post_excerpt', 'required'],
+            ['post_excerpt', 'filter', 'filter' => 'trim'],
+            ['post_excerpt', 'string', 'max' => 255],
+
+            ['post_content', 'string'],
 
             ['post_status', 'required'],
-			['post_status', 'integer'],
-            ['post_status', 'in', 'range' => [0, 1, 2]], 
+            ['post_status', 'integer'],
+            ['post_status', 'in', 'range' => [0, 1, 2]],
+
+            //['post_category_id', 'required'],
+			['post_category_id', 'integer'],
 
             ['meta_title', 'filter', 'filter' => 'trim'],
             ['meta_title', 'string', 'max' => 60],
@@ -80,6 +86,7 @@ class PostForm extends Model
             $create = new TablePost();
             $create->post_category_id = $c_value;
             $create->post_title = trim(strip_tags($this->post_title));
+            $create->post_excerpt = trim(strip_tags($this->post_excerpt));
             $create->post_content = Html::encode($this->post_content);
             $create->post_date = date('Y-m-d H:i:s');
             $create->post_modified = date('Y-m-d H:i:s');
@@ -87,47 +94,29 @@ class PostForm extends Model
             $create->post_type = $t_value;
             $create->user_id = Yii::$app->user->identity->id;
             if ($create->save(false)) {
-                
-                if(isset($this->meta_title) && !empty($this->meta_title))
-                {
-                    $meta_create = new TableMeta();
-                    $meta_create->meta_key = '_meta_title';
-                    $meta_create->meta_date = date('Y-m-d H:i:s');
-                    $meta_create->post_id =  $create->post_id;
-                    $meta_create->meta_value =  $this->meta_title;
-                    $meta_create->save(false);
-                }
 
-                if(isset($this->meta_keywords) && !empty($this->meta_keywords))
-                {
-                    $meta_create = new TableMeta();
-                    $meta_create->meta_key = '_meta_keywords';
-                    $meta_create->meta_date = date('Y-m-d H:i:s');
-                    $meta_create->post_id =  $create->post_id;
-                    $meta_create->meta_value =  $this->meta_keywords;
-                    $meta_create->save(false);
-                }
+                $arrData = [];
+                $arrData[] = [
+                    'key'=> '_meta_title',
+                    'value'=> trim(strip_tags($this->meta_title)),
+                ];
 
-                if(isset($this->meta_description) && !empty($this->meta_description))
-                {
-                    $meta_create = new TableMeta();
-                    $meta_create->meta_key = '_meta_description';
-                    $meta_create->meta_date = date('Y-m-d H:i:s');
-                    $meta_create->post_id =  $create->post_id;
-                    $meta_create->meta_value =  $this->meta_description;
-                    $meta_create->save(false);
-                }
+                $arrData[] = [
+                    'key'=> '_meta_keywords',
+                    'value'=> trim(strip_tags($this->meta_keywords)),
+                ];
 
-                if(isset($this->meta_tags) && !empty($this->meta_tags))
-                {
-                    $meta_create = new TableMeta();
-                    $meta_create->meta_key = '_meta_tags';
-                    $meta_create->meta_date = date('Y-m-d H:i:s');
-                    $meta_create->post_id =  $create->post_id;
-                    $meta_create->meta_value =  $this->meta_tags;
-                    $meta_create->save(false);
-                }
-            
+                $arrData[] = [
+                    'key'=> '_meta_description',
+                    'value'=> trim(strip_tags($this->meta_description)),
+                ];
+
+                $arrData[] = [
+                    'key'=> '_meta_tags',
+                    'value'=> trim(strip_tags($this->meta_tags)),
+                ];
+
+                $this->cuMeta($arrData, $create->post_id);
 
                 return true;
             }
@@ -141,20 +130,84 @@ class PostForm extends Model
      *
      * @return User|null the saved model or null if saving fails
      */
-    public function update($id)
+    public function update($id, $post_type = 0)
     {
+        $t_value = Constants::PAGE ;
+        $c_value = 0 ;
+        if($post_type == 1)
+        {
+            $t_value = Constants::POST ;
+            if(isset($this->post_category_id))
+            {
+                $c_value = $this->post_category_id ;
+            }
+        }
+
         if ($this->validate()) {
             $update = TablePost::findOne($id);
             $update->post_category_id = $c_value;
             $update->post_title = trim(strip_tags($this->post_title));
+            $update->post_excerpt = trim(strip_tags($this->post_excerpt));
             $update->post_content = Html::encode($this->post_content);
             $update->post_modified = date('Y-m-d H:i:s');
             if ($update->save(false)) {
-                 return true;
+                $arrData = [];
+                $arrData[] = [
+                    'key'=> '_meta_title',
+                    'value'=> trim(strip_tags($this->meta_title)),
+                ];
+
+                $arrData[] = [
+                    'key'=> '_meta_keywords',
+                    'value'=> trim(strip_tags($this->meta_keywords)),
+                ];
+
+                $arrData[] = [
+                    'key'=> '_meta_description',
+                    'value'=> trim(strip_tags($this->meta_description)),
+                ];
+
+                $arrData[] = [
+                    'key'=> '_meta_tags',
+                    'value'=> trim(strip_tags($this->meta_tags)),
+                ];
+
+                $this->cuMeta($arrData, $update->post_id);
+                return true;
             }
         }
 
         return null;
+    }
+
+    private function cuMeta($arrMeta = [], $pid)
+    {
+        if(is_array($arrMeta) && isset($pid))
+        {
+            
+            foreach ($arrMeta as $value) {
+                $meta_create =  TableMeta::find()->where(['meta_key'=>$value['key'], 'post_id'=>$pid ])->one();
+                if($meta_create)
+                {
+                    $meta_create->meta_value =  $value['value'];
+                    $meta_create->save(false);
+                }
+                else
+                {
+                    if(!empty($value['value']))
+                    {
+                        $meta_create = new TableMeta();
+                        $meta_create->meta_key = $value['key'];
+                        $meta_create->meta_date = date('Y-m-d H:i:s');
+                        $meta_create->post_id =  $pid;
+                        $meta_create->meta_value =  $value['value'];
+                        $meta_create->save(false);
+                    }
+                }
+
+               
+            }
+        }
     }
 	
     public function delete($id)
@@ -173,11 +226,17 @@ class PostForm extends Model
     {
         $arrData = [];
         $get = TablePost::findOne($id);
+        $meta = TableMeta::find()->where(['=', 'post_id', $id])->all();
         if($get)
         {
             $arrData = [
                 'post_id'=>$get['post_id'],
-                'post_title'=>$get['post_title']
+                'post_category_id'=>$get['post_category_id'],
+                'post_title'=>$get['post_title'],
+                'post_excerpt'=>$get['post_excerpt'],
+                'post_status'=>$get['post_status'],
+                'post_content'=>Html::decode($get['post_content']),
+                'post_meta'=>$meta,
             ];
             return $arrData;
         }
@@ -218,7 +277,7 @@ class PostForm extends Model
             'post_content' => 'Content',
             'post_date' => 'Date',
             'post_modified' => 'Modified',
-            'post_excerpt' => 'Excerpt',
+            'post_excerpt' => 'Short Desc',
             'post_status' => 'Status',
             'post_type' => 'Type',
             'user_id' => 'User ID',

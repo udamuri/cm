@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 //use yii\helpers\ArrayHelper;
 
-$this->title = 'Add New';
+$this->title = 'Update';
 $this->params['breadcrumbs'][] = [
     'label' =>'Post',
     'url' => Yii::$app->homeUrl.'posts'
@@ -35,9 +35,10 @@ $this->registerJs($jsx);
 <div class="row">
     <div class="col-md-12">
         <?= $this->render('_form', [
+            '_model' => $_model,
             'model' => $model,
-            'form_id' => 'form-create-post',
-            'button' => 'Save',
+            'form_id' => 'form-update-post',
+            'button' => 'Save Change',
         ]) ?>
     </div>
 </div>

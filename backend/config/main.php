@@ -84,6 +84,7 @@ return [
                 'file-manager'=>'file/site/index',
                 'posts'=>'post/site/index',
                 'create-post'=>'post/site/create',
+                'update-post/<id:[0-9]+>'=>'post/site/update',
                 'posts-category'=>'post/site/index-category',
                 'create-post-category'=>'post/site/create-category',
                 'update-post-category/<id:[0-9]+>'=>'post/site/update-category',
