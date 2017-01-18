@@ -233,6 +233,7 @@ class PostForm extends Model
                 'post_id'=>$get['post_id'],
                 'post_category_id'=>$get['post_category_id'],
                 'post_title'=>$get['post_title'],
+                'post_excerpt'=>$get['post_excerpt'],
                 'post_status'=>$get['post_status'],
                 'post_content'=>Html::decode($get['post_content']),
                 'post_meta'=>$meta,

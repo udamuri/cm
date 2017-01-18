@@ -1,11 +1,15 @@
 function post()
 {
 	this.baseUrl = '';
+	this.ckeditor = false;
 
 	this.initialScript = function()
 	{	
 		PostObj.dinamicBtnCategory();
-		PostObj.setCKeditor('postform-post_content');
+		if(PostObj.ckeditor !== false)
+		{
+			PostObj.setCKeditor(PostObj.ckeditor);
+		}	
 	}
 
 	this.dinamicBtnCategory = function()

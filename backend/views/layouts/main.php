@@ -45,7 +45,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <?= Alert::widget() ?>
+                                <?= Alert::widget(); ?>
                             </div>
                         </div>
                         <?= $content ?>

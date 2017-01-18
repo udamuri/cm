@@ -9,6 +9,7 @@ $(function () {
     $('#sidebar-menu li ul').slideUp();
     $('#sidebar-menu li').removeClass('active');
 
+    $('#sidebar-menu li').unbind('click');
     $('#sidebar-menu li').click(function () {
         if ($(this).is('.active')) {
             $(this).removeClass('active');
@@ -25,6 +26,7 @@ $(function () {
         }
     });
 
+    $('#menu_toggle').unbind('click');
     $('#menu_toggle').click(function () {
         if ($('body').hasClass('nav-md')) {
             $('body').removeClass('nav-md');
@@ -51,6 +53,7 @@ $(function () {
 });
 
 /* Sidebar Menu active class */
+
 $(function () {
     var url = window.location;
     $('#sidebar-menu a[href="' + url + '"]').parent('li').addClass('current-page');
@@ -85,12 +88,14 @@ if ($(".js-switch")[0]) {
 /** ******  /switcher  *********************** **/
 /** ******  collapse panel  *********************** **/
 // Close ibox function
+$('.close-link').unbind('click');
 $('.close-link').click(function () {
     var content = $(this).closest('div.x_panel');
     content.remove();
 });
 
 // Collapse ibox function
+$('.collapse-link').unbind('click'); 
 $('.collapse-link').click(function () {
     var x_panel = $(this).closest('div.x_panel');
     var button = $(this).find('i');
