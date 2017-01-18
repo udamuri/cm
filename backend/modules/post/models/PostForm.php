@@ -41,8 +41,11 @@ class PostForm extends Model
             ['post_title', 'filter', 'filter' => 'trim'],
             ['post_title', 'string', 'max' => 100],
 
-            //['post_content', 'required'],
-            //['post_content', 'filter', 'filter' => 'trim'],
+            ['post_excerpt', 'required'],
+            ['post_excerpt', 'filter', 'filter' => 'trim'],
+            ['post_excerpt', 'string', 'max' => 255],
+
+            ['post_content', 'string'],
 
             ['post_status', 'required'],
             ['post_status', 'integer'],
@@ -83,6 +86,7 @@ class PostForm extends Model
             $create = new TablePost();
             $create->post_category_id = $c_value;
             $create->post_title = trim(strip_tags($this->post_title));
+            $create->post_excerpt = trim(strip_tags($this->post_excerpt));
             $create->post_content = Html::encode($this->post_content);
             $create->post_date = date('Y-m-d H:i:s');
             $create->post_modified = date('Y-m-d H:i:s');
@@ -143,6 +147,7 @@ class PostForm extends Model
             $update = TablePost::findOne($id);
             $update->post_category_id = $c_value;
             $update->post_title = trim(strip_tags($this->post_title));
+            $update->post_excerpt = trim(strip_tags($this->post_excerpt));
             $update->post_content = Html::encode($this->post_content);
             $update->post_modified = date('Y-m-d H:i:s');
             if ($update->save(false)) {
@@ -271,7 +276,7 @@ class PostForm extends Model
             'post_content' => 'Content',
             'post_date' => 'Date',
             'post_modified' => 'Modified',
-            'post_excerpt' => 'Excerpt',
+            'post_excerpt' => 'Short Desc',
             'post_status' => 'Status',
             'post_type' => 'Type',
             'user_id' => 'User ID',

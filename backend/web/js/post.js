@@ -15,6 +15,12 @@ function post()
 			var id = $(this).data('id');
 			PostObj.setStatusCategory(id);
 		});
+
+		$('.status_post').unbind('click');
+		$('.status_post').on('click', function(){
+			var id = $(this).data('id');
+			PostObj.setStatus(id);
+		});
 	}	
 
 	//Set Status
@@ -41,6 +47,36 @@ function post()
 				{
 					$('#btn_status_category_'+id).addClass('btn-warning');
 					$('#btn_status_category_'+id).text('OFF');
+					IndexObj.alertBox('Status OFF', 'success', 1000,'');
+				}
+			}
+		);
+	}
+
+	//Set Status
+	this.setStatus = function(id)
+	{
+		var arrForm = [
+			['id',id],
+		];
+		IndexObj.yiiAjaxForm(
+			'post/site/set-status', 
+			arrForm, 
+			'',  //btn id
+			function(data){
+				$('#btn_status_post_'+id).removeClass('btn-warning');
+				$('#btn_status_post_'+id).removeClass('btn-primary');
+
+				if(data == '1')
+				{
+					$('#btn_status_post_'+id).addClass('btn-primary');
+					$('#btn_status_post_'+id).text('ON');
+					IndexObj.alertBox('Status ON', 'success', 1000,'');
+				}
+				else
+				{
+					$('#btn_status_post_'+id).addClass('btn-warning');
+					$('#btn_status_post_'+id).text('OFF');
 					IndexObj.alertBox('Status OFF', 'success', 1000,'');
 				}
 			}

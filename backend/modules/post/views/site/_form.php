@@ -67,6 +67,7 @@ use backend\models\TableCategory;
                             2=> 'Draft',
                         ]
                     ); ?>
+                    <?= $form->field($model, 'post_excerpt')->textArea(); ?>
 
                     <?= $form->field($model, 'post_content')->textArea(); ?>
                 </div>
@@ -75,7 +76,7 @@ use backend\models\TableCategory;
                     <?= $form->field($model, 'meta_title')->textInput(['placeholder'=>'maximum of 60 chars for the title.']); ?>
 
                     <?= $form->field($model, 'meta_keywords')->textArea(['placeholder'=>'Meta Keywords (comma separated)']); ?>
-
+                    
                     <?= $form->field($model, 'meta_description')->textArea(['placeholder'=>'characters. Most search engines use a maximum of 255 chars for the description.']); ?>
 
                     <?= $form->field($model, 'meta_tags')->textArea(['placeholder'=>'#bukittinggi#jakarta#yogyakarta#framework']); ?>

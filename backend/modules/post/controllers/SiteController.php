@@ -77,6 +77,7 @@ class SiteController extends Controller
                         'tc.post_id',
                         'tc.post_category_id',
                         'tc.post_title',
+                        'tc.post_excerpt',
                         'tc.post_date',
                         'tc.post_modified',
                         'tc.post_status',
@@ -148,6 +149,22 @@ class SiteController extends Controller
         {
             return $this->redirect(Yii::$app->homeUrl.'posts');
         }
+    }
+
+    public function actionSetStatus()
+    {
+        if($post = Yii::$app->request->post())
+        {
+            if(isset($post['id']))
+            {
+                $model = new PostForm;           
+                if ($status = $model->setStatus($post['id'])) {
+                    return $status;
+                }
+            }
+        }
+
+        return null;
     }
 
     // category
