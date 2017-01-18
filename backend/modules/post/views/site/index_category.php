@@ -48,7 +48,7 @@ $this->registerJs($jsx);
       <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
-              <tr>
+              <tr class="bg-primary">
                   <td width="3%">No.</td>
                   <td>Category Name</td>
                   <td width="13%">Action</td>

@@ -74,16 +74,18 @@ class SiteController extends Controller
         
         $query = (new \yii\db\Query())
                     ->select([
-                        'tc.post_id',
-                        'tc.post_category_id',
-                        'tc.post_title',
-                        'tc.post_excerpt',
-                        'tc.post_date',
-                        'tc.post_modified',
-                        'tc.post_status',
-                        'tc.user_id'
+                        'tp.post_id',
+                        'tp.post_category_id',
+                        'tp.post_title',
+                        'tp.post_excerpt',
+                        'tp.post_date',
+                        'tp.post_modified',
+                        'tp.post_status',
+                        'tp.user_id',
+                        'tc.category_name'
                     ])
-                    ->from('tbl_post tc');
+                    ->from('tbl_post tp')
+                    ->leftJoin('tbl_category tc', 'tc.category_id = tp.post_category_id');
                     
         if($search !== '')
         {
