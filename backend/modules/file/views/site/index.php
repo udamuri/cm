@@ -59,7 +59,6 @@ $this->registerJs($jsx);
             <thead>
               <tr>
                   <td width="3%">No.</td>
-                  <td></td>
                   <td>File Name</td>
                   <td>Folder</td>
                   <td>File Type</td>
@@ -74,12 +73,11 @@ $this->registerJs($jsx);
                     $start++;
                     $url = Yii::$app->mycomponent->getImage($value['file_id'].'_thumb.'.$value['file_extension'], $value['file_folder']);
                     $img = '';
-                    if($url){ 
-                        $img = '<img src="'.$url.'" class="img-thumbnail" title="'.$value['file_name'].'" alt="'.$value['file_name'].'" >';
-                    }
+                    //if($url){ 
+                        //$img = '<img src="'.$url.'" class="img-thumbnail" title="'.$value['file_name'].'" alt="'.$value['file_name'].'" >';
+                    //}
                     echo '<tr>
                         <td>'.$start.'</td>
-                        <td>'.$img.'</td>
                         <td>'.$value['file_name'].'</td>
                         <td>'.$value['file_folder'].'</td>
                         <td>'.$value['file_type'].'</td>
