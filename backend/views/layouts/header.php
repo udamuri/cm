@@ -63,8 +63,8 @@
 						</li>
 						<li><a><i class="fa fa-clone"></i> PAGES <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu" style="display: none">
-								<li><a href="<?=Yii::$app->homeUrl?>i">All Pages</a></li>
-								<li><a href="<?=Yii::$app->homeUrl?>j">Add New</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>pages">All Pages</a></li>
+								<li><a href="<?=Yii::$app->homeUrl?>create-page">Add New</a></li>
 							</ul>
 						</li>
 					</ul>

@@ -89,11 +89,12 @@ class SiteController extends Controller
                         'tc.category_name'
                     ])
                     ->from('tbl_post tp')
-                    ->leftJoin('tbl_category tc', 'tc.category_id = tp.post_category_id');
+                    ->leftJoin('tbl_category tc', 'tc.category_id = tp.post_category_id')
+                    ->where(['post_type'=>Constants::POST]);
                     
         if($search !== '')
         {
-            $query->where('lower(post_title) LIKE "%'.$search.'%" ');
+            $query->andWhere('lower(post_title) LIKE "%'.$search.'%" ');
         }
         
         $countQuery = clone $query;
@@ -277,7 +278,51 @@ class SiteController extends Controller
 
     public function actionPage()
     {
-
+        $search = '';
+        if(isset($_GET['search']))
+        {
+            $search =  strtolower(trim(strip_tags($_GET['search'])));
+        }
+        
+        $query = (new \yii\db\Query())
+                    ->select([
+                        'tp.post_id',
+                        'tp.post_category_id',
+                        'tp.post_title',
+                        'tp.post_excerpt',
+                        'tp.post_date',
+                        'tp.post_modified',
+                        'tp.post_status',
+                        'tp.user_id',
+                        'tc.category_name'
+                    ])
+                    ->from('tbl_post tp')
+                    ->leftJoin('tbl_category tc', 'tc.category_id = tp.post_category_id')
+                    ->where(['post_type'=>Constants::PAGE]);
+                    
+        if($search !== '')
+        {
+            $query->andWhere('lower(post_title) LIKE "%'.$search.'%" ');
+        }
+        
+        $countQuery = clone $query;
+        $pageSize = 10;
+        $pages = new Pagination([
+                'totalCount' => $countQuery->count(), 
+                'pageSize'=>$pageSize
+            ]);
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy(['post_id'=>SORT_DESC])
+            ->all();
+            
+        return $this->render('page', [
+            'models' => $models,
+            'pages' => $pages,
+            'offset' =>$pages->offset,
+            'page' =>$pages->page,
+            'search' =>$search
+        ]);
     }
 
     public function actionCreatePage()

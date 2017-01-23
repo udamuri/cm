@@ -88,6 +88,7 @@ return [
                 'posts-category'=>'post/site/index-category',
                 'create-post-category'=>'post/site/create-category',
                 'update-post-category/<id:[0-9]+>'=>'post/site/update-category',
+                'pages'=>'post/site/page',
                 'create-page'=>'post/site/create-page',
                 'update-page'=>'post/site/update-page',
             ],
