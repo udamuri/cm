@@ -7,10 +7,10 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\data\Pagination;
 use yii\db\Query;
+use app\components\Constants;
 use yii\widgets\ActiveForm;
 use backend\modules\post\models\PostForm;
 use backend\modules\post\models\CategoryForm;
-
 
 /**
  * Default controller for the `post` module
@@ -35,7 +35,11 @@ class SiteController extends Controller
                                       'update-category', 
                                       'set-status', 
                                       'set-status-category', 
-                                      'delete'
+                                      'delete',
+                                      'page',
+                                      'create-page',
+                                      'update-page',
+                                      'set-status-page'
                                       ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -267,5 +271,53 @@ class SiteController extends Controller
         }
 
         return null;
+    }
+
+    /* ---page--- */
+
+    public function actionPage()
+    {
+
+    }
+
+    public function actionCreatePage()
+    {
+        $model = new PostForm();
+        
+        if ($model->load(Yii::$app->request->post())) {
+            if ($post = $model->create(2)) {
+                Yii::$app->session->setFlash('success', "Create New Page");
+                return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'posts');
+            }
+
+        }
+
+        return $this->render('page_create', [
+            'model' => $model,
+        ]); 
+    }
+
+    public function actionUpdatePage($id)
+    {
+        $model = new PostForm;
+        $_model = $model->getPost($id);
+   
+        if($_model)
+        {
+            if ($model->load(Yii::$app->request->post())) {                   
+                if ($menu = $model->update($id, 2)) {
+                    Yii::$app->session->setFlash('success', "Update Page");
+                    return $this->redirect(Yii::$app->homeUrl.'pages');
+                }
+            }
+            return $this->render('page_update', [
+                'model' => $model,
+                '_model' => $_model,
+            ]);
+        }
+        else
+        {
+            return $this->redirect(Yii::$app->homeUrl.'pages');
+        }
     }
 }
