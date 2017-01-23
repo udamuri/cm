@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use common\widgets\Alert;
+use common\widgets\Myalert;
 
 AppAsset::register($this);
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layouts');
@@ -45,7 +45,9 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/views/layou
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <?= Alert::widget(); ?>
+                                <?=Myalert::widget(); ?>
+                                <?//Alert::widget(); ?>
+                                <?//\udamuri\alert\myAlert::widget(); ?>
                             </div>
                         </div>
                         <?= $content ?>
