@@ -57,7 +57,7 @@ $this->registerJs($jsx);
       <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
-              <tr>
+              <tr class="bg-primary">
                   <td width="3%">No.</td>
                   <td>File Name</td>
                   <td>Folder</td>
@@ -82,7 +82,7 @@ $this->registerJs($jsx);
                         <td>'.$value['file_folder'].'</td>
                         <td>'.$value['file_type'].'</td>
                         <td>'.$value['file_size'].'kb</td>
-                        <td><button class="btn btn-danger delete_file" data-id="'.$value['file_id'].'"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
+                        <td><button class="btn btn-danger btn-xs delete_file" data-id="'.$value['file_id'].'"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
                     <tr>';
                     //print_r($value);
                 }
