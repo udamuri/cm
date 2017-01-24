@@ -51,7 +51,6 @@ $this->registerJs($jsx);
               <tr class="bg-primary">
                   <td width="3%">No.</td>
                   <td>title</td>
-                  <td>Category</td>
                   <td>Short Desc</td>
                   <td width="13%">Action</td>
               </tr>
@@ -71,7 +70,6 @@ $this->registerJs($jsx);
                     echo '<tr>
                         <td>'.$start.'</td>
                         <td>'.$value['post_title'].'</td>
-                        <td>'.$value['category_name'].'</td>
                         <td>'.$value['post_excerpt'].'</td>
                         <td align="center">
                           <button class="btn btn-danger btn-xs delete_category" title="Delete" data-id="'.$value['post_id'].'"><i class="fa fa-trash" aria-hidden="true"></i></button>
