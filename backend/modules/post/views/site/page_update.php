@@ -38,6 +38,7 @@ $this->registerJs($jsx);
             '_model' => $_model,
             'model' => $model,
             'form_id' => 'form-update-post',
+            'page' => true,
             'button' => 'Save Change',
         ]) ?>
     </div>

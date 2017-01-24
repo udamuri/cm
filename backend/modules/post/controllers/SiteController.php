@@ -332,7 +332,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($post = $model->create(2)) {
                 Yii::$app->session->setFlash('success', "Create New Page");
-                return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'posts');
+                return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'pages');
             }
 
         }

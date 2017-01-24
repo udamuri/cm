@@ -4,7 +4,7 @@ use yii\widgets\LinkPager;
 use app\components\Constants;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Posts';
+$this->title = 'Pages';
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJsFile(Yii::$app->homeUrl."js/index.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
@@ -75,7 +75,7 @@ $this->registerJs($jsx);
                         <td>'.$value['post_excerpt'].'</td>
                         <td align="center">
                           <button class="btn btn-danger btn-xs delete_category" title="Delete" data-id="'.$value['post_id'].'"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                          <a class="btn btn-success btn-xs" title="Update" href="'.Yii::$app->homeUrl.'update-post/'.$value['post_id'].'" data-id="'.$value['post_id'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                          <a class="btn btn-success btn-xs" title="Update" href="'.Yii::$app->homeUrl.'update-page/'.$value['post_id'].'" data-id="'.$value['post_id'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                           <button id="btn_status_post_'.$value['post_id'].'" title="Status" class="btn '.$btn_class.' btn-xs status_post" data-id="'.$value['post_id'].'"> '.$btn_text.' </button>
                         </td>
                     <tr>';

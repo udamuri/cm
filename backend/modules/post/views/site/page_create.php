@@ -37,6 +37,7 @@ $this->registerJs($jsx);
         <?= $this->render('_form', [
             'model' => $model,
             'form_id' => 'form-create-post',
+            'page' => true,
             'button' => 'Save',
         ]) ?>
     </div>

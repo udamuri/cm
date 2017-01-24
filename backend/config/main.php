@@ -90,7 +90,7 @@ return [
                 'update-post-category/<id:[0-9]+>'=>'post/site/update-category',
                 'pages'=>'post/site/page',
                 'create-page'=>'post/site/create-page',
-                'update-page'=>'post/site/update-page',
+                'update-page/<id:[0-9]+>'=>'post/site/update-page',
             ],
         ],
         //Yii::$app->urlManagerFrontEnd->createUrl('//')
