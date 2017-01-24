@@ -135,6 +135,13 @@ function post()
 		return !!CKEDITOR.plugins.get( 'wysiwygarea' );
 	}
 
+	this.addMedia = function()
+	{
+		$('#myModalFile').on('show.bs.modal', function (e) {
+		  	console.log('show modal Events');
+		});
+	}
+
 }
 
 var PostObj = new post();
