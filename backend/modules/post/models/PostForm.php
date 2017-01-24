@@ -82,7 +82,7 @@ class PostForm extends Model
                     $c_value = $this->post_category_id ;
                 }
             }
-
+        
             $create = new TablePost();
             $create->post_category_id = $c_value;
             $create->post_title = trim(strip_tags($this->post_title));

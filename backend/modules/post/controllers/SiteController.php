@@ -7,10 +7,10 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\data\Pagination;
 use yii\db\Query;
+use app\components\Constants;
 use yii\widgets\ActiveForm;
 use backend\modules\post\models\PostForm;
 use backend\modules\post\models\CategoryForm;
-
 
 /**
  * Default controller for the `post` module
@@ -35,7 +35,11 @@ class SiteController extends Controller
                                       'update-category', 
                                       'set-status', 
                                       'set-status-category', 
-                                      'delete'
+                                      'delete',
+                                      'page',
+                                      'create-page',
+                                      'update-page',
+                                      'set-status-page'
                                       ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -85,11 +89,12 @@ class SiteController extends Controller
                         'tc.category_name'
                     ])
                     ->from('tbl_post tp')
-                    ->leftJoin('tbl_category tc', 'tc.category_id = tp.post_category_id');
+                    ->leftJoin('tbl_category tc', 'tc.category_id = tp.post_category_id')
+                    ->where(['post_type'=>Constants::POST]);
                     
         if($search !== '')
         {
-            $query->where('lower(post_title) LIKE "%'.$search.'%" ');
+            $query->andWhere('lower(post_title) LIKE "%'.$search.'%" ');
         }
         
         $countQuery = clone $query;
@@ -267,5 +272,97 @@ class SiteController extends Controller
         }
 
         return null;
+    }
+
+    /* ---page--- */
+
+    public function actionPage()
+    {
+        $search = '';
+        if(isset($_GET['search']))
+        {
+            $search =  strtolower(trim(strip_tags($_GET['search'])));
+        }
+        
+        $query = (new \yii\db\Query())
+                    ->select([
+                        'tp.post_id',
+                        'tp.post_category_id',
+                        'tp.post_title',
+                        'tp.post_excerpt',
+                        'tp.post_date',
+                        'tp.post_modified',
+                        'tp.post_status',
+                        'tp.user_id',
+                        'tc.category_name'
+                    ])
+                    ->from('tbl_post tp')
+                    ->leftJoin('tbl_category tc', 'tc.category_id = tp.post_category_id')
+                    ->where(['post_type'=>Constants::PAGE]);
+                    
+        if($search !== '')
+        {
+            $query->andWhere('lower(post_title) LIKE "%'.$search.'%" ');
+        }
+        
+        $countQuery = clone $query;
+        $pageSize = 10;
+        $pages = new Pagination([
+                'totalCount' => $countQuery->count(), 
+                'pageSize'=>$pageSize
+            ]);
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy(['post_id'=>SORT_DESC])
+            ->all();
+            
+        return $this->render('page', [
+            'models' => $models,
+            'pages' => $pages,
+            'offset' =>$pages->offset,
+            'page' =>$pages->page,
+            'search' =>$search
+        ]);
+    }
+
+    public function actionCreatePage()
+    {
+        $model = new PostForm();
+        
+        if ($model->load(Yii::$app->request->post())) {
+            if ($post = $model->create(2)) {
+                Yii::$app->session->setFlash('success', "Create New Page");
+                return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'pages');
+            }
+
+        }
+
+        return $this->render('page_create', [
+            'model' => $model,
+        ]); 
+    }
+
+    public function actionUpdatePage($id)
+    {
+        $model = new PostForm;
+        $_model = $model->getPost($id);
+   
+        if($_model)
+        {
+            if ($model->load(Yii::$app->request->post())) {                   
+                if ($menu = $model->update($id, 2)) {
+                    Yii::$app->session->setFlash('success', "Update Page");
+                    return $this->redirect(Yii::$app->homeUrl.'pages');
+                }
+            }
+            return $this->render('page_update', [
+                'model' => $model,
+                '_model' => $_model,
+            ]);
+        }
+        else
+        {
+            return $this->redirect(Yii::$app->homeUrl.'pages');
+        }
     }
 }

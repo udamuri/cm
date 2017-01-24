@@ -52,13 +52,18 @@ use backend\models\TableCategory;
                     <?= $form->field($model, 'post_title')->textInput(); ?>
                     
                     <?php 
-                        $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); 
-                        $arrEmpty = ['0'=>'--General--'];
-                        $array_merge = array_merge($arrEmpty, $dataList);
+                        if(isset($page) && $page == true)
+                        {
+                            echo $form->field($model, 'post_category_id',['options' => ['value'=> 0] ])->hiddenInput()->label(false);
+                        }
+                        else
+                        {
+                            $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); 
+                            $arrEmpty = ['0'=>'--General--'];
+                            $array_merge = array_merge($arrEmpty, $dataList);
+                            echo $form->field($model, 'post_category_id')->dropDownList($array_merge);
+                        }
                     ?>
-                    <?= $form->field($model, 'post_category_id')->dropDownList(
-                        $array_merge
-                    ); ?>
 
                     <?= $form->field($model, 'post_status')->dropDownList(
                         [
