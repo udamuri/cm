@@ -15,6 +15,7 @@ use backend\models\TableCategory;
                         ]); 
                 if($form_id === 'form-update-post')
                 {
+                    $model->post_id = $_model['post_id'] ;
                     $model->post_title = $_model['post_title'] ;
                     $model->post_url_alias = $_model['post_url_alias'] ;
                     $model->post_content = $_model['post_content'] ;
