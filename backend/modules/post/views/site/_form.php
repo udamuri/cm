@@ -13,6 +13,7 @@ use backend\models\TableCategory;
         <?php $form = ActiveForm::begin([
                             'id' => $form_id,
                         ]); 
+                $model->post_id = 0 ;
                 if($form_id === 'form-update-post')
                 {
                     $model->post_id = $_model['post_id'] ;
