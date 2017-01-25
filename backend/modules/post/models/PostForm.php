@@ -17,6 +17,7 @@ class PostForm extends Model
     public $post_id;
     public $post_category_id;
     public $post_title;
+    public $post_url_alias;
     public $post_content;
     public $post_date;
     public $post_modified;
@@ -40,6 +41,10 @@ class PostForm extends Model
 			['post_title', 'required'],
             ['post_title', 'filter', 'filter' => 'trim'],
             ['post_title', 'string', 'max' => 100],
+
+            ['post_url_alias', 'required'],
+            ['post_url_alias', 'filter', 'filter' => 'trim'],
+            ['post_url_alias', 'string', 'max' => 255],
 
             ['post_excerpt', 'required'],
             ['post_excerpt', 'filter', 'filter' => 'trim'],
@@ -274,6 +279,7 @@ class PostForm extends Model
             'post_id' => 'ID',
             'post_category_id' => 'Category ID',
             'post_title' => 'Title',
+            'post_url_alias' => 'URL Alias',
             'post_content' => 'Content',
             'post_date' => 'Date',
             'post_modified' => 'Modified',

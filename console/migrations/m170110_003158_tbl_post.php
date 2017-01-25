@@ -15,7 +15,8 @@ class m170110_003158_tbl_post extends Migration
         $this->createTable('tbl_post', [
             'post_id' => $this->primaryKey(15),
             'post_category_id' => $this->integer(11)->defaultValue(0),
-            'post_title' => $this->string(256)->notNull(),
+            'post_title' => $this->string(100)->notNull(),
+            'post_url_alias' => $this->string(255)->notNull()->unique(),
             'post_content' => $this->text(),
             'post_date' => $this->dateTime(),
             'post_modified' => $this->dateTime(),

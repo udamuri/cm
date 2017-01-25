@@ -76,7 +76,7 @@ use backend\models\TableCategory;
                     <?= $form->field($model, 'post_excerpt')->textArea(); ?>
 
                     <div>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalFile">Add Media</button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalFile"><i class="fa fa-file-image-o" aria-hidden="true"></i> Add Media</button>
                     </div>
                     <?= $form->field($model, 'post_content')->textArea(); ?>
                 </div>
@@ -106,7 +106,7 @@ use backend\models\TableCategory;
 </div>
 
 <div id="myModalFile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-xlg" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

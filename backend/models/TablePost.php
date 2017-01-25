@@ -38,7 +38,7 @@ class TablePost extends \yii\db\ActiveRecord
             [['post_title'], 'required'],
             [['post_content', 'post_excerpt'], 'string'],
             [['post_date', 'post_modified'], 'safe'],
-            [['post_title'], 'string', 'max' => 256],
+            [['post_title', 'post_url_alias'], 'string', 'max' => 255],
         ];
     }
 
@@ -51,6 +51,7 @@ class TablePost extends \yii\db\ActiveRecord
             'post_id' => 'Post ID',
             'post_category_id' => 'Post Category ID',
             'post_title' => 'Post Title',
+            'post_url_alias' => 'Post URL Alias',
             'post_content' => 'Post Content',
             'post_date' => 'Post Date',
             'post_modified' => 'Post Modified',
