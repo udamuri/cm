@@ -16,6 +16,7 @@ use backend\models\TableCategory;
                 if($form_id === 'form-update-post')
                 {
                     $model->post_title = $_model['post_title'] ;
+                    $model->post_url_alias = $_model['post_url_alias'] ;
                     $model->post_content = $_model['post_content'] ;
                     $model->post_excerpt = $_model['post_excerpt'] ;
                     $model->post_status = $_model['post_status'] ;
@@ -50,29 +51,36 @@ use backend\models\TableCategory;
             <div class="row">
                 <div class="col-md-8 col-sm-12 col-xs-12">
                     <?= $form->field($model, 'post_title')->textInput(); ?>
-                    
-                    <?php 
-                        if(isset($page) && $page == true)
-                        {
-                            echo $form->field($model, 'post_category_id',['options' => ['value'=> 0] ])->hiddenInput()->label(false);
-                        }
-                        else
-                        {
-                            $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); 
-                            $arrEmpty = ['0'=>'--General--'];
-                            $array_merge = array_merge($arrEmpty, $dataList);
-                            echo $form->field($model, 'post_category_id')->dropDownList($array_merge);
-                        }
-                    ?>
 
-                    <?= $form->field($model, 'post_status')->dropDownList(
-                        [
-                            ''=> '',
-                            0=> 'Inactive',
-                            1=> 'Active',
-                            2=> 'Draft',
-                        ]
-                    ); ?>
+                    <?= $form->field($model, 'post_url_alias')->textInput(); ?>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?php 
+                                if(isset($page) && $page == true)
+                                {
+                                    echo $form->field($model, 'post_category_id',['options' => ['value'=> 0] ])->hiddenInput()->label(false);
+                                }
+                                else
+                                {
+                                    $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); 
+                                    $arrEmpty = ['0'=>'--General--'];
+                                    $array_merge = array_merge($arrEmpty, $dataList);
+                                    echo $form->field($model, 'post_category_id')->dropDownList($array_merge);
+                                }
+                            ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'post_status')->dropDownList(
+                                [
+                                    ''=> '',
+                                    0=> 'Inactive',
+                                    1=> 'Active',
+                                    2=> 'Draft',
+                                ]
+                            ); ?>
+                        </div>
+                    </div>
                     <?= $form->field($model, 'post_excerpt')->textArea(); ?>
 
                     <div>
@@ -90,6 +98,7 @@ use backend\models\TableCategory;
 
                     <?= $form->field($model, 'meta_tags')->textArea(['placeholder'=>'#bukittinggi#jakarta#yogyakarta#framework']); ?>
                  </div>
+                 <?=$form->field($model, 'post_id',['options' => ['value'=> 0] ])->hiddenInput()->label(false);?>
             </div>
 
             <div class="row">
