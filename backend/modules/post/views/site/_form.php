@@ -52,6 +52,7 @@ use backend\models\TableCategory;
         ?>
             <div class="row">
                 <div class="col-md-8 col-sm-12 col-xs-12">
+                    <?=$form->field($model, 'post_id',['options' => ['value'=> 0] ])->hiddenInput()->label(false);?>
                     <?= $form->field($model, 'post_title')->textInput(); ?>
 
                     <?= $form->field($model, 'post_url_alias')->textInput(); ?>
@@ -59,8 +60,10 @@ use backend\models\TableCategory;
                     <div class="row">
                         <div class="col-md-6">
                             <?php 
+                                $col_md = 'col-md-6';
                                 if(isset($page) && $page == true)
                                 {
+                                    $col_md = 'col-md-12';
                                     echo $form->field($model, 'post_category_id',['options' => ['value'=> 0] ])->hiddenInput()->label(false);
                                 }
                                 else
@@ -72,7 +75,7 @@ use backend\models\TableCategory;
                                 }
                             ?>
                         </div>
-                        <div class="col-md-6">
+                        <div class="<?=$col_md;?>">
                             <?= $form->field($model, 'post_status')->dropDownList(
                                 [
                                     ''=> '',
@@ -100,7 +103,6 @@ use backend\models\TableCategory;
 
                     <?= $form->field($model, 'meta_tags')->textArea(['placeholder'=>'#bukittinggi#jakarta#yogyakarta#framework']); ?>
                  </div>
-                 <?=$form->field($model, 'post_id',['options' => ['value'=> 0] ])->hiddenInput()->label(false);?>
             </div>
 
             <div class="row">
