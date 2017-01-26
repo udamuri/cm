@@ -8,11 +8,13 @@ $this->title = 'Web Setting';
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJsFile(Yii::$app->homeUrl."js/index.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
-
+$this->registerJsFile(Yii::$app->homeUrl."js/setting.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
+$this->registerJsFile(Yii::$app->homeUrl."plugins/ckeditor/ckeditor.js", ['depends' => [\yii\web\JqueryAsset::className()], 'position' =>  \yii\web\View::POS_HEAD]);
 $token = $this->renderDynamic('return Yii::$app->request->csrfToken;');
 
 $jsx = <<< 'SCRIPT'
     IndexObj.initialScript();
+    SettingObj.initialScript();
 SCRIPT;
 $this->registerJs('IndexObj.baseUrl = "'. Yii::$app->homeUrl.'"', \yii\web\View::POS_HEAD);
 $this->registerJs('IndexObj.csrfToken = "'. $token.'"',  \yii\web\View::POS_HEAD);
@@ -28,19 +30,6 @@ $gs = $generalSetting;
                     //'options' => ['class' => 'form-horizontal form-label-left'],
                 ]); 
     ?>
-
-        <?php
-            if(isset($arrMessage) && is_array($arrMessage) && count($arrMessage))
-            {
-                echo '<div class="alert alert-'.$arrMessage['status'].'" role="alert">
-                            '.$arrMessage['message'].'
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>';
-            }
-        ?>
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2>General Setting</h2>

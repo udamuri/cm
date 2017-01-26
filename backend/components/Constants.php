@@ -17,6 +17,7 @@ class Constants
 	/** POST_STATUS */
 	const PAGE = 0;
 	const POST = 1;
+	const SLIDE = 2;
 	/** POST_STATUS */
 
 	/** JENIS KELAMIN */
