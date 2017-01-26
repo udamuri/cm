@@ -3,6 +3,7 @@ namespace backend\modules\setting\models;
 
 use app\components\Constants;
 use yii\base\Model;
+use yii\helpers\Html;
 use backend\models\TableOptions;
 use Yii;
 
@@ -47,7 +48,7 @@ class OptionForm extends Model
             $_value = $value['option_value'];
             foreach ($_id as $key=>$value) {
               $model = $this->findModel($key);
-              $model->option_value = trim(strip_tags($_value[$key]));
+              $model->option_value = Html::encode($_value[$key]);
               $model->save(false);
             }
 
@@ -65,7 +66,7 @@ class OptionForm extends Model
                 'option_id'=>$model['option_id'],
                 'option_name'=>$model['option_name'],
                 'option_label'=>$model['option_label'],
-                'option_value'=>$model['option_value'],
+                'option_value'=>Html::decode($model['option_value']),
                 'option_autoload'=>$model['option_autoload'],
                 'option_status'=>$model['option_status'],
             );
@@ -91,7 +92,7 @@ class OptionForm extends Model
                 'option_id'=>$value['option_id'],
                 'option_name'=>$value['option_name'],
                 'option_label'=>$value['option_label'],
-                'option_value'=>$value['option_value'],
+                'option_value'=>Html::decode($value['option_value']),
                 'option_autoload'=>$value['option_autoload'],
                 'option_status'=>$value['option_status'],
             ];

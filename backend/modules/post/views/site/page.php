@@ -24,10 +24,10 @@ $this->registerJs($jsx);
 
 <div class="row">
     <div class="col-md-8 col-sm-12 col-xs-12">
-        <a href="<?=Yii::$app->homeUrl;?>create-post" class="btn btn-primary">Add New</a>
+        <a href="<?=Yii::$app->homeUrl;?>create-page" class="btn btn-primary">Add New</a>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-        <form  id="searchform" class="input-group"  action="<?=Yii::$app->homeUrl;?>posts"  method="GET" > 
+        <form  id="searchform" class="input-group"  action="<?=Yii::$app->homeUrl;?>pages"  method="GET" > 
             <input type="text" name="search" class="form-control" value="<?=$search;?>" placeholder="Search for...">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">Go!</button>

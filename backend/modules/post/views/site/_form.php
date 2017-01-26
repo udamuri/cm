@@ -13,9 +13,12 @@ use backend\models\TableCategory;
         <?php $form = ActiveForm::begin([
                             'id' => $form_id,
                         ]); 
+                $model->post_id = 0 ;
                 if($form_id === 'form-update-post')
                 {
+                    $model->post_id = $_model['post_id'] ;
                     $model->post_title = $_model['post_title'] ;
+                    $model->post_url_alias = $_model['post_url_alias'] ;
                     $model->post_content = $_model['post_content'] ;
                     $model->post_excerpt = $_model['post_excerpt'] ;
                     $model->post_status = $_model['post_status'] ;
@@ -49,32 +52,45 @@ use backend\models\TableCategory;
         ?>
             <div class="row">
                 <div class="col-md-8 col-sm-12 col-xs-12">
+                    <?=$form->field($model, 'post_id',['options' => ['value'=> 0] ])->hiddenInput()->label(false);?>
                     <?= $form->field($model, 'post_title')->textInput(); ?>
-                    
-                    <?php 
-                        if(isset($page) && $page == true)
-                        {
-                            echo $form->field($model, 'post_category_id',['options' => ['value'=> 0] ])->hiddenInput()->label(false);
-                        }
-                        else
-                        {
-                            $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); 
-                            $arrEmpty = ['0'=>'--General--'];
-                            $array_merge = array_merge($arrEmpty, $dataList);
-                            echo $form->field($model, 'post_category_id')->dropDownList($array_merge);
-                        }
-                    ?>
 
-                    <?= $form->field($model, 'post_status')->dropDownList(
-                        [
-                            ''=> '',
-                            0=> 'Inactive',
-                            1=> 'Active',
-                            2=> 'Draft',
-                        ]
-                    ); ?>
+                    <?= $form->field($model, 'post_url_alias')->textInput(); ?>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?php 
+                                $col_md = 'col-md-6';
+                                if(isset($page) && $page == true)
+                                {
+                                    $col_md = 'col-md-12';
+                                    echo $form->field($model, 'post_category_id',['options' => ['value'=> 0] ])->hiddenInput()->label(false);
+                                }
+                                else
+                                {
+                                    $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); 
+                                    $arrEmpty = ['0'=>'--General--'];
+                                    $array_merge = array_merge($arrEmpty, $dataList);
+                                    echo $form->field($model, 'post_category_id')->dropDownList($array_merge);
+                                }
+                            ?>
+                        </div>
+                        <div class="<?=$col_md;?>">
+                            <?= $form->field($model, 'post_status')->dropDownList(
+                                [
+                                    ''=> '',
+                                    0=> 'Inactive',
+                                    1=> 'Active',
+                                    2=> 'Draft',
+                                ]
+                            ); ?>
+                        </div>
+                    </div>
                     <?= $form->field($model, 'post_excerpt')->textArea(); ?>
 
+                    <div>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalFile"><i class="fa fa-file-image-o" aria-hidden="true"></i> Add Media</button>
+                    </div>
                     <?= $form->field($model, 'post_content')->textArea(); ?>
                 </div>
 
@@ -100,6 +116,26 @@ use backend\models\TableCategory;
 
         <?php ActiveForm::end(); ?>   
     </div>
+</div>
+
+<div id="myModalFile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-xlg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">File</h4>
+        </div>
+
+        <div class="modal-body">
+            <p>One fine body&hellip;</p>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+  </div>
 </div>
 
 

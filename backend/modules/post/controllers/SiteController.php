@@ -81,6 +81,7 @@ class SiteController extends Controller
                         'tp.post_id',
                         'tp.post_category_id',
                         'tp.post_title',
+                        'tp.post_url_alias',
                         'tp.post_excerpt',
                         'tp.post_date',
                         'tp.post_modified',
@@ -120,7 +121,7 @@ class SiteController extends Controller
     public function actionCreate()
     {
         $model = new PostForm();
-        
+        //$model->scenario = 'create';
         if ($model->load(Yii::$app->request->post())) {
             if ($post = $model->create(1)) {
                 Yii::$app->session->setFlash('success', "Create New Post");
@@ -137,6 +138,7 @@ class SiteController extends Controller
     public function actionUpdate($id)
     {
         $model = new PostForm;
+        //$model->scenario = 'update';
         $_model = $model->getPost($id);
    
         if($_model)

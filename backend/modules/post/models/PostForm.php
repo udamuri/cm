@@ -17,6 +17,7 @@ class PostForm extends Model
     public $post_id;
     public $post_category_id;
     public $post_title;
+    public $post_url_alias;
     public $post_content;
     public $post_date;
     public $post_modified;
@@ -36,11 +37,19 @@ class PostForm extends Model
     public function rules()
     {
         return [
-          			
+        
+          	['post_id', 'required'],
+            ['post_id', 'integer'],	
+
 			['post_title', 'required'],
             ['post_title', 'filter', 'filter' => 'trim'],
             ['post_title', 'string', 'max' => 100],
 
+            ['post_url_alias', 'required'],
+            ['post_url_alias', 'string', 'max' => 255],
+            ['post_url_alias', 'filter', 'filter' => 'trim'],
+            ['post_url_alias', 'checkUrlAlias'],
+        
             ['post_excerpt', 'required'],
             ['post_excerpt', 'filter', 'filter' => 'trim'],
             ['post_excerpt', 'string', 'max' => 255],
@@ -68,6 +77,25 @@ class PostForm extends Model
         ];
     }
 
+    public function scenarios()
+    {
+        $scenarios = [
+            'some_scenario' => ['post_url_alias'],
+        ];
+
+        return array_merge(parent::scenarios(), $scenarios);
+    }
+
+    public function checkUrlAlias($attribute, $params)
+    {
+        $alias = Yii::$app->mycomponent->toAscii($this->post_url_alias);
+        $model = TablePost::find()->where(['post_url_alias'=>$alias])->one();
+        if($model && $model->post_id != $this->post_id)
+        {
+            $this->addError($attribute, 'This alias has already been taken.');
+        }
+    }
+
     public function create($post_type = 0)
     {
 
@@ -86,6 +114,7 @@ class PostForm extends Model
             $create = new TablePost();
             $create->post_category_id = $c_value;
             $create->post_title = trim(strip_tags($this->post_title));
+            $create->post_url_alias = Yii::$app->mycomponent->toAscii(trim(strip_tags($this->post_url_alias)));
             $create->post_excerpt = trim(strip_tags($this->post_excerpt));
             $create->post_content = Html::encode($this->post_content);
             $create->post_date = date('Y-m-d H:i:s');
@@ -147,6 +176,7 @@ class PostForm extends Model
             $update = TablePost::findOne($id);
             $update->post_category_id = $c_value;
             $update->post_title = trim(strip_tags($this->post_title));
+            $update->post_url_alias = Yii::$app->mycomponent->toAscii(trim(strip_tags($this->post_url_alias)));
             $update->post_excerpt = trim(strip_tags($this->post_excerpt));
             $update->post_content = Html::encode($this->post_content);
             $update->post_modified = date('Y-m-d H:i:s');
@@ -233,6 +263,7 @@ class PostForm extends Model
                 'post_id'=>$get['post_id'],
                 'post_category_id'=>$get['post_category_id'],
                 'post_title'=>$get['post_title'],
+                'post_url_alias'=>$get['post_url_alias'],
                 'post_excerpt'=>$get['post_excerpt'],
                 'post_status'=>$get['post_status'],
                 'post_content'=>Html::decode($get['post_content']),
@@ -274,6 +305,7 @@ class PostForm extends Model
             'post_id' => 'ID',
             'post_category_id' => 'Category ID',
             'post_title' => 'Title',
+            'post_url_alias' => 'URL Alias',
             'post_content' => 'Content',
             'post_date' => 'Date',
             'post_modified' => 'Modified',

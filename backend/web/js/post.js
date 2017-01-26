@@ -8,7 +8,8 @@ function post()
 		PostObj.dinamicBtnCategory();
 		if(PostObj.ckeditor !== false)
 		{
-			PostObj.setCKeditor(PostObj.ckeditor);
+			IndexObj.setCKeditor(PostObj.ckeditor);
+			PostObj.addMedia(1);
 		}	
 	}
 
@@ -87,52 +88,35 @@ function post()
 		);
 	}
 
-	this.setCKeditor = function(id)
+	this.addMedia = function(id)
 	{
-		if ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 )
-		{
-			CKEDITOR.tools.enableHtml5Elements( document );
-		}
+		$('#myModalFile').on('show.bs.modal', function (e) {
+		  	var arrForm = [
+				['id',id],
+			];
 
-		// The trick to keep the editor in the sample quite small
-		// unless user specified own height.
-		CKEDITOR.config.height = 150;
-		CKEDITOR.config.width = 'auto';
+			console.log(arrForm);
+			// IndexObj.yiiAjaxForm(
+			// 	'menu/site/set-status', 
+			// 	arrForm, 
+			// 	'',  //btn id
+			// 	function(data){
+			// 		$('#btn_status_'+id).removeClass('btn-warning');
+			// 		$('#btn_status_'+id).removeClass('btn-primary');
 
-		var wysiwygareaAvailable = PostObj.isWysiwygareaAvailable(),
-		isBBCodeBuiltIn = !!CKEDITOR.plugins.get( 'bbcode' );
-
-		var editorElement = CKEDITOR.document.getById( id );
-
-		// :(((
-		// if ( isBBCodeBuiltIn ) {
-		// 	editorElement.setHtml(
-		// 		'Hello world!\n\n' +
-		// 		'I\'m an instance of [url=http://ckeditor.com]CKEditor[/url].'
-		// 	);
-		// }
-
-		// Depending on the wysiwygare plugin availability initialize classic or inline editor.
-		if ( wysiwygareaAvailable ) {
-			CKEDITOR.replace( id );
-		} else {
-			editorElement.setAttribute( 'contenteditable', 'true' );
-			CKEDITOR.inline( id );
-
-			// TODO we can consider displaying some info box that
-			// without wysiwygarea the classic editor may not work.
-		}
-
-	}
-
-	this.isWysiwygareaAvailable = function() {
-		// If in development mode, then the wysiwygarea must be available.
-		// Split REV into two strings so builder does not replace it :D.
-		if ( CKEDITOR.revision == ( '%RE' + 'V%' ) ) {
-			return true;
-		}
-
-		return !!CKEDITOR.plugins.get( 'wysiwygarea' );
+			// 		if(data == '1')
+			// 		{
+			// 			$('#btn_status_'+id).addClass('btn-primary');
+			// 			$('#btn_status_'+id).text('ON');
+			// 		}
+			// 		else
+			// 		{
+			// 			$('#btn_status_'+id).addClass('btn-warning');
+			// 			$('#btn_status_'+id).text('OFF');
+			// 		}
+			// 	}
+			// );
+		});
 	}
 
 }
