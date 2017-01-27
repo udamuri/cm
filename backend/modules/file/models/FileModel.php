@@ -23,12 +23,23 @@ class FileModel extends Model
                         'tc.file_extension',
                         'tc.user_id'
                     ])
-                    ->from('tbl_file tc');
+                    ->from('tbl_file tc')
+                    ->where('1');
+        if(!empty($search))
+        {
+        	$query->where('lower(file_name) LIKE "%'.$search.'%" ');
+        }
+
+        $countQuery = clone $query;
     }
 
-    private function getCountFile()
+    private function getPage($page = 1)
     {
     	$count = TableFile::find()->count();
+    	$arrData = [
+    		''=>''
+    	];
+
     	return $count;
     }
 }
