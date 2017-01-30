@@ -9,6 +9,7 @@ use yii\data\Pagination;
 use yii\db\Query;
 use yii\widgets\ActiveForm;
 use backend\modules\file\models\UploadForm;
+use backend\modules\file\models\FileModel;
 use yii\web\UploadedFile;
 
 /**
@@ -26,7 +27,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'delete'],
+                        'actions' => ['index', 'delete', 'get-ajax-file'],
                         'allow' => true,
                         'roles' => ['@'],
 						'matchCallback' => function ($rule, $action) {
@@ -120,5 +121,21 @@ class SiteController extends Controller
             return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'file-manager');
         }
         return $this->redirect(Yii::$app->homeUrl.'file-manager');
+    }
+
+    public function actionGetAjaxFile()
+    {
+        $request = Yii::$app->request;
+
+        if ($request->isAjax && $request->isPost) 
+        {
+            $model = new FileModel();
+
+            return $model->getFile('');
+        }
+        else
+        {
+            return false;
+        }
     }
 }

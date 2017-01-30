@@ -127,7 +127,15 @@ use backend\models\TableCategory;
         </div>
 
         <div class="modal-body">
-            <p>One fine body&hellip;</p>
+            <div id="file-content" class="row">
+                        
+            </div>
+    
+            <div class="row">
+                <div id="file-pagination" class="col-md-12 text-center">
+                        
+                </div>
+            </div>
         </div>
 
         <div class="modal-footer">

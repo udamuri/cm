@@ -6,6 +6,7 @@ use yii\base\Component;
 use yii\base\InvalidConfigException;
 //use yii\helpers\BaseFileHelper;
 use app\components\Constants;
+use yii\helpers\Url;
 use yii\helpers\FileHelper;
 use yii\db\Query;
  
@@ -127,6 +128,18 @@ class TaskComponent extends Component
 		}
 
 		return false;
+	}
+
+	//Yii::$app->mycomponent->getHttpUrl($clear);
+	public function getHttpUrl($clear = '')
+	{
+		$url = url::base('http');
+		if($clear !== '')
+		{	
+			$url = str_replace($clear, '' , $url);
+		}
+
+		return $url ;
 	}
 
 	//Yii::$app->mycomponent->getImage();
