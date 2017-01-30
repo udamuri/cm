@@ -9,7 +9,10 @@ function post()
 		if(PostObj.ckeditor !== false)
 		{
 			IndexObj.setCKeditor(PostObj.ckeditor);
-			PostObj.addMedia(1);
+
+			$('#myModalFile').on('show.bs.modal', function (e) {
+				PostObj.addMedia(1, 1, '');
+			});
 		}	
 	}
 
@@ -26,7 +29,22 @@ function post()
 			var id = $(this).data('id');
 			PostObj.setStatus(id);
 		});
-	}	
+	}
+
+	this.clickPage = function()
+	{
+		$('.pagination_click').unbind('click');
+		$('.pagination_click').on('click', function(){
+			var page = $(this).data('page');
+			var nPage = 1;
+			if(typeof page == 'number')
+			{
+				nPage = parseInt(page) + 1 ;
+			}
+
+			PostObj.addMedia(1, nPage, '');
+		});
+	}
 
 	//Set Status
 	this.setStatusCategory = function(id)
@@ -88,35 +106,55 @@ function post()
 		);
 	}
 
-	this.addMedia = function(id)
+	this.addMedia = function(id, page, search)
 	{
-		$('#myModalFile').on('show.bs.modal', function (e) {
-		  	var arrForm = [
-				['id',id],
-			];
+	  	var arrForm = [
+			['id',id],
+			['search',search],
+		];
+		$('#file-content').empty();
+		$('#file-content').html('loading...');
+		IndexObj.yiiAjaxForm(
+			'file/site/get-ajax-file?page='+page, 
+			arrForm, 
+			'',  //btn id
+			function(data){
+				var arrData = IndexObj.jsonToArray(data);
+				if(typeof arrData == 'object')
+				{
+					var html = '';
+					var models = arrData['models'];
+					if(typeof models == 'object')
+					{
+						for(var i=0;i<models.length;i++)
+						{
+							html += '<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 margin-bottom20">'+
+										'<div class="img-file">'+
+											'<img data-id="'+models[i]['file_id']+'" src="'+models[i]['img_url']+'" alt="'+models[i]['file_name']+'" >'+
+										'</div>'+
+										'<div>'+
+											'<button class="btn btn-primary btn-sm">Add</button>'+
+										'</div>'+
+									'</div>' ;
+							console.log(models[i]);
+						}
+						$('#file-content').empty();
+						$('#file-content').html(html);
+					}
 
-			console.log(arrForm);
-			// IndexObj.yiiAjaxForm(
-			// 	'menu/site/set-status', 
-			// 	arrForm, 
-			// 	'',  //btn id
-			// 	function(data){
-			// 		$('#btn_status_'+id).removeClass('btn-warning');
-			// 		$('#btn_status_'+id).removeClass('btn-primary');
+					if(arrData['getPage'] !== '')
+					{
+						$('#file-pagination').empty();
+						$('#file-pagination').html(arrData['getPage']);
+						var attrA = $('#file-pagination ul li').find('a');
+						attrA.attr('href','javascript:void(0);');
+						attrA.addClass('pagination_click');
+					}
 
-			// 		if(data == '1')
-			// 		{
-			// 			$('#btn_status_'+id).addClass('btn-primary');
-			// 			$('#btn_status_'+id).text('ON');
-			// 		}
-			// 		else
-			// 		{
-			// 			$('#btn_status_'+id).addClass('btn-warning');
-			// 			$('#btn_status_'+id).text('OFF');
-			// 		}
-			// 	}
-			// );
-		});
+					PostObj.clickPage();
+				}
+			}
+		);
 	}
 
 }

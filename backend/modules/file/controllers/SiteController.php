@@ -129,7 +129,9 @@ class SiteController extends Controller
 
         if ($request->isAjax && $request->isPost) 
         {
-            $model = new FileModel(); 
+            $model = new FileModel();
+
+            return $model->getFile('');
         }
         else
         {
