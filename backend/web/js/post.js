@@ -147,7 +147,7 @@ function post()
 										'</div>'+
 										'<div class="clearfix"></div>'+
 										'<div>'+
-											'<button data-imgurl="'.models[i]['img_url'].'" class="btn btn-primary btn-sm  btn-add-img-ckeditor">Add</button>'+
+											'<button data-imgurl="'+models[i]['img_url']+'" class="btn btn-primary btn-sm  btn-add-img-ckeditor">Add</button>'+
 										'</div>'+
 									'</div>' ;
 							console.log(models[i]);
