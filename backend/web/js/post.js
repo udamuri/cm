@@ -132,6 +132,7 @@ function post()
 										'<div class="img-file">'+
 											'<img data-id="'+models[i]['file_id']+'" src="'+models[i]['img_url']+'" alt="'+models[i]['file_name']+'" >'+
 										'</div>'+
+										'<div class="clearfix"></div>'+
 										'<div>'+
 											'<button class="btn btn-primary btn-sm">Add</button>'+
 										'</div>'+
