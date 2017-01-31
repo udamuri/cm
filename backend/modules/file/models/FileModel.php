@@ -47,7 +47,7 @@ class FileModel extends Model
 
         $arrData = [];
         foreach ($models as  $value) {
-            $url = Yii::$app->mycomponent->getImage($value['file_id'].'_resize.'.$value['file_extension'], $value['file_folder']);
+            $url = Yii::$app->mycomponent->getImage($value['file_id'].'.'.$value['file_extension'], $value['file_folder']);
             $img_url = '';
             if($url){ 
                 $img_url = $url;
