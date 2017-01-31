@@ -44,6 +44,19 @@ function post()
 
 			PostObj.addMedia(1, nPage, '');
 		});
+
+		$('.btn-add-img-ckeditor').unbind('click');
+		$('.btn-add-img-ckeditor').on('click', function(){
+			var url = $(this).data('imgurl');
+			if(PostObj.ckeditor !== false)
+			{
+				CKEDITOR.instances[PostObj.ckeditor].insertHtml('<img class="img-responsive" src="'+url+'" >');
+			}
+		});
+
+		
+
+
 	}
 
 	//Set Status
@@ -134,7 +147,7 @@ function post()
 										'</div>'+
 										'<div class="clearfix"></div>'+
 										'<div>'+
-											'<button class="btn btn-primary btn-sm">Add</button>'+
+											'<button data-imgurl="'.models[i]['img_url'].'" class="btn btn-primary btn-sm  btn-add-img-ckeditor">Add</button>'+
 										'</div>'+
 									'</div>' ;
 							console.log(models[i]);
