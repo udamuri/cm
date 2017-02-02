@@ -5,6 +5,9 @@ use Yii;
 use yii\base\Model;
 use yii\helpers\Html;
 use backend\models\Nestamenu;
+use app\components\Constants;
+use backend\models\TablePost;
+use backend\models\TableCategory;
 
 
 class MenuModel extends Model
@@ -53,6 +56,35 @@ class MenuModel extends Model
 			}
 			
 		}
+	}
+
+	public function getUrlAlias()
+	{
+		$arrData = [];
+		$modelCategory = TableCategory::find()->all();
+		$modelPost = TablePost::find()->where(['post_type'=>Constants::PAGE])->all();
+
+		if($modelCategory)
+		{
+			foreach ($modelCategory as $value) {
+				$arrData[] = [
+					'label' => $value['category_name'],
+					'value' => $value['category_name'],
+				];
+			}
+		}
+
+		if($modelPost)
+		{
+			foreach ($modelPost as  $value) {
+				$arrData[] = [
+					'label' => $value['post_title'],
+					'value' => $value['post_url_alias'],
+				];
+			}
+		}
+
+		return $arrData;
 	}
 
 }

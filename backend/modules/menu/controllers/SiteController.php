@@ -91,8 +91,11 @@ class SiteController extends Controller
             }
         }
 
+        $xmodel = new MenuModel();
+        $ymodel = $xmodel->getUrlAlias();
         return $this->render('create', [
             'model' => $model,
+            'ymodel' =>$ymodel,
         ]);
     }
 
@@ -109,9 +112,12 @@ class SiteController extends Controller
                     return $this->redirect(Yii::$app->homeUrl.'menu');
                 }
             }
+            $xmodel = new MenuModel();
+            $ymodel = $xmodel->getUrlAlias();
             return $this->render('update', [
                 'model' => $model,
                 '_model' => $_model,
+                'ymodel' =>$ymodel,
             ]);
         }
         else

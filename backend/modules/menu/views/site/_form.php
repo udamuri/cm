@@ -30,7 +30,14 @@ use yii\helpers\ArrayHelper;
                     <?= Html::submitButton($button, ['class' => 'btn btn-primary', 'name' => 'category-button']) ?>
                 </div>
 
-        <?php ActiveForm::end(); ?>   
+        <?php ActiveForm::end(); ?> 
+
+        <?php 
+            if(isset($ymodel))
+            {
+                print_r($ymodel);
+            }
+        ?>
     </div>
 </div>
 
