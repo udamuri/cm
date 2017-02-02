@@ -7,6 +7,7 @@ use yii\base\Model;
 use app\components\Constants;
 use backend\models\TablePost;
 use backend\models\TableMeta;
+use backend\models\TableCategory;
 /**
  * Post form
  */
@@ -90,7 +91,8 @@ class PostForm extends Model
     {
         $alias = Yii::$app->mycomponent->toAscii($this->post_url_alias);
         $model = TablePost::find()->where(['post_url_alias'=>$alias])->one();
-        if($model && $model->post_id != $this->post_id)
+        $_model = TableCategory::find()->where(['category_name'=>$alias])->one();
+        if(($model && $model->post_id != $this->post_id) || !empty($_model->category_name))
         {
             $this->addError($attribute, 'This alias has already been taken.');
         }
@@ -114,7 +116,7 @@ class PostForm extends Model
             $create = new TablePost();
             $create->post_category_id = $c_value;
             $create->post_title = trim(strip_tags($this->post_title));
-            $create->post_url_alias = Yii::$app->mycomponent->toAscii(trim(strip_tags($this->post_url_alias)));
+            $create->post_url_alias = Yii::$app->mycomponent->toAscii(trim(strip_tags(strtolower($this->post_url_alias))));
             $create->post_excerpt = trim(strip_tags($this->post_excerpt));
             $create->post_content = Html::encode($this->post_content);
             $create->post_date = date('Y-m-d H:i:s');
@@ -176,7 +178,7 @@ class PostForm extends Model
             $update = TablePost::findOne($id);
             $update->post_category_id = $c_value;
             $update->post_title = trim(strip_tags($this->post_title));
-            $update->post_url_alias = Yii::$app->mycomponent->toAscii(trim(strip_tags($this->post_url_alias)));
+            $update->post_url_alias = Yii::$app->mycomponent->toAscii(trim(strip_tags(strtolower($this->post_url_alias))));
             $update->post_excerpt = trim(strip_tags($this->post_excerpt));
             $update->post_content = Html::encode($this->post_content);
             $update->post_modified = date('Y-m-d H:i:s');
