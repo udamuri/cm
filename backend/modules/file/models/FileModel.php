@@ -48,10 +48,10 @@ class FileModel extends Model
         $arrData = [];
         foreach ($models as  $value) {
             $url = Yii::$app->mycomponent->getImage($value['file_id'].'.'.$value['file_extension'], $value['file_folder']);
-            $img_url = '';
-            if($url){ 
-                $img_url = $url;
-            }
+            $url_resize = Yii::$app->mycomponent->getImage($value['file_id'].'_resize.'.$value['file_extension'], $value['file_folder']);
+            $img_url = $url ? $url : '';
+            $img_url_resize = $url_resize ? $url_resize : '';
+
 
             $arrData[] = [
                 'file_id'=>$value['file_id'],
@@ -62,6 +62,7 @@ class FileModel extends Model
                 'file_date_upload'=>$value['file_date_upload'],
                 'file_extension'=>$value['file_extension'],
                 'img_url'=>$img_url.'?'.time(),
+                'img_url_resize'=>$img_url_resize.'?'.time(),
             ];
 
         }
