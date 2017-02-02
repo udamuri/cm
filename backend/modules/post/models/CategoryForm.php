@@ -4,6 +4,7 @@ namespace backend\modules\post\models;
 use Yii;
 use yii\base\Model;
 use backend\models\TableCategory;
+use backend\models\TablePost;
 
 /**
  * Post form
@@ -27,8 +28,20 @@ class CategoryForm extends Model
           			
 			['category_name', 'required'],
             ['category_name', 'filter', 'filter' => 'trim'],
-			['category_name', 'string', 'max' => 100],
+			['category_name', 'string', 'max' => 255],
+            ['category_name', 'checkCategoryName'],
         ];
+    }
+
+    public function checkCategoryName($attribute, $params)
+    {
+        $alias = Yii::$app->mycomponent->toAscii($this->category_name);
+        $model = TableCategory::find()->where(['category_name'=>$alias])->one();
+        $_model = TablePost::find()->where(['post_url_alias'=>$alias])->one();
+        if(($model && $model->post_id != $this->post_id) || !empty($_model->post_url_alias) )
+        {
+            $this->addError($attribute, 'This category name already been taken.');
+        }
     }
 
     public function create()
@@ -36,7 +49,7 @@ class CategoryForm extends Model
         if ($this->validate()) {
       
             $create = new TableCategory();
-            $create->category_name = trim(strip_tags($this->category_name));
+            $create->category_name = Yii::$app->mycomponent->toAscii(trim(strip_tags(strtolower($this->category_name))));
             $create->category_date = date('Y-m-d H:i:s');
             $create->category_status = 1;
             $create->user_id = Yii::$app->user->identity->id;
@@ -57,7 +70,7 @@ class CategoryForm extends Model
     {
         if ($this->validate()) {
             $update = TableCategory::findOne($id);
-            $update->category_name = trim(strip_tags($this->category_name));
+            $update->category_name = Yii::$app->mycomponent->toAscii(trim(strip_tags(strtolower($this->category_name))));
             if ($update->save(false)) {
                  return true;
             }

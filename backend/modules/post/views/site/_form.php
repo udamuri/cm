@@ -127,10 +127,13 @@ use backend\models\TableCategory;
         </div>
 
         <div class="modal-body">
-            <div id="file-content" class="row">
-                        
+            <div class="row">
+                <div class="col-md-12">
+                    
+                </div>
             </div>
-    
+            <div id="file-content" class="row">                     
+            </div>
             <div class="row">
                 <div id="file-pagination" class="col-md-12 text-center">
                         
