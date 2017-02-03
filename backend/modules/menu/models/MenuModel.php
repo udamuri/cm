@@ -68,7 +68,7 @@ class MenuModel extends Model
 		{
 			foreach ($modelCategory as $value) {
 				$arrData[] = [
-					'label' => $value['category_name'],
+					'label' => $value['category_name'].'->category',
 					'value' => $value['category_name'],
 				];
 			}
@@ -78,7 +78,7 @@ class MenuModel extends Model
 		{
 			foreach ($modelPost as  $value) {
 				$arrData[] = [
-					'label' => $value['post_title'],
+					'label' => $value['post_title'].'->page',
 					'value' => $value['post_url_alias'],
 				];
 			}
