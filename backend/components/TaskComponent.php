@@ -145,7 +145,7 @@ class TaskComponent extends Component
 	//Yii::$app->mycomponent->getImage();
 	public function deleteFile($file_name = '', $folder_name="")
 	{
-		
+		$_path = yii::getAlias('@frontend/web/');	
 	}
 	
 	//Yii::$app->mycomponent->appLanguangeDate('eng',$date, 'month_year');

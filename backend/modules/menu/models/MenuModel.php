@@ -63,12 +63,16 @@ class MenuModel extends Model
 		$arrData = [];
 		$modelCategory = TableCategory::find()->all();
 		$modelPost = TablePost::find()->where(['post_type'=>Constants::PAGE])->all();
+		$arrData[] = [
+			'label' => 'No Url',
+			'value' => '--null--',
+		];
 
 		if($modelCategory)
 		{
 			foreach ($modelCategory as $value) {
 				$arrData[] = [
-					'label' => $value['category_name'].'->category',
+					'label' => $value['category_name'].'(category)',
 					'value' => $value['category_name'],
 				];
 			}
@@ -78,7 +82,7 @@ class MenuModel extends Model
 		{
 			foreach ($modelPost as  $value) {
 				$arrData[] = [
-					'label' => $value['post_title'].'->page',
+					'label' => $value['post_title'].'(page)',
 					'value' => $value['post_url_alias'],
 				];
 			}
