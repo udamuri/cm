@@ -21,6 +21,6 @@ $this->registerJs($jsx);
 ?>
 <div class="main-product">
     <div class="container">
-      
+      	<?//=yii::getAlias('@frontend');?>
     </div>
 </div>

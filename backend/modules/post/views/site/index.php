@@ -3,6 +3,8 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use app\components\Constants;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\TableCategory;
 
 $this->title = 'Posts';
 $this->params['breadcrumbs'][] = $this->title;
@@ -23,15 +25,32 @@ $this->registerJs($jsx);
 ?>
 
 <div class="row">
-    <div class="col-md-8 col-sm-12 col-xs-12">
+    <div class="col-md-6 col-sm-12 col-xs-12">
         <a href="<?=Yii::$app->homeUrl;?>create-post" class="btn btn-primary">Add New</a>
     </div>
-    <div class="col-md-4 col-sm-12 col-xs-12">
-        <form  id="searchform" class="input-group"  action="<?=Yii::$app->homeUrl;?>posts"  method="GET" > 
-            <input type="text" name="search" class="form-control" value="<?=$search;?>" placeholder="Search for...">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">Go!</button>
-            </span>
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <form  id="searchform" action="<?=Yii::$app->homeUrl;?>posts"  method="GET" >
+            <div class="row">
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                  <?php
+                    $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); 
+                    $arrEmpty = [''=>'----', '0'=>'--General--'];
+                    $array_merge = array_merge($arrEmpty, $dataList);
+                    echo Html::dropDownList('category', $category , $array_merge, [
+                      'class'=>'form-control'
+                    ]);
+                  ?>
+              </div>
+                <div class="col-md-6 col-sm-12 col-xs-12"> 
+                  <div class="input-group">
+                    <input type="text" name="search" class="form-control" value="<?=$search;?>" placeholder="Search for...">
+                  
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                  </div>
+              </div>
+            </div>
         </form>
     </div>
 </div>

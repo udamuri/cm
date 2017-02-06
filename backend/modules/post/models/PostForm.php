@@ -30,6 +30,7 @@ class PostForm extends Model
     public $meta_keywords;
     public $meta_description;
     public $meta_tags;
+    public $meta_image;
   
 	  
     /**
@@ -75,6 +76,8 @@ class PostForm extends Model
 
             ['meta_tags', 'filter', 'filter' => 'trim'],
             ['meta_tags', 'string', 'max' => 255],
+
+            ['meta_image', 'filter', 'filter' => 'trim'],
         ];
     }
 
@@ -104,13 +107,18 @@ class PostForm extends Model
         if ($this->validate()) {
             $t_value = Constants::PAGE ;
             $c_value = 0 ;
-            if($post_type == 1)
+            if($post_type == Constants::POST)
             {
                 $t_value = Constants::POST ;
                 if(isset($this->post_category_id))
                 {
                     $c_value = $this->post_category_id ;
                 }
+            }
+
+            if($post_type == Constants::SLIDE)
+            {
+                $t_value = Constants::SLIDE ;
             }
         
             $create = new TablePost();
@@ -147,6 +155,11 @@ class PostForm extends Model
                     'value'=> trim(strip_tags($this->meta_tags)),
                 ];
 
+                $arrData[] = [
+                    'key'=> '_meta_image',
+                    'value'=> trim(strip_tags($this->meta_image)),
+                ];
+
                 $this->cuMeta($arrData, $create->post_id);
 
                 return true;
@@ -163,11 +176,9 @@ class PostForm extends Model
      */
     public function update($id, $post_type = 0)
     {
-        $t_value = Constants::PAGE ;
         $c_value = 0 ;
-        if($post_type == 1)
+        if($post_type == Constants::POST)
         {
-            $t_value = Constants::POST ;
             if(isset($this->post_category_id))
             {
                 $c_value = $this->post_category_id ;
@@ -202,6 +213,11 @@ class PostForm extends Model
                 $arrData[] = [
                     'key'=> '_meta_tags',
                     'value'=> trim(strip_tags($this->meta_tags)),
+                ];
+
+                $arrData[] = [
+                    'key'=> '_meta_image',
+                    'value'=> trim(strip_tags($this->meta_image)),
                 ];
 
                 $this->cuMeta($arrData, $update->post_id);
@@ -319,6 +335,7 @@ class PostForm extends Model
             'meta_keywords' => 'Meta Keywords',
             'meta_description' => 'Meta Description',
             'meta_tags' => 'Meta Tags',
+            'meta_image' => 'Image URL',
         ];
     }
 	

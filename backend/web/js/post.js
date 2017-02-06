@@ -2,18 +2,20 @@ function post()
 {
 	this.baseUrl = '';
 	this.ckeditor = false;
+	this.slide = false;
 
 	this.initialScript = function()
 	{	
 		PostObj.dinamicBtnCategory();
+
 		if(PostObj.ckeditor !== false)
 		{
 			IndexObj.setCKeditor(PostObj.ckeditor);
+		}
 
-			$('#myModalFile').on('show.bs.modal', function (e) {
-				PostObj.addMedia(1, 1, '');
-			});
-		}	
+		$('#myModalFile').on('show.bs.modal', function (e) {
+			PostObj.addMedia(1, 1, '');
+		});
 	}
 
 	this.dinamicBtnCategory = function()
@@ -52,6 +54,13 @@ function post()
 			{
 				CKEDITOR.instances[PostObj.ckeditor].insertHtml('<img class="img-responsive" src="'+url+'" >');
 			}
+
+			if(PostObj.slide !== false)
+			{
+				$('#'+PostObj.slide).val(url);
+			}
+
+			$('.close').click();
 		});
 
 		$('.btn-add-img-ckeditor-resize').unbind('click');
@@ -61,6 +70,12 @@ function post()
 			{
 				CKEDITOR.instances[PostObj.ckeditor].insertHtml('<img class="img-responsive" src="'+url+'" >');
 			}
+
+			if(PostObj.slide !== false)
+			{
+				$('#'+PostObj.slide).val(url);
+			}
+			$('.close').click();
 		});
 
 		

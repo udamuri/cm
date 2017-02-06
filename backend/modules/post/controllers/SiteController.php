@@ -39,7 +39,12 @@ class SiteController extends Controller
                                       'page',
                                       'create-page',
                                       'update-page',
-                                      'set-status-page'
+                                      'set-status-page',
+                                      'slide',
+                                      'create-slide',
+                                      'update-slide',
+                                      'set-status-slide',
+                                      'delete',
                                       ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -71,9 +76,18 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $search = '';
-        if(isset($_GET['search']))
+        $category = '';
+        if($get = Yii::$app->request->get())
         {
-            $search =  strtolower(trim(strip_tags($_GET['search'])));
+            if(isset($get['category']) && is_numeric($get['category']))
+            {
+                 $category = abs((int)$get['category']);
+            }
+
+            if(isset($get['search']))
+            {
+                $search =  strtolower(trim(strip_tags($_GET['search'])));  
+            }
         }
         
         $query = (new \yii\db\Query())
@@ -97,6 +111,11 @@ class SiteController extends Controller
         {
             $query->andWhere('lower(post_title) LIKE "%'.$search.'%" ');
         }
+
+        if($category !== '')
+        {
+            $query->andWhere(['category_id'=>$category]);
+        }
         
         $countQuery = clone $query;
         $pageSize = 10;
@@ -114,7 +133,8 @@ class SiteController extends Controller
             'pages' => $pages,
             'offset' =>$pages->offset,
             'page' =>$pages->page,
-            'search' =>$search
+            'search' =>$search,
+            'category' =>$category
         ]);
     }
 
@@ -367,4 +387,104 @@ class SiteController extends Controller
             return $this->redirect(Yii::$app->homeUrl.'pages');
         }
     }
+
+    /* ---slide--- */
+
+    public function actionSlide()
+    {
+        $search = '';
+        if(isset($_GET['search']))
+        {
+            $search =  strtolower(trim(strip_tags($_GET['search'])));
+        }
+        
+        $query = (new \yii\db\Query())
+                    ->select([
+                        'tp.post_id',
+                        'tp.post_category_id',
+                        'tp.post_title',
+                        'tp.post_excerpt',
+                        'tp.post_date',
+                        'tp.post_modified',
+                        'tp.post_status',
+                        'tp.user_id',
+                    ])
+                    ->from('tbl_post tp')
+                    ->where(['post_type'=>Constants::SLIDE]);
+                    
+        if($search !== '')
+        {
+            $query->andWhere('lower(post_title) LIKE "%'.$search.'%" ');
+        }
+        
+        $countQuery = clone $query;
+        $pageSize = 10;
+        $pages = new Pagination([
+                'totalCount' => $countQuery->count(), 
+                'pageSize'=>$pageSize
+            ]);
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy(['post_id'=>SORT_DESC])
+            ->all();
+            
+        return $this->render('slide', [
+            'models' => $models,
+            'pages' => $pages,
+            'offset' =>$pages->offset,
+            'page' =>$pages->page,
+            'search' =>$search
+        ]);
+    }
+
+    public function actionCreateSlide()
+    {
+        $model = new PostForm();
+        
+        if ($model->load(Yii::$app->request->post())) {
+            if ($post = $model->create(3)) {
+                Yii::$app->session->setFlash('success', "Create New Slide");
+                return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'slide-image');
+            }
+
+        }
+
+        return $this->render('slide_create', [
+            'model' => $model,
+        ]); 
+    }
+
+    public function actionUpdateSlide($id)
+    {
+        $model = new PostForm;
+        $_model = $model->getPost($id);
+   
+        if($_model)
+        {
+            if ($model->load(Yii::$app->request->post())) {                   
+                if ($menu = $model->update($id, 3)) {
+                    Yii::$app->session->setFlash('success', "Update Slide");
+                    return $this->redirect(Yii::$app->homeUrl.'slide-image');
+                }
+            }
+            return $this->render('slide_update', [
+                'model' => $model,
+                '_model' => $_model,
+            ]);
+        }
+        else
+        {
+            return $this->redirect(Yii::$app->homeUrl.'slide-image');
+        }
+    }
+
+    /* --- Delete Function --- */
+    public function actionDelete()
+    {
+        if ( Yii::$app->request->post() ) 
+        {
+
+        }
+    }
+    /* --- Delete Function --- */
 }

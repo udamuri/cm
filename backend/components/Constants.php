@@ -18,7 +18,7 @@ class Constants
 	const PAGE = 0;
 	const POST = 1;
 	const SLIDE = 2;
-	const PROD = 3;
+	const PRODUCT = 3;
 	/** POST_STATUS */
 
 	/** JENIS KELAMIN */

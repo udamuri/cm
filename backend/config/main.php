@@ -82,6 +82,7 @@ return [
                 'update-menu/<id:[0-9]+>'=>'menu/site/update',
                 'delete-menu/<id:[0-9]+>'=>'menu/site/delete',
                 'file-manager'=>'file/site/index',
+                'file-delete'=>'file/site/delete',
                 'posts'=>'post/site/index',
                 'create-post'=>'post/site/create',
                 'update-post/<id:[0-9]+>'=>'post/site/update',
@@ -91,6 +92,9 @@ return [
                 'pages'=>'post/site/page',
                 'create-page'=>'post/site/create-page',
                 'update-page/<id:[0-9]+>'=>'post/site/update-page',
+                'slide-image'=>'post/site/slide',
+                'create-slide'=>'post/site/create-slide',
+                'update-slide/<id:[0-9]+>'=>'post/site/update-slide',
             ],
         ],
         //Yii::$app->urlManagerFrontEnd->createUrl('//')
