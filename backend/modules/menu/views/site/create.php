@@ -33,6 +33,7 @@ $this->registerJs($jsx);
     <div class="col-md-12">
         <?= $this->render('_form', [
             'model' => $model,
+            'ymodel' =>$ymodel,
             'form_id' => 'form-create-menu',
             'button' => 'Save',
         ]) ?>

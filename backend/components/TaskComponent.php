@@ -130,6 +130,19 @@ class TaskComponent extends Component
 		return false;
 	}
 
+	//Yii::$app->mycomponent->deleteFile($file_name, $folder_name);
+	public function deleteFile($file_name = '', $folder_name='')
+	{
+		$_path = yii::getAlias('@frontend/web/media/'.$folder_name.$file_name);
+
+		if(file_exists($_path))
+		{
+			return unlink($_path);
+		}
+
+		return false;	
+	}
+
 	//Yii::$app->mycomponent->getHttpUrl($clear);
 	public function getHttpUrl($clear = '')
 	{
@@ -140,12 +153,6 @@ class TaskComponent extends Component
 		}
 
 		return $url ;
-	}
-
-	//Yii::$app->mycomponent->getImage();
-	public function deleteFile($file_name = '', $folder_name="")
-	{
-		
 	}
 	
 	//Yii::$app->mycomponent->appLanguangeDate('eng',$date, 'month_year');

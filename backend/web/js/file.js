@@ -6,6 +6,7 @@ function file()
 	this.initialScript = function()
 	{	
 		FileObj.btnUpload();
+		FileObj.clickFile();
 	}
 
 	this.btnUpload = function()
@@ -19,6 +20,29 @@ function file()
 				$('#upload-image').unbind('click');
 				$('#upload-image').click();
 			});
+		});
+	}
+
+	this.clickFile = function()
+	{
+		$('.file_delete').unbind('click');
+		$('.file_delete').on('click', function(){
+			var id = $(this).data('id');
+
+			var arrForm = [
+				['id',id],
+			];
+			$('#file-content').empty();
+			$('#file-content').html('loading...');
+			IndexObj.yiiAjaxForm(
+				'file-delete', 
+				arrForm, 
+				'',  //btn id
+				function(data){
+					window.location = IndexObj.baseUrl+'file-manager';	
+				}
+			);
+
 		});
 	}
 	

@@ -68,9 +68,16 @@ class UploadForm extends Model
     public function delete($id)
     {
         $model = TableFile::findOne($id);
+
         if($model)
         {
-            $model->delete();
+            Yii::$app->mycomponent->deleteFile($model->file_id.'.'.$model->file_extension , $model->file_folder);
+            Yii::$app->mycomponent->deleteFile($model->file_id.'_resize.'.$model->file_extension , $model->file_folder);
+            Yii::$app->mycomponent->deleteFile($model->file_id.'_thumb.'.$model->file_extension , $model->file_folder);
+            if($model->delete())
+            {
+                return true;
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update', 'set-status', 'delete'],
+                        'actions' => ['index', 'create', 'update', 'set-status', 'delete', 'slide'],
                         'allow' => true,
                         'roles' => ['@'],
 						'matchCallback' => function ($rule, $action) {
@@ -75,6 +75,8 @@ class SiteController extends Controller
             {
                 Yii::$app->session->setFlash('error', "there is something wrong");
             }
+
+            return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'menu');
         }
 
         return $this->render('index');
@@ -91,8 +93,11 @@ class SiteController extends Controller
             }
         }
 
+        $xmodel = new MenuModel();
+        $ymodel = $xmodel->getUrlAlias();
         return $this->render('create', [
             'model' => $model,
+            'ymodel' =>$ymodel,
         ]);
     }
 
@@ -109,9 +114,12 @@ class SiteController extends Controller
                     return $this->redirect(Yii::$app->homeUrl.'menu');
                 }
             }
+            $xmodel = new MenuModel();
+            $ymodel = $xmodel->getUrlAlias();
             return $this->render('update', [
                 'model' => $model,
                 '_model' => $_model,
+                'ymodel' =>$ymodel,
             ]);
         }
         else
@@ -144,5 +152,12 @@ class SiteController extends Controller
             return $this->redirect(Yii::$app->homeUrl.'menu');
         }
         return $this->redirect(Yii::$app->homeUrl.'menu');
+    }
+
+    //slide
+
+    public function actionSlide()
+    {
+        return $this->render('slide');
     }
 }

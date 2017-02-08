@@ -24,13 +24,13 @@ use yii\helpers\ArrayHelper;
         ?>
 
                 <?= $form->field($model, 'menu_title')->textInput(); ?>
-                <?= $form->field($model, 'menu_link')->textInput(); ?>
+                <?= $form->field($model, 'menu_link')->dropDownList(ArrayHelper::map($ymodel, 'value', 'label')); ?>
 
                 <div class="form-group">
                     <?= Html::submitButton($button, ['class' => 'btn btn-primary', 'name' => 'category-button']) ?>
                 </div>
 
-        <?php ActiveForm::end(); ?>   
+        <?php ActiveForm::end(); ?> 
     </div>
 </div>
 

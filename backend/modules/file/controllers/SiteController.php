@@ -113,14 +113,24 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionDelete($id)
+    public function actionDelete()
     {
-        $model = new UploadForm;           
-        if ($menu = $model->delete($id)) {
-            Yii::$app->session->setFlash('success', "Delete File");
-            return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'file-manager');
+       
+        if ($post = Yii::$app->request->isPost && Yii::$app->request->isAjax) 
+        {
+            $id = $_POST['id'] ? (int)$_POST['id'] : '';
+            $model = new UploadForm;           
+            if ($menu = $model->delete($id)) {
+                Yii::$app->session->setFlash('success', "Delete File");
+                return true;
+            }
+            Yii::$app->session->setFlash('error', "Error .. Delete File");
+            return false;
         }
-        return $this->redirect(Yii::$app->homeUrl.'file-manager');
+        else
+        {
+            //return 'error';
+        }
     }
 
     public function actionGetAjaxFile()

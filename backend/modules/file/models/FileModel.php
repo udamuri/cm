@@ -49,6 +49,8 @@ class FileModel extends Model
         foreach ($models as  $value) {
             $url = Yii::$app->mycomponent->getImage($value['file_id'].'.'.$value['file_extension'], $value['file_folder']);
             $url_resize = Yii::$app->mycomponent->getImage($value['file_id'].'_resize.'.$value['file_extension'], $value['file_folder']);
+            $full_url = Yii::$app->mycomponent->getHttpUrl('/cm-admin');
+
             $img_url = $url ? $url : '';
             $img_url_resize = $url_resize ? $url_resize : '';
 
