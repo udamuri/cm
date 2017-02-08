@@ -143,7 +143,7 @@ class SiteController extends Controller
         $model = new PostForm();
         //$model->scenario = 'create';
         if ($model->load(Yii::$app->request->post())) {
-            if ($post = $model->create(1)) {
+            if ($post = $model->create(Constants::POST)) {
                 Yii::$app->session->setFlash('success', "Create New Post");
                 return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'posts');
             }
@@ -164,7 +164,7 @@ class SiteController extends Controller
         if($_model)
         {
             if ($model->load(Yii::$app->request->post())) {                   
-                if ($menu = $model->update($id, 1)) {
+                if ($menu = $model->update($id, Constants::POST)) {
                     Yii::$app->session->setFlash('success', "Update Post");
                     return $this->redirect(Yii::$app->homeUrl.'posts');
                 }
@@ -352,7 +352,7 @@ class SiteController extends Controller
         $model = new PostForm();
         
         if ($model->load(Yii::$app->request->post())) {
-            if ($post = $model->create(2)) {
+            if ($post = $model->create(Constants::PAGE)) {
                 Yii::$app->session->setFlash('success', "Create New Page");
                 return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'pages');
             }
@@ -372,7 +372,7 @@ class SiteController extends Controller
         if($_model)
         {
             if ($model->load(Yii::$app->request->post())) {                   
-                if ($menu = $model->update($id, 2)) {
+                if ($menu = $model->update($id, Constants::PAGE)) {
                     Yii::$app->session->setFlash('success', "Update Page");
                     return $this->redirect(Yii::$app->homeUrl.'pages');
                 }
@@ -442,7 +442,7 @@ class SiteController extends Controller
         $model = new PostForm();
         
         if ($model->load(Yii::$app->request->post())) {
-            if ($post = $model->create(3)) {
+            if ($post = $model->create(Constants::SLIDE)) {
                 Yii::$app->session->setFlash('success', "Create New Slide");
                 return Yii::$app->getResponse()->redirect(Yii::$app->homeUrl.'slide-image');
             }
@@ -462,7 +462,7 @@ class SiteController extends Controller
         if($_model)
         {
             if ($model->load(Yii::$app->request->post())) {                   
-                if ($menu = $model->update($id, 3)) {
+                if ($menu = $model->update($id, Constants::SLIDE)) {
                     Yii::$app->session->setFlash('success', "Update Slide");
                     return $this->redirect(Yii::$app->homeUrl.'slide-image');
                 }
