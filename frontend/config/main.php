@@ -12,7 +12,7 @@ $baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl());
 return [
     'id' => 'app-frontend',
     'name' => 'CM',
-    'language' => 'id',
+    //'language' => 'id',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
@@ -40,7 +40,7 @@ return [
             ],
         ],
         'mycomponent' => [
-            'class' => 'app\components\TaskComponent',
+            'class' => 'common\components\TaskComponent',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -52,6 +52,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'dashboard'=>'site/index',
+		'signup'=>'site/signup',
             ],
         ],
     ],
