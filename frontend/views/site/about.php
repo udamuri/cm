@@ -16,6 +16,7 @@ $this->registerCssFile(Yii::$app->homeUrl.'css/lates_product.css', [
     //'media' => 'print',
 ]);
 ?>
+<!-- tes -->
 <div class="detail-content">
     <div class="container">
         <div class="site-contact">
