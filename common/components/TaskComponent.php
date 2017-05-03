@@ -18,6 +18,118 @@ class TaskComponent extends Component
 		return "Hello..Welcome to MyComponent My Name Muri Budiman";
 	}
 
+	//Yii::$app->mycomponent->frontendOptions();
+	public function frontendOptions($value="")
+	{
+		$query = new Query;
+        $query->select('option_id, option_name, option_label, option_value, option_autoload')
+            ->from('tbl_options')
+            ->where(['option_name'=>$value]);
+        $rows = $query->one();
+
+        return $rows;
+	}
+
+	//Yii::$app->mycomponent->getSlide();
+	public function getSlide()
+	{
+		$query = new Query;
+        $query->select('post_id, post_category_id, post_title, post_excerpt, post_content')
+            ->from('tbl_post')
+            ->where(['post_status'=>1, 'post_type'=>Constants::SLIDE]);
+        $rows = $query->all();
+
+        return $rows;
+	}
+
+	//Yii::$app->mycomponent->treeMenu();
+	public function treeMenu()
+	{
+		$table = 'nestamenu';
+		$query = new Query;
+        $query->select('menu_id, menu_parent_id, menu_sort, menu_title, menu_link, menu_status')
+            ->from($table)
+            ->where(['menu_parent_id'=>0])
+            ->orderBy('menu_sort');
+        $rows = $query->all();
+   		$menu = '';
+   		if($rows)
+   		{
+            foreach ($rows as $value) {
+             	$menu .= '<li>';
+             	$submenu = '' ;
+             	$classa = '';
+             	$caret = '';
+             	if($submenu = $this->childMenu($value['menu_id'], $table))
+                {
+               		$classa = 'class="dropdown-toggle" data-toggle="dropdown"';
+               		$caret = ' <b class="caret"></b>';
+                }
+             	$menu .= '<a href="#" '.$classa.'>'.$value['menu_title'].$caret;
+             	$menu .= $submenu ;
+             	$menu .= '</a>';   
+             	$menu .= '</li>';   
+            }
+        }
+
+        return $menu;
+	}
+
+	private function childMenu($id = 0, $table)
+    {
+        $query = new Query;
+        $query->select('menu_id, menu_parent_id, menu_sort, menu_title, menu_link, menu_status')
+            ->from($table)
+            ->where(['menu_parent_id'=>$id])
+            ->orderBy('menu_sort');
+        $rows = $query->all();
+        $menu = '';
+        if($rows)
+        {
+        	$menu .= '<ul class="dropdown-menu">';
+           	foreach ($rows as $value) {
+        		$submenu = '' ;
+             	$classa = '';
+             	$caret = '';
+             	if($submenu = $this->childMenu($value['menu_id'], $table))
+                {
+               		$classa = 'class="dropdown-toggle" data-toggle="dropdown"';
+               		$caret = ' <b class="caret"></b>';
+                }
+                $menu .= '<li>';
+             	$menu .= '<a href="#" '.$classa.'>'.$value['menu_title'].$caret;
+             	$menu .= $submenu ;
+        		$menu .= '</a>';
+        		$menu .= '</li>';
+           	}
+
+           	$menu .= '</ul>' ;
+        }
+        return $menu;
+    }
+
+    //Yii::$app->mycomponent->getHomeCategory($id, $data_max);
+    public function getHomeCategory($id = "", $data_max = 20)
+    {
+    	if($id !== '')
+    	{
+	    	$arrExplode = explode(',', $id);
+	    	$query = new Query;
+	        $query->select('post_id, post_title, post_content, post_excerpt')
+	            ->from('tbl_post')
+	            ->where(['post_category_id'=>$arrExplode])
+	            ->limit($data_max)
+	            ->orderBy('rand()');
+	        $rows = $query->all();
+	        
+	        return $rows;
+    	}
+    	else
+    	{
+    		return false;
+    	}
+    }
+
 	//Yii::$app->mycomponent->getCopy(2016);
 	public function getCopy($start = 2010)
 	{
