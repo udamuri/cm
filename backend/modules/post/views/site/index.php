@@ -33,10 +33,15 @@ $this->registerJs($jsx);
             <div class="row">
               <div class="col-md-6 col-sm-12 col-xs-12">
                   <?php
-                    $dataList = ArrayHelper::map(TableCategory::find()->all(), 'category_id', 'category_name'); 
-                    $arrEmpty = [''=>'----', '0'=>'--General--'];
-                    $array_merge = array_merge($arrEmpty, $dataList);
-                    echo Html::dropDownList('category', $category , $array_merge, [
+                    $arrData = [];
+                    $arrData[] = ['category_id'=>'', 'category_name'=>'---All---'];
+                    $dataList = TableCategory::find()->all();
+                    foreach ($dataList as $value) {
+                        $arrData[] = ['category_id'=>$value['category_id'], 'category_name'=>$value['category_name']];
+                    }
+        
+                    $myList = ArrayHelper::map($arrData, 'category_id', 'category_name');
+                    echo Html::dropDownList('category', $category , $myList, [
                       'class'=>'form-control'
                     ]);
                   ?>
