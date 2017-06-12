@@ -19,7 +19,7 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "udamuri/yii2-imagethum": "*",
-        "udamuri/yii2-nestablemenu": "v1.0"
+        "udamuri/yii2-nestablemenu": "1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
